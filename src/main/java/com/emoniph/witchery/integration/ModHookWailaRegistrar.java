@@ -147,7 +147,8 @@ public class ModHookWailaRegistrar implements IWailaDataProvider, IWailaEntityPr
       return currenttip;
    }
    
-   public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) {}
-   public NBTTagCompound getNBTData(EntityPlayerMP player, Entity ent, NBTTagCompound tag, World world) {}
+   //in orig file - no find after decomp
+   public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) { return tag; }
+   public NBTTagCompound getNBTData(EntityPlayerMP player, Entity ent, NBTTagCompound tag, World world) { return tag; }
 
 }
