@@ -106,4 +106,5 @@ jar {
         attributes 'FMLAT': 'witchery_at.cfg'
     }
     include 'META-INF/witchery_at.cfg'
+    include '**/*'
 }

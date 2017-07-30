@@ -115,7 +115,7 @@ public class BlockAltar extends BlockBaseContainer {
 
    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
       BlockAltar.TileEntityAltar tileEntity = (BlockAltar.TileEntityAltar)world.getTileEntity(x, y, z);
-      if(tileEntity.isValidAndUpdate()) {
+      if(tileEntity != null && tileEntity.isValidAndUpdate()) {
          player.openGui(Witchery.instance, 0, world, x, y, z);
          return true;
       } else {
