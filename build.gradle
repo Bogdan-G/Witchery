@@ -1,0 +1,109 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+version = "1.7.10-0.24.1"
+group= "com.emoniph.witchery" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "witchery"
+
+sourceCompatibility = 7
+targetCompatibility = 7
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+	if (file('../run').exists()){
+		assetDir = "../run/assets"
+	}else{
+		assetDir = "assets"
+	}
+}
+
+repositories {
+	mavenLocal()
+	maven {
+		name = "ic2"
+		url = "http://maven.ic2.player.to/"
+	}
+	ivy {
+		name "BuildCraft"
+		artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision]-[classifier].[ext]"
+	}
+	maven {
+		name = "chickenbones"
+		url = "http://chickenbones.net/maven/"
+	}
+	maven{
+		name "tterrag Repo"
+		url "http://maven.tterrag.com/"
+	}
+    maven {
+        url  "http://jcenter.bintray.com"
+    }
+    maven {
+        name 'Forge'
+        url 'http://files.minecraftforge.net/maven'
+    }
+        maven {
+        name "Mobius Repo"
+        url "http://mobiusstrip.eu/maven/"
+    }
+    maven {
+        name = "K4 maven"
+        url = "http://maven.k-4u.nl/"
+    }
+    maven {
+        name "FireBall API Depot"
+        url "http://dl.tsr.me/artifactory/libs-release-local"
+    }
+}
+
+dependencies
+{
+	compile "codechicken:CodeChickenCore:1.7.10-1.0.7.47:dev"
+	compile 'codechicken:CodeChickenLib:1.7.10-1.1.3.140:dev'
+	compile 'codechicken:NotEnoughItems:1.7.10-1.0.5.120:dev'
+	compile fileTree(dir: "libs", include: "*.jar")
+}
+
+
+processResources
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    manifest {
+        attributes 'FMLAT': 'witchery_at.cfg'
+    }
+    include 'META-INF/witchery_at.cfg'
+}

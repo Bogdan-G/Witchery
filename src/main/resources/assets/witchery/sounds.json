@@ -1,0 +1,284 @@
+{
+	"mob.baba.baba_death": {
+		"category": "neutral",
+		"sounds": ["mob/baba/baba_death"]
+	},
+	"mob.baba.baba_living": {
+		"category": "neutral",
+		"sounds": ["mob/baba/baba_living1"]
+	},
+	"mob.banshee.banshee_scream": {
+		"category": "hostile",
+		"sounds": ["mob/banshee/banshee_scream"]
+	},
+	"mob.nightmare.nightmare_dead": {
+		"category": "hostile",
+		"sounds": ["mob/nightmare/nightmare_dead"]
+	},
+	"mob.nightmare.nightmare_hit": {
+		"category": "hostile",
+		"sounds": ["mob/nightmare/nightmare_hit"]
+	},
+	"mob.nightmare.nightmare_live": {
+		"category": "hostile",
+		"sounds": ["mob/nightmare/nightmare_live"]
+	},
+	"mob.owl.owl_hoot": {
+		"category": "neutral",
+		"sounds": ["mob/owl/owl_hoot1",
+		"mob/owl/owl_hoot2"]
+	},
+	"mob.owl.owl_hurt": {
+		"category": "neutral",
+		"sounds": ["mob/owl/owl_hurt1"]
+	},
+	"mob.monkey.say": {
+		"category": "neutral",
+		"sounds": ["mob/monkey/say1",
+		"mob/monkey/say2",
+		"mob/monkey/say3"]
+	},
+	"mob.monkey.hit": {
+		"category": "neutral",
+		"sounds": ["mob/monkey/hit"]
+	},
+	"mob.monkey.death": {
+		"category": "neutral",
+		"sounds": ["mob/monkey/death"]
+	},
+	"mob.spectre.spectre_die": {
+		"category": "hostile",
+		"sounds": ["mob/spectre/spectre_die"]
+	},
+	"mob.spectre.spectre_hit": {
+		"category": "hostile",
+		"sounds": ["mob/spectre/spectre_hit"]
+	},
+	"mob.spectre.spectre_say": {
+		"category": "hostile",
+		"sounds": ["mob/spectre/spectre_say"]
+	},
+	"mob.wolfman.death": {
+		"category": "hostile",
+		"sounds": ["mob/wolfman/death"]
+	},
+	"mob.wolfman.hit": {
+		"category": "hostile",
+		"sounds": ["mob/wolfman/hit"]
+	},
+	"mob.wolfman.say": {
+		"category": "hostile",
+		"sounds": ["mob/wolfman/say1",
+		"mob/wolfman/say2"]
+	},
+	"mob.wolfman.howl": {
+		"category": "hostile",
+		"sounds": ["mob/wolfman/howl"]
+	},
+	"mob.wolfman.eat": {
+		"category": "hostile",
+		"sounds": ["mob/wolfman/eat"]
+	},
+	"mob.wolfman.lord": {
+		"category": "hostile",
+		"sounds": ["mob/wolfman/lord"]
+	},
+	"mob.toad.toad_croak": {
+		"category": "neutral",
+		"sounds": ["mob/toad/toad_croak1",
+		"mob/toad/toad_croak2"]
+	},
+	"mob.toad.toad_hurt": {
+		"category": "neutral",
+		"sounds": ["mob/toad/toad_hurt1"]
+	},
+	"mob.treefyd.treefyd_say": {
+		"category": "neutral",
+		"sounds": ["mob/treefyd/treefyd_say"]
+	},
+	"mob.imp.laugh": {
+		"category": "neutral",
+		"sounds": ["mob/imp/laugh"]
+	},
+	"mob.imp.hit": {
+		"category": "neutral",
+		"sounds": ["mob/imp/hit"]
+	},
+	"mob.imp.death": {
+		"category": "neutral",
+		"sounds": ["mob/imp/death"]
+	},
+	"mob.torment.laugh": {
+		"category": "hostile",
+		"sounds": ["mob/torment/laugh"]
+	},
+	"mob.torment.hit": {
+		"category": "hostile",
+		"sounds": ["mob/torment/hit"]
+	},
+	"mob.torment.death": {
+		"category": "hostile",
+		"sounds": ["mob/torment/death"]
+	},
+	"random.drink": {
+		"category": "player",
+		"sounds": ["random/drink"]
+	},
+	"random.hypnosis": {
+		"category": "player",
+		"sounds": ["random/hypnosis"]
+	},
+	"random.sworddraw": {
+		"category": "player",
+		"sounds": ["random/sworddraw"]
+	},
+	"random.swordsheathe": {
+		"category": "player",
+		"sounds": ["random/swordsheathe"]
+	},
+	"random.click": {
+		"category": "player",
+		"sounds": ["random/click"]
+	},
+	"random.mantrap": {
+		"category": "block",
+		"sounds": ["random/mantrap"]
+	},
+	"random.heartbeat": {
+		"category": "block",
+		"sounds": ["random/heartbeat1"]
+	},
+	"random.chalk": {
+		"category": "block",
+		"sounds": ["random/chalk"]
+	},
+	"random.blop": {
+		"category": "block",
+		"sounds": ["random/blop"]
+	},
+	"random.loved": {
+		"category": "neutral",
+		"sounds": ["random/loved"]
+	},
+	"random.theycome": {
+		"category": "player",
+		"sounds": ["random/theycome"]
+	},
+	"random.wind_up": {
+		"category": "player",
+		"sounds": ["random/wind_up"]
+	},
+	"random.splash": {
+		"category": "neutral",
+		"sounds": ["random/splash"]
+	},
+	"random.poof": {
+		"category": "neutral",
+		"sounds": ["random/poof"]
+	},
+	"random.horn": {
+		"category": "neutral",
+		"sounds": ["random/horn"]
+	},
+	"mob.darkmark.idle": {
+		"category": "neutral",
+		"sounds": ["mob/darkmark/idle"]
+	},
+	"mob.goblin.idle": {
+		"category": "neutral",
+		"sounds": ["mob/goblin/idle1",
+		"mob/goblin/idle2",
+		"mob/goblin/idle3"]
+	},
+	"mob.goblin.haggle": {
+		"category": "neutral",
+		"sounds": ["mob/goblin/haggle1",
+		"mob/goblin/haggle2",
+		"mob/goblin/haggle3"]
+	},
+	"mob.goblin.hit": {
+		"category": "neutral",
+		"sounds": ["mob/goblin/hit1",
+		"mob/goblin/hit2",
+		"mob/goblin/hit3",
+		"mob/goblin/hit4"]
+	},
+	"mob.goblin.yes": {
+		"category": "neutral",
+		"sounds": ["mob/goblin/yes1",
+		"mob/goblin/yes2",
+		"mob/goblin/yes3"]
+	},
+	"mob.goblin.no": {
+		"category": "neutral",
+		"sounds": ["mob/goblin/no1",
+		"mob/goblin/no2",
+		"mob/goblin/no3"]
+	},
+	"mob.goblin.death": {
+		"category": "neutral",
+		"sounds": ["mob/goblin/death"]
+	},
+	"mob.goblin.gulg_idle": {
+		"category": "hostile",
+		"sounds": ["mob/goblin/gulg_idle"]
+	},
+	"mob.goblin.mog_idle": {
+		"category": "hostile",
+		"sounds": ["mob/goblin/mog_idle"]
+	},
+	"mob.leonard.death": {
+		"category": "hostile",
+		"sounds": ["mob/leonard/death"]
+	},
+	"mob.leonard.say": {
+		"category": "hostile",
+		"sounds": ["mob/leonard/say1",
+		"mob/leonard/say2",
+		"mob/leonard/say3",
+		"mob/leonard/say4",
+		"mob/leonard/say5"]
+	},
+	"mob.leonard.hit": {
+		"category": "hostile",
+		"sounds": ["mob/leonard/hit"]
+	},
+	"mob.lilith.death": {
+		"category": "hostile",
+		"sounds": ["mob/lilith/death"]
+	},
+	"mob.lilith.say": {
+		"category": "hostile",
+		"sounds": ["mob/lilith/say1",
+		"mob/lilith/say2",
+		"mob/lilith/say3",
+		"mob/lilith/say4",
+		"mob/lilith/say5"]
+	},
+	"mob.lilith.hit": {
+		"category": "hostile",
+		"sounds": ["mob/lilith/hit"]
+	},
+	"mob.reflection.death": {
+		"category": "hostile",
+		"sounds": ["mob/reflection/death"]
+	},
+	"mob.reflection.say": {
+		"category": "hostile",
+		"sounds": ["mob/reflection/say1"]
+	},
+	"mob.reflection.hit": {
+		"category": "hostile",
+		"sounds": ["mob/reflection/hit"]
+	},
+	"mob.reflection.speech": {
+		"category": "neutral",
+		"sounds": ["mob/reflection/speech"]
+	},
+	"random.wood_creak": {
+		"category": "player",
+		"sounds": ["random/wood_creak1",
+		"random/wood_creak2",
+		"random/wood_creak3"]
+	}
+}

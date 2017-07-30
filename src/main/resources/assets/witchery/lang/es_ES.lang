@@ -1,0 +1,860 @@
+itemGroup.tabWitchery=Witchery
+
+item.witchery:ingredient.candelabra.name=Candelabro
+item.witchery:ingredient.chalice.name=Cáliz
+item.witchery:ingredient.chaliceFull.name=Cáliz (Lleno)
+item.witchery:ingredient.weaveMoveFast.name=Atrapasueños del Pie Veloz
+item.witchery:ingredient.weaveDigFast.name=Atrapasueños del Brazo de Hierro
+item.witchery:ingredient.weaveSaturation.name=Atrapasueños del Ayuno
+item.witchery:ingredient.weaveNightmares.name=Atrapasueños de las Pesadillas
+item.witchery:ingredient.boneNeedle.name=Aguja de Hueso
+item.witchery:ingredient.broom.name=Escoba
+item.witchery:ingredient.broomEnchanted.name=Escoba Encantada
+item.witchery:ingredient.attunedStone.name=Piedra Armonizada
+item.witchery:ingredient.attunedStoneCharged.name=Piedra Armonizada (cargada)
+item.witchery:ingredient.waystone.name=Piedra del Camino
+item.witchery:ingredient.waystoneBound.name=Piedra del Camino Enlazada
+item.witchery:ingredient.mutandis.name=Mutandis
+item.witchery:ingredient.mutandisExtremis.name=Mutandis Extremis
+item.witchery:ingredient.quicklime.name=Cal
+item.witchery:ingredient.gypsum.name=Yeso
+item.witchery:ingredient.ashWood.name=Ceniza de Madera
+item.witchery:ingredient.seedsBelladonna.name=Semillas de Belladona Antiguas
+item.witchery:ingredient.seedsMandrake.name=Semillas de Mandrágora Antiguas
+item.witchery:ingredient.belladonna.name=Flor de Belladona
+item.witchery:ingredient.mandrakeRoot.name=Raíz de Mandrágora
+item.witchery:ingredient.demonHeart.name=Corazón de Demonio
+item.witchery:ingredient.batWool.name=Lana de Murciélago
+item.witchery:ingredient.dogTongue.name=Lengua de Perro
+item.witchery:ingredient.clayJarSoft.name=Vasija de Arcilla Suave
+item.witchery:ingredient.clayJar.name=Vasija de Arcilla
+item.witchery:ingredient.foulFume.name=Vapor Repugnante
+item.witchery:ingredient.diamondVapour.name=Vapor de Diamante
+item.witchery:ingredient.oilOfVitriol.name=Aceite de Vitriolo
+item.witchery:ingredient.exhaleOfTheHornedOne.name=Aliento del Cornudo
+item.witchery:ingredient.breathOfTheGoddess.name=Soplo de la Deidad
+item.witchery:ingredient.hintOfRebirth.name=Dejo de Renacimiento
+item.witchery:ingredient.whiffOfMagic.name=Olorcito de Magia
+item.witchery:ingredient.reekOfMisfortune.name=Pestilencia de Infortunio
+item.witchery:ingredient.odourOfPurity.name=Olor de Pureza
+item.witchery:ingredient.tearOfTheGoddess.name=Lágrima de la Deidad
+item.witchery:ingredient.refinedEvil.name=Mal Depurado
+item.witchery:ingredient.dropOfLuck.name=Gota de Suerte
+item.witchery:ingredient.redstoneSoup.name=Sopa de Redstone
+item.witchery:ingredient.flyingOintment.name=Ungüento para Volar
+item.witchery:ingredient.ghostOfTheLight.name=Fantasma de la Luz
+item.witchery:ingredient.soulOfTheWorld.name=Alma del Mundo
+item.witchery:ingredient.spiritOfOtherwhere.name=Espíritu de Otra Parte
+item.witchery:ingredient.infernalAnimus.name=Animosidad Infernal
+item.witchery:ingredient.bookOven.name=Witchcraft: Recolectando Vapores
+item.witchery:ingredient.bookDistilling.name=Witchcraft: Destilando
+item.witchery:ingredient.bookCircleMagic.name=Witchcraft: Magia Circular
+item.witchery:ingredient.bookInfusions.name=Witchcraft: Brebajes e Infusiones
+item.witchery:ingredient.oddPorkchopRaw.name=Cerdo Crudo?
+item.witchery:ingredient.oddPorkchopCooked.name=Cerdo Cocido?
+item.witchery:ingredient.doorRowan.name=Puerta de Serbal
+item.witchery:ingredient.doorAlder.name=Puera de Aliso
+item.witchery:ingredient.doorKey.name=Llave de Puerta de Serbal
+item.witchery:ingredient.rock.name=Roca
+item.witchery:ingredient.web.name=Telaraña Densa
+item.witchery:ingredient.brewVines.name=Brebaje de Enredaderas
+item.witchery:ingredient.brewWeb.name=Brebaje de Telarañas
+item.witchery:ingredient.brewThorns.name=Brebaje de Espinas
+item.witchery:ingredient.brewInk.name=Brebaje de Tinta
+item.witchery:ingredient.brewSprouting.name=Brebaje del Retoño
+item.witchery:ingredient.brewErosion.name=Brebaje de Erosión
+item.witchery:ingredient.berriesRowan.name=Bayas de Serbal
+item.witchery:ingredient.necroStone.name=Piedra de Necromancia
+item.witchery:ingredient.brewRaising.name=Brebaje del Despertar
+item.witchery:ingredient.spectralDust.name=Polvo Espectral
+item.witchery:ingredient.enderDew.name=Rocío de Ender
+item.witchery:ingredient.seedsArtichoke.name=Semillas de Alcachofa de Agua Antiguas
+item.witchery:ingredient.artichoke.name=Alcachofa de Agua
+item.witchery:ingredient.seedsTreefyd.name=Semilla de Arbólido
+item.witchery:ingredient.brewGrotesque.name=Brebaje de lo Grotesco
+item.witchery:ingredient.fumeFilter.name=Filtro de Vapor
+item.witchery:ingredient.impregnatedLeather.name=Cuero Impregnado
+item.witchery:arthana.name=Arthana
+item.witchery:witchhand.name=Mano de Brujas
+item.witchery:taglockkit.name=Kit de Vinculación
+item.witchery:poppet.name=Muñeco
+item.witchery:poppet.protectEarth.name=Muñeco de Protección de la Tierra
+item.witchery:poppet.protectWater.name=Muñeco de Protección del Agua
+item.witchery:poppet.protectStarvation.name=Muñeco de Protección del Hambre
+item.witchery:poppet.protectFire.name=Muñeco de Protección del Fuego
+item.witchery:poppet.protectTool.name=Muñeco de Protección de Herramientas
+item.witchery:poppet.protectDeath.name=Muñeco de Protección de la Muerte
+item.witchery:poppet.protectVoodoo.name=Muñeco de Protección del Vudú
+item.witchery:poppet.voodoo.name=Muñeco de Vudú
+item.witchery:poppet.vampiric.name=Muñeco Vampírico
+item.witchery:circletalisman.name=Talismán del Círculo
+item.witchery:divinerwater.name=Adivinador de Agua
+item.witchery:divinerlava.name=Adivinador de Lava
+item.witchery:chalkheart.name=Tiza Dorada
+item.witchery:chalkritual.name=Tiza Ritual
+item.witchery:chalkotherwhere.name=Tiza de Otra Parte
+item.witchery:chalkinfernal.name=Tiza Infernal
+item.witchery:polynesiacharm.name=Encanto de la Polinesia
+item.witchery:polynesiacharm.tip=Él habla con los animales...
+item.witchery:devilstonguecharm.name=Encanto de la Lengua del Diablo
+item.witchery:devilstonguecharm.tip=Inluso los demonios te encuentran inteligente|irresistible... la mayor parte del tiempo.
+item.witchery:witchhat.name=Sombrero de Brujas
+item.witchery:witchhat.tip=Qué original... un sombrero puntiagudo.||{9+35% de probalidad de un segundo brebaje{0
+item.witchery:seedsbelladonna.name=Semillas de Belladona
+item.witchery:seedsmandrake.name=Semillas de Mandrágora
+item.witchery:seedsartichoke.name=Semillas de Alcachofa de Agua
+
+circletalisman.small.1=Ritual Pequeño
+circletalisman.small.2=Pequeño de Otra Parte
+circletalisman.small.3=Pequeño Infernal
+circletalisman.medium.1=Ritual Mediano
+circletalisman.medium.2=Mediano de Otra Parte
+circletalisman.medium.3=Mediano Infernal
+circletalisman.large.1=Ritual Grande
+circletalisman.large.2=Grande de Otra Parte
+circletalisman.large.3=Grande Infernal
+
+tile.witchery:rowanwooddoor.name=Puerta de Serbal
+tile.witchery:alderwooddoor.name=Puerta de Aliso
+tile.witchery:rowandoorwood.name=Puerta de Serbal
+tile.witchery:alderdoorwood.name=Puerta de Aliso
+tile.witchery:altar.name=Altar
+tile.witchery:witchesovenidle.name=Horno de Brujas
+tile.witchery:witchesovenburning.name=Horno de Brujas
+tile.witchery:distilleryidle.name=Destilería
+tile.witchery:distilleryburning.name=Destilería
+tile.witchery:kettle.name=Caldero
+tile.witchery:poppetshelf.name=Estante para Muñecos
+container.witchery:poppetshelf=Estante para Muñecos
+tile.witchery:witchlog.rowan.name=Madera de Serbal
+tile.witchery:witchlog.alder.name=Madera de Aliso
+tile.witchery:witchlog.hawthorn.name=Madera de Espino Blanco
+tile.witchery:witchwood.rowan.name=Tabla de Serbal
+tile.witchery:witchwood.alder.name=Tabla de Aliso
+tile.witchery:witchwood.hawthorn.name=Tabla de Espino Blanco
+tile.witchery:witchsapling.rowan.name=Brote de Serbal
+tile.witchery:witchsapling.alder.name=Brote de Alder
+tile.witchery:witchsapling.hawthorn.name=Brote de Espino Blanco
+tile.witchery:witchleaves.rowan.name=Hojas de Serbal
+tile.witchery:witchleaves.alder.name=Hojas de Aliso
+tile.witchery:witchleaves.hawthorn.name=Hojas de Espino Blanco
+tile.witchery:belladonna.name=Belladona
+tile.witchery:mandrake.name=Mandrágora
+tile.witchery:barrier.name=Barrera
+tile.witchery:dreamcatcher.name=Atrapasueños
+tile.witchery:candelabra.name=Candelabro
+tile.witchery:chalice.name=Cáliz
+tile.witchery:circle.name=Glifo Central
+tile.witchery:circleglyphritual.name=Glifo Ritual
+tile.witchery:circleglyphotherwhere.name=Glifo de Otra Parte
+tile.witchery:circleglyphinfernal.name=Glifo Infernal
+tile.witchery:stairswoodrowan.name=Escalera de Serbal
+tile.witchery:stairswoodalder.name=Escalera de Aliso
+tile.witchery:stairswoodhawthorn.name=Escalera de Espino Blanco
+tile.witchery:witchwoodslab.name=Losa de Madera
+tile.witchery:witchwoodslab.rowan.name=Losa de Serbal
+tile.witchery:witchwoodslab.alder.name=Losa de Alisio
+tile.witchery:witchwoodslab.hawthorn.name=Losa de Espino Blanco
+tile.witchery:witchwooddoubleslab.name=Losa Doble de Madera
+tile.witchery:spanishmoss.name=Musgo Español
+tile.witchery:leapinglily.name=Nenúfar de Salto
+tile.witchery:plantmine.rose_webs.name=Amapola de Telarañas
+tile.witchery:plantmine.rose_ink.name=Amapola de Tinta
+tile.witchery:plantmine.rose_sprouting.name=Amapola del Retoño
+tile.witchery:plantmine.rose_thorns.name=Amapola de Espinas
+tile.witchery:plantmine.dandelion_webs.name=Diente de León de Telarañas
+tile.witchery:plantmine.dandelion_ink.name=Diente de León de Tinta
+tile.witchery:plantmine.dandelion_sprouting.name=Diente de León del Retoño
+tile.witchery:plantmine.dandelion_thorns.name=Diente de León de Espinas
+tile.witchery:plantmine.grass_webs.name=Arbusto de Telarañas
+tile.witchery:plantmine.grass_ink.name=Arbusto de Tinta
+tile.witchery:plantmine.grass_sprouting.name=Arbusto del Retoño
+tile.witchery:plantmine.grass_thorns.name=Arbusto de Espinas
+tile.witchery:embermoss.name=Musgo de Rescoldo
+tile.witchery:artichoke.name=Alcachofa de Agua
+tile.witchery:alluringskull.name=Calavera Atrayente
+tile.witchery:fumefunnel.name=Chimenea de Vapores
+tile.witchery:filteredfumefunnel.name=Chimenea de Vapores con Filtro
+
+entity.witchery.demon.name=Demonio
+entity.demon.name=Demonio
+entity.witchery.broom.name=Escoba Encantada
+entity.broom.name=Escoba Encantada
+entity.witchery.familiar.name=Familiar Espectral
+entity.familiar.name=Familiar Espectral
+entity.witchery.mandrake.name=Mandrágora
+entity.mandrake.name=Mandrágora
+entity.witchery.treefyd.name=Arbólido
+entity.treefyd.name=Arbólido
+
+witchery.book.mushroomred=Hongo Rojo
+witchery.book.mushroombrown=Hongo Marrón
+witchery.book.altarpower=Poder del Altar
+witchery.book.oven1={o{lWitchcraft{r{r{o: Recolectando Vapores{r||El Horno de Brujas da, al practicante del arte, la oportunidad de recolectar los vapores que sepueden producir al cocinar.||Debe recordarse que el horno no puede fundir metales, pero sí cocina un poco más rápido que un horno común.
+witchery.book.oven2=Coloca {8Vasijas de Arcilla{0 en el horno para recolectar los vapores mientras cocinas:||Comida {6Vapor Repugnante{0|Troncos {6Vapor Repugnante{0||Al cocinar {2Brotes{0 se obtiene {8Ceniza de Madera{0 y se puede, también, liberar la esencia gaseosa del árbol.
+witchery.book.oven3={nVapores de Brotes{r||Roble {8Aliento del Cornudo{0|Abedul {8Soplo de la Deidad{0|Abeto {8Dejo de Renacimiento{0|Serbal {8Olorcito de Magia{0|Espino Blanco {8Olor de Pureza{0|Alisio {8Pestilencia de Infortunio{0
+witchery.book.distillery1={o{lWitchcraft{r{r{o: Destilando{r||{81.{0 Asegúrate que la destilería esté cerca de un altar para que reciba energía.|{82.{0 Coloca losítems en la destilería junto con el número requerido de vasijas de arcilla.|{83.{0 Espera que el proceso de destilación finalice.
+witchery.book.distillery.jars=Vasijas de Arcilla
+witchery.book.distillery.items={nDestila estos ítems{r
+witchery.book.distillery.results={nDestilados resultantes{r
+witchery.book.brews1={o{lWitchcraft{r{r{o: Brebajes e Infusiones{r||{81.{0 Arroja los ingredientes a un caldero lleno de agua caliente. Los altares proveen la energía,si es necesaria|{82.{0 Retira el brebaje con una botella de vidrio vacía.|{83.{0 Usa las infusiones en un Rito de Infusión; pero ten en cuenta que {0la muerte es casisegura{0.
+witchery.book.rites1={o{lWitchcraft{r{r{o: Magia Circular{r||{81.{0 Dibuja círculos usando tizas de colores, con un glifo central en el medio. A menudo es necesario unaltar para proveer energía.|{82.{0 Arroja los objetos focales dentro del círculo|{83.{0 Activa el glifo central
+witchery.book.rites2=Tizas y medidas:|7x7, 11x11, 15x15|{7Ritual{0, {5Otra Parte{0, {4Infernal{0
+witchery.book.rites.anycircle=Todos los círculos permitidos
+
+witchery.rite.bindcircle=Rito de Enlace{r||Guarda los círculos en el talismán.
+witchery.rite.bindcircleportable=Rito de Enlace{r||Guarda los círculos en el talisman.
+witchery.rite.bindwaystone=Rite de enlace{r||Enlaza la Piedra del Camino al sitio del ritual.
+witchery.rite.chargestone=Rito de Carga{r||Carga la Piedra Armonizada.
+witchery.rite.infusionrecharge=Rito de Carga{r||Recarga un poder infundido al pararse dentro del círculo. Dura indefinidamente, pero consume 40 E°/seg.
+witchery.rite.teleporttowaystone=Rito de Transposición{r||Teletransporta a la localización a la que está ligada la Piedra del Camino.
+witchery.rite.teleportentity=Rito de Transposición{r||Invoca la criatura o jugador vinculado al kit.
+witchery.rite.teleportironore=Rito de Transposición{r||Eleva el hierro a la superficie.
+witchery.rite.protection=Rito de Santidad{r||Los monstruos no pueden entrar al círculo. Dura indefinidamente, pero requiere 16 E°/seg.
+witchery.rite.imprisonment=Rito de Encarcelamiento{r||Los monstruos no pueden salir del círculo. Dura indefinidamente, pero requiere 16 E°/seg.
+witchery.rite.barrier=Rito de Protección{r||Conjura un domo, impenetrable para los monstruos. Dura indefinidamente, pero requiere 24 E°/seg.
+witchery.rite.barrierlarge=Rito de Protección{r||Conjura un domo, impenetrable para todos. Dura indefinidamente, pero requiere 28 E° /seg.
+witchery.rite.barrierportable=Rito de Protección{r||Conjura un un domo impenetrable durante 60 segundos.
+witchery.rite.volcano=Rito de la Ira de la Tierra{r||Crea un volcán. Tiene que haber una pileta de lava debajo.
+witchery.rite.storm=Rito de la Ira del Cielo{r||Invoca una tormenta eléctrica dentro del círculo.
+witchery.rite.stormlarge=Rito de la Ira de Cielo{r||Invoca una tormenta eléctrica fuera del círculo.
+witchery.rite.stormportable=Rito de la Ira de Cielo{r||Invoca una tormenta eléctrica fuera del círculo.
+witchery.rite.eclipse=Rito del Eclipse Total{r||Bloquea el sol.
+witchery.rite.eclipseportable=Rito del Eclipse Total{r||Bloquea el sol.
+witchery.rite.partearth=Rito de la Tierra Quebrada{r||Parte la tierra, la posición del objeto focal controla la dirección.
+witchery.rite.raiseearth=Rito de la Tierra Móvil{r||Eleva una columna de tierra.
+witchery.rite.banishdemonportable=Rito del Destierro{r||Envía Demonios cercanos de vuelta al Pozo.
+witchery.rite.banishdemon=Rito del Destierro{r||Envía Demonios cercanos de vuelta al Pozo.
+witchery.rite.summondemon=Rito de Invocación{r||Invoca un demonio. El área interior debe tener un espacio sin bloques de 7x7x4!
+witchery.rite.summondemonexpensive=Rito de Invocación{r||Invoca un demonio. El área interior debe tener un espacio sin bloques de 7x7x4!
+witchery.rite.summonwither=Rito de Invocación{r||Invoca un Wither. El área interior debe tener un espacio sin bloques de 7x7x4!
+witchery.rite.summonwitherexpensive=Rito de Invocación{r||Invoca un Wither. El área interior debe tener un espacio sin bloques de 7x7x4!
+witchery.rite.infusionlight=Rito de Infusión{r||Debes pararte dentro del círculo.
+witchery.rite.infusionearth=Rito de Infusión{r||Debes pararte dentro del círculo.
+witchery.rite.infusionender=Rito de Infusión{r||Debes pararte dentro del círculo.
+witchery.rite.infusionhell=Rito de Infusión{r||Debes pararte dentro del círculo.
+witchery.rite.infusionsky=Rito de Infusión{r||Se efectúa durante la noche.
+witchery.rite.necrostone=Rito de Necromancia{r||Crea una Piedra de Necromancia. Se efectúa durante la noche.
+witchery.rite.summonfamiliar=Rito de Invocación{r||Invoca un familiar que busca cosas. Intenta darle un diamante al familiar! El área interior debe tener un espaciosin bloques de 7x7x4!
+witchery.rite.bindwaystonecopy=Rito de Enlace{r||Enlaza la coordenadas de una Piedra del Camino con otra Piedra del Camino.
+witchery.rite.fertility=Rito de Fertilidad{r||Hace que la tierra cercana sea fertil. Cura a los aldeaos enfermos.
+witchery.rite.fertilityportable=Rito de Fertilidad{r||Hace que la tierra cercana sea fertil. Cura a los aldeanos enfermos.
+witchery.rite.curseblight=Maleficio de la Plaga{r||Hace que la tierra cercana sea infertil y causa enfermedad.
+witchery.rite.curseblindness=Maleficio de Ceguera{r||Enceguece a las criaturas cercanas.
+witchery.rite.hellonearth=Maleficio del Infierno sobre la Tierra{r||Solamente funciona en la superficie y de noche. Requires 200 E°/seg.
+witchery.rite.summonwitch=Rito de Invocación{r||Invoca una bruja. El área interior debe tener un espacio sin bloques de 7x7x4!
+witchery.rite.bindwaystoneportable=Rito de Enlace{r||Enlaza la Piedra del Camino a la localización del ritual.
+witchery.rite.bindwaystonecopyportable=Rito de Enlace{r||Enlaza la coordenadas de una Piedra del Camino con otra Piedra del Camino.
+
+witchery.infuse.cansetrecall=Suelta el botón del mouse para establecer el Punto de Retorno.
+witchery.infuse.setrecall=- Punto de Retorno establecido en %s (%s, %s, %s).
+witchery.infuse.canteleport=Teletransportador cargado, suelta el botón del mouse para teletransportarte.
+witchery.infuse.cannotteleport=Demasiado lejos, sostén el botón del mouse apretado más tiempo para teletransportarte mayor distancia!
+
+witchery.familiar.foundsomething=OINK! %s, %s, %s.
+
+witchery.rite.nullfield=El ritual no puede comenzar, la magía circular está siendo anulada en esta área.
+tile.witchery:voidbramble.name=Arbusto del Vacío
+
+witchery.rite.naturespower=Rito del Poder de la Naturaleza{r||Libera la naturaleza en un área infertil.
+
+item.witchery:witchrobe.name=Vestido de Bruja
+item.witchery:witchrobe.tip=Para la perspicaz bruja de mundo.||{5Los creepers ignoran a quien lo viste.{0||{9+35% de posibilidad de un segundo brebaje(exceptonecromántico){0
+
+item.witchery:necromancerrobe.name=Vestido del Nigromante
+item.witchery:necromancerrobe.tip=Mantiene los muertos vivientes bajo control.||{5Los muertos vivientes por lo general ignorarán a quien lo viste.{0||{9+35%deprobabilidad de un segundo brebaje necromántico{0
+
+item.witchery:ingredient.creeperHeart.name=Corazón de Creeper
+tile.witchery:glintweed.name=Hierba Centelleante
+item.witchery:ingredient.brewLove.name=Brebaje de Amor
+
+witchery.rite.priorincarnation=Rito de la Encarnación Anterior{r||Invoca la encarnación anterior de un jugador (y sus ítems) cerca de donde murió.
+
+witchery.structure.apothecary.name=Botica
+
+witchery.rite.disabled=El ritual no puede comenzar. Este rito ha sido desabilitado en el servidor.
+witchery.rite.unknownritual=Rito desconocido.
+witchery.rite.missingitem=Falta el objeto focal.
+witchery.rite.missinglivingsacrifice=Falta el sacrificio de una criatura.
+witchery.rite.missingpowersource=No hay un altar cercano.
+witchery.rite.insufficientpower=El altar no tiene suficiente energía.
+witchery.rite.missinglava=No hay lava debajo.
+
+item.witchery:ingredient.brewIce.name=Brebaje de la Escarcha
+item.witchery:ingredient.brewDepths.name=Brebaje de las Profundidades
+item.witchery:ingredient.icyNeedle.name=Aguja Helada
+item.witchery:ingredient.frozenHeart.name=Corazón Congelado
+item.witchery:iceslippers.name=Pantuflas Heladas
+item.witchery:seedssnowbell.name=Semillas de Soldanella
+tile.witchery:snowbell.name=Soldanella
+tile.witchery:wickerbundle.plain.name=Fardo de Mimbre
+tile.witchery:wickerbundle.bloodied.name=Fardo de Mimbre Ensangrentado
+item.witchery:ingredient.infernalBlood.name=Sangre Demoniaca
+entity.witchery.hornedHuntsman.name=Cazador con Cuernos
+
+
+item.witchery:ingredient.bookHerbology.name=Witchcraft: Herbología
+item.witchery:mysticbranch.name=Rama Mística
+item.witchery:ingredient.mysticunguent.name=Ungüento Místico
+item.witchery:ingredient.entbranch.name=Ramita de Ent
+item.witchery:mutator.name=Vara de Mutación
+
+tile.witchery:glowglobe.name=Esfera Brillante
+tile.witchery:leechchest.name=Cofre Sanguijuela
+
+tile.witcheryLeechChest.playernotloggedin=No se pueden obtener kits de vinculación de los siguientes jugadores que no están en este mundo: %s.
+tile.witcheryLeechChest.onlyowntaglock=No puedes quitar tu propio kit de vinculación del cofre.
+
+witchery.book.herbology1={o{lWitchcraft{r{r{o: Herbología{r||Muchas plantas comunes son utilizadas en la preparación de brebajes y brujerías, este libro detallaaquellas plantas raras o excepcionales que no son conocidas para la gente común.
+witchery.book.herbology.mandrake=Su raíz en forma de chirivía se parece a un hombre, no vaya a ser que se despierte y grite. Crece en tierra de cultivo en etapas. Lassemillas se obtienen del pasto alto.
+witchery.book.herbology.belladonna=Sombra de la noche mortal, así es conocida esta planta, y venenos letales surgen de ella. Crece en tierra de cultivo en etapas, Lassemillas se obtienen del pasto alto.
+witchery.book.herbology.snowbell=Una planta curiosa, fría como la nieve, congela la humedad mientras se desarrolla. Crece en tierra de cultivo en etapas. Las semillasse obtienen del pasto alto.
+witchery.book.herbology.artichoke=Una planta criada en el agua con un extraño efecto: llena el vientre y después lo vacía. Crece en agua quieta en etapas. Las semillasse obtienen del pasto alto.
+witchery.book.herbology.glintweed=Emite un brillo fantasmal que ilumina sus alrededores. Puede vivir en todos lados pero solo se extiende en pasto, tierra o arena.Esta planta se obtiene transmutando otra con Mutandis.
+witchery.book.herbology.spanishmoss=Un musgo con aire de creeper que crece mejor en los árboles. Forma los mejores muñecos que puede haber. Se debe cosechar contijeras para mantenerlo intacto. Esta planta se obtiene transmutando otra con Mutandis.
+witchery.book.herbology.embermoss=Una planta con una defensa única: cuando es molestada estalla en llamas. Se debe cosechar con tijeras. Puede vivir en todos lados,pero se extiende solamente en pasto, tierra o arena. Esta planta se obtiene transmutando otra con Mutandis.
+witchery.book.herbology.voidbramble=Este arbusto extraño mantiene las criaturas a raya; cuando se acercan demasiado las teletransporta lejos. Creada por y alimentadacon magia, los rituales no funcionarán cerca de ella.
+witchery.book.herbology.rowan=El serbal, o ceniza de montaña, tiene una afinidad con la magia que otros árboles raramente alcanzan. El brote de serbal se obtienetransmutando otra planta con Mutandis.
+witchery.book.herbology.alder=La madera de alisio parece sangrar cuando es cortada: este árbol trae el infortunio para todos. El brote de alisio se obtienetransmutando otra planta con Mutandis.
+witchery.book.herbology.hawthorn=El espino blanco es el árbol de la pureza. Tiene una larga historia en el área del herbalismo. El brote de espino blanco se obtienetransmutando otra planta con Mutandis.
+
+witchery.rite.infusiontree=Rito de Infusión{r||Infunde una rama mística. Se efectúa de noche.
+witchery.rite.cursecreature1=Maleficio del Infortunio{r||Echa una maldición sobre el ser vinculado con el kit. Se efectúa durante una tormenta.
+witchery.rite.removecurse1=Rito para Quitar la Maldición{r||Libera al ser vinculado con el kit del infortunio. Las cosas pueden empeorar.
+witchery.rite.cookfood=Rito del Achicharramiento{r||Cocina cualquier comida que se coloce dentro del círculo. Puede cocer de más la comida.
+witchery.rite.obstructedcircle=El área alrededor del glifo central no está vacía.
+witchery.infuse.branch.nocharges=No tienes poder suficiente para dibujar este símbolo.
+witchery.infuse.branch.infusionrequired=Debes estár infundido para realizar magía de símbolos.
+witchery.infuse.branch.unknownsymbol=Símbolo dibujado desconocido.
+witchery.infuse.branch.infernalrequired=Se requiere infusión infernal para dibujar símbolos prohibidos.
+
+witchery.pott.accio=Accio
+witchery.pott.aguamenti=Aguamenti
+witchery.pott.alohomora=Alohomora
+witchery.pott.avadakedavra=Avada Kedavra
+witchery.pott.caveinimicum=Cave Inimicum
+witchery.pott.colloportus=Colloportus
+witchery.pott.confundus=Confundus
+witchery.pott.crucio=Crucio
+witchery.pott.defodio=Defodio
+witchery.pott.ennervate=Ennervate
+witchery.pott.episkey=Episkey
+witchery.pott.expelliarmus=Expelliarmus
+witchery.pott.flagrate=Flagrate
+witchery.pott.flipendo=Flipendo
+witchery.pott.impedimenta=Impedimenta
+witchery.pott.imperio=Imperio
+witchery.pott.incendio=Incendio
+witchery.pott.lumos=Lumos
+witchery.pott.meteolojinxrecanto=Meteolojinx Recanto
+witchery.pott.nox=Nox
+witchery.pott.protego=Protego
+witchery.pott.stupefy=Stupefy
+
+entity.witchery.ent.name=Ent
+
+witchery.taglockkit.taglockfailed=Falló la vinculación, el otro jugador se dio cuenta!
+witchery.taglockkit.taglockdiscovered=Alguien trató de obtener un kit vinculado a ti, pero fracasó!
+
+
+item.witchery:ingredient.doorKeyring.name=Llavero de Serbal
+tile.witchery:statuegoddess.name=Estatua de la Diosa
+witchery.rite.curseinsanity1=Maleficio de la Locura{r||Echa una maldición sobre el ser vinculado para que vea visiones de monstruos. Debe efectuarse durante unatormenta.
+witchery.rite.removeinsanity1=Rito para Quitar la Maldición{r||Libera al ser vinculado de la locura. Las cosas pueden empeorar.
+tile.witcheryStatusGoddess.curemisfortune=La Diosa cura tu infortunio.
+tile.witcheryStatusGoddess.cureinsanity=La Diosa cura tu locura.
+entity.witchery.illusionCreeper.name=Creeper
+entity.witchery.illusionSpider.name=Araña
+entity.witchery.illusionZombie.name=Zombie
+
+
+
+witchery.book.herbology.enderbramble=Este extraño arbusto mantiene las criaturas a raya; cuando se acercan demasiado, las teletransporta lejos. Esta planta se obtienemutando caña de azúcar y musgo español
+witchery.book.herbology.grassper=Una curiosa planta que sostiene cualquier cosa que se le dé. Se obtiene mutando pasto alto y un cofre vacío.
+witchery.book.herbology.crittersnare=Las pequeñas criaturas son la presa de esta planta. Las encierra y no las deja ir nunca. Se obtiene mutando brotes de alisio, unatelaraña y un zombie.
+
+entity.witchery.owl.name=Lechuza
+entity.witchery.toad.name=Sapo
+entity.witchery.cat.name=Gato
+entity.witchery.louse.name=Parásito
+item.witchery:louse.name=Parásito
+
+witchery.rite.bindfamiliar=Rito de Enlace{r||Enlaza una lechuza, sapo o gato domesticados como familiar.
+witchery.rite.callfamiliar=Rito de Invocación{r||Invoca un familiar que ha sido despedido o ha muerto.
+witchery.rite.corruptvoodooprotection=Maleficio del Muñeco Corrupto{r||Destruye la protección contra el vudú del ser vinculado. Es necesario tener un gato comofamiliar.
+witchery.rite.requirescursemastery=Este rito solo puede realizarse con un gato como familiar.
+
+item.witchery:ingredient.brewFrogsTongue.name=Brebaje de la Lengua de Ranas
+item.witchery:ingredient.brewCursedLeaping.name=Brebaje del Salto Maldito
+item.witchery:ingredient.brewHitchcock.name=Brebaje de la Bodega
+item.witchery:ingredient.brewInfection.name=Brebaje de la Infección
+item.witchery:ingredient.owletsWing.name=Ala de la Lechuza Joven
+item.witchery:ingredient.toeOfFrog.name=Para de Rana
+item.witchery:ingredient.appleWormy.name=Manzana Agusanada
+tile.witchery:grassper.name=Agarradora
+item.witchery:poppet.protectPoppet.name=Muñeco de Protección de Muñecos
+tile.witchery:crittersnare.name=Capturadora de Criaturas
+tile.witchery:crittersnare.empty.name=Capturadora de Criaturas
+tile.witchery:crittersnare.bat.name=Capturadora de Criaturas (Murciélago)
+tile.witchery:crittersnare.silverfish.name=Capturadora de Criaturas (Lepisma)
+tile.witchery:crittersnare.slime.name=Capturadora de Criaturas (Slime)
+tile.witchery:crittersnare.magmacube.name=Capturadora de Criaturas (Cubo de Magma)
+
+
+entity.witchery.babayaga.name=Baba Yaga
+
+tile.witchery:crystalball.name=Bola de Cristal
+item.witchery:ingredient.quartzSphere.name=Esfera de Cuarzo
+item.witchery:ingredient.happenstanceOil.name=Aceite de la Casualidad
+witchery.rite.infusionfuture=Rito de Infusión{r||Infunde una bola de cristal para ver el futuro. Debe efectuarse durante la noche.
+
+witchery.prediction.recharging=La bola de cristal está inerte por el momento.
+witchery.prediction.nopower=La bola de cristal no puede obtener suficiente energía de un altar cercano.
+witchery.prediction.unskilled=Contemplas la bola de cristal pero no sabes cómo interpretar lo que ves.
+witchery.prediction.none=Contemplas la bola de cristal pero el futuro de %s es demasiado nebuloso en este momento.
+witchery.prediction.zombie=Lees en la bola de cristal: %s se tropezará con los muertos vivientes.
+witchery.prediction.arrowhit=Lees en la bola de cristal: %s sera alcanzado por una flecha.
+witchery.prediction.ent=Lees en la bola de cristal: %s encontrará un árbol caminante.
+witchery.prediction.fall=Lees en la bola de cristal: %s se tropezará y caerá.
+witchery.prediction.treasure=Lees en la bola de cristal: %s encontrará un tesoro enterrado.
+witchery.prediction.iron=Lees en la bola de cristal: %s se verá desbordado de hierro.
+witchery.prediction.diamond=Lees en la bola de cristal: %s encontrará cosas brillantes.
+witchery.prediction.emerald=Lees en la bola de cristal: %s encontrará cosas brillantes.
+witchery.prediction.love=Lees en la bola de cristal: %s conocerá un extraño oscuro y apuesto.
+witchery.prediction.babagood=Lees en la bola de cristal: %s ha despertado el interés de la vieja bruja (y sus hermanas).
+witchery.prediction.bababad=Lees en la bola de cristal: %s ha causado la ira de la vieja bruja (y sus hermanas).
+witchery.prediction.friend=Lees en la bola de cristal: %s hará un nuevo amigo.
+witchery.prediction.rescued=Lees en la bola de cristal: %s será salvado por un extraño.
+witchery.prediction.tothenether=Lees en la bola de cristal: %s viajará al Nether.
+witchery.prediction.tothenether.summoned=Un demonio te ha estado vigilando y te ha teletransportado al Nether.
+witchery.prediction.wet=Lees en la bola de cristal: %s se mojará.
+witchery.prediction.coal=Lees en la bola de cristal: %s recoletará un alijo de carbón.
+
+tile.witchery:bramble.ender.name=Arbusto de Ender
+tile.witchery:bramble.wild.name=Arbusto Salvaje
+tile.witchery:bloodrose.name=Amapola de Sangre
+
+witchery.rite.cursesinking1=Maleficio de la Zozobra{r||Vuelve más pesado al ser vinculado con el kit. Debe efectuarse durante una tormenta.
+witchery.rite.removesinking1=Rito para Quitar la Maldición{r||Libera al ser vinculado del maleficio de zozobra. Las cosas pueden empeorar.
+tile.witcheryStatusGoddess.curesinking=La Diosa te cura de tus problemas de zozobra.
+
+witchery.book.herbology.wildbramble=Este arbuto espinoso se extiende cuando tratas de quitarlo. Se obtiene mutando cactus y musgo español.
+witchery.book.herbology.bloodrose=Recuerda que en un jardín de brujas un rasguño de esta flor dejará un rastro de tu sangre. Se obtiene mutando amapolas y un cofresanguijuela.
+
+entity.witchery.covenwitch.name=Bruja del Aquelarre
+item.witchery:ingredient.seerStone.name=Piedra del Adivino
+witchery.rite.infusionseerstone=Rito de Infusión{r||Infunde una piedra para comunicarse con un aquelarre.Debe efectuarse durante la noche.
+witchery.rite.climatechange=Rito de las Estaciones Cambiantes{r||Elije el bioma con un objeto focal del bioma y piedra luminosa. Requiere un aquelarre de 4 brujas omás.
+witchery.rite.iceshell=Rito de la Expansión Glacial{r||Crea una esfera de hielo. Requiere un aquelarre de 2 brujas o más.
+witchery.rite.curseoverheating=Maleficio del Calor{r||Causa que el ser vinculado con el kit sufra de un exceso de calor.
+witchery.rite.cureoverheating=Rito de Quitar la Maldición{r||Libera al ser vinculado del maleficio del calor. Las cosas pueden empeorar.
+tile.witcheryStatusGoddess.cureoverheating=La Diosa cura tus problemas de temperatura.
+witchery.rite.wrongdimension=El rito no se puede realizar en esta dimensión.
+witchery.rite.coventoosmall=Hacen falta más miembros en el aquelarre para realizar este rito.
+witchery.rite.missingbiomefoci=Falta un objeto que represente el bioma deseado.
+witchery.rite.rainoffrogs=Maleficio de la Lluvia de Sapos.{r||Causa que lluevan sapos venenosos. Requiere un aquelarre de una bruja o más.
+witchery.rite.glyphictransform=Rito de la Transformación del Glifo{r||Crea tiza de color deseado, 1=pequeño, 2=mediano, 3=grande.
+witchery.rite.callbeasts=Rito de la Llamada Bestial{r||Llama animales. Requiere un aquelarre de 3 brujas o más.
+
+witchery.witch.pet=Mascota de %s
+witchery.witch.petflesh=Carne de la mascota de %s
+witchery.witch.peteye=Ojo de la mascota de %s
+witchery.witch.say.covenfull=Tu aquelarre está completo. Vete!
+witchery.witch.say.joinedcoven=Me uniré a tu aquelarre. Llámame cuando me necesites.
+witchery.witch.say.questitemsremaining=%s más para terminar.
+witchery.witch.say.questnotfinished=No has completado mi encargo!
+witchery.witch.say.begone=Vete!
+witchery.witch.say.notinterested1=No me interesas en absoluto!
+witchery.witch.say.notinterested2=Por qué me haces perder el tiempO!
+witchery.witch.say.notinterested3=No tienes ninguna habilidad en este Arte!
+witchery.witch.say.tricked=Justo lo que necesito... un tonto ingenuo... ahora mueres!
+
+witchery.witch.quest.fightspider=Derrota mi mascota y tráeme su ojo. Vuelve a hablarme si aceptas!
+witchery.witch.quest.fightzombie=Derrota mi mascota y tráeme su carne. Vuelve a hablarme si aceptas!
+witchery.witch.quest.getdemonheart=Tráemme los medios latentes para conquistar la dimension infernal. Vuelve a hablarme si aceptas!
+witchery.witch.quest.makecrystalball=Deseo predecir el futuro. Vuelve a hablarme si aceptas!
+witchery.witch.quest.getbones=Mata 30 esqueletos y tráeme sus huesos. Vuelve a hablarme si aceptas!
+witchery.witch.quest.makegrotesquebrew=Debo realizar muchos maleficios, tráeme el brebaje necesario. Vuelve a hablarme si aceptas!
+witchery.witch.quest.makenecrostone=Tráeme el medio para controlar a los muertos. Vuelve a hablarme si aceptas!
+witchery.witch.quest.go=Ahora vete!
+
+witchery.item.seerstone.misfortune=Maldición del Infortunio (%d)
+witchery.item.seerstone.insanity=Maldición de Locura (%d)
+witchery.item.seerstone.sinking=Maldición de Zozobra (%d)
+witchery.item.seerstone.overheating= Maldición de Calor(%d)
+witchery.item.seerstone.notcursed=Sin maldiciones.
+
+entity.witchery.corpse.name=Cuerpo
+entity.witchery.nightmare.name=Pesadilla
+
+tile.witchery:somniancotton.name=Algodón Fino
+tile.witchery:spiritflowing.name=Espíritu Fluido
+tile.witchery:spiritportal.name=Portal al Espíritu
+tile.witchery:spinningwheel.name=Rueca
+
+item.witchery:ingredient.brewSleep.name=Brebaje de Sueño
+item.witchery:ingredient.brewWasting.name=Brebaje de Perdición
+item.witchery:ingredient.sleepingApple.name=Manzana
+item.witchery:ingredient.disturbedCotton.name=Algodón Trastornado
+item.witchery:ingredient.fancifulThread.name=Hilo de Ensueño
+item.witchery:ingredient.tormentedTwine.name=Cordel Atormentado
+item.witchery:ingredient.goldenThread.name=Hilo Dorado
+item.witchery:ingredient.mellifluousHunger.name=Hambre Melifluo
+item.witchery:ingredient.brewFlowingSpirit.name=Brebaje del Espíritu Fluido
+item.witchery:ingredient.weaveIntensity.name=Atrapasueños de la Intensidad
+item.witchery:bucketspirit.name=Balde de Espíritu
+item.witchery:bitingbelt.name=Cinturón Punzante
+item.witchery:bitingbelt.tip=Cuidado... muerde.||{5Se craftea con hasta 2 pociones que son{0|{aplicadas cuando el jugador es golpeado.{0
+
+witchery.brew.flowingspirit=Solo se prepara en el Mundo del Espíritu
+
+witchery.rite.manifest=Rito de Manifestación{r||Manifestarse como un fantasma del Mundo del Espíritu.
+
+witchery.book.herbology.somniancotton=Una planta de fantasía que solo crece en lo profundo del dormir, a donde van nuestros sueños.
+
+tile.witchery:demonheart.name=Corazón de Demonio
+
+witchery.rite.optional=(opcional)
+witchery.rite.noplacelikehome=no hay ningún lugar como el hogar
+witchery.rite.unknownchant=Cántico desconocido
+witchery.rite.manifestation.countdown=Te percibes más corpóreo, solo quedan %s segundos.
+witchery.rite.slippersoncooldown=No sucede nada (espera %s minuto(s)).
+witchery.rite.forestation=Rito del Bosque{r||Hace crecer un bosque. Reemplaza el brote por el tipo deseado.
+witchery.rite.toofaraway=El rito no se puede realizar tan lejos (puede que sea necesario un gran aquelarre).
+
+item.witchery:iceslippers.tip=Frías al tacto.||{5Congela el agua cercana y{0|{5convierte lava en obsidiana (causa daño a las pantuflas){0
+item.witchery:brewbag.name=Bolsa de Brebajes
+item.witchery:huntsmanspear.name=Lanza del Cazador
+item.witchery:huntsmanspear.tip={5Puede invocar un lobo si te golpean mientras bloqueas{0.
+item.witchery:barkbelt.name=Cinturón de Corteza
+item.witchery:barkbelt.tip=Así que así es como se siente un Ent.||{5Hace crecer piezas de corteza cuando te paras sobre pasto o micelio{0|{5Las piezas de cortezanmitigan el daño recibido.{0
+item.witchery:rubyslippers.name=Pantuflas de Rubí
+item.witchery:rubyslippers.tip=No hay ningún lugar como el hogar.||{5Teletranspórtate usando una Piedra del Camino (tiempo de espera de 1 minuto){0|{5Teletranspórtatea tu cama (tiempo de espera de 30 min){0
+item.witchery:seepingshoes.name=Zapatos Agujereados
+item.witchery:seepingshoes.tip=La perdición de las arañas de cueva.||{5Quita el evenenamiento cuando estás parado en el piso{0
+item.witcheryTaglockKit.boundto=Vinculado: {5%s{0
+item.witcheryTaglockKit.unbound=No Vinculado
+
+item.witchery:ingredient.bookBiomes.name=Libro de Biomas
+item.witchery:ingredient.bookWands.name=Witchcraft: Simbología
+item.witchery:ingredient.batBall.name=Bola de Murciélagos Concentrada
+item.witchery:ingredient.brewBats.name=Brebaje de Murciélagos
+item.witchery:ingredient.purifiedMilk.name=Leche Purificada
+item.witchery:ingredient.charmDisruptedDreams.name=Encantamiento del Pensamiento Fantástico
+
+tile.witcheryStatusGoddess.curenightmare=La Diosa cura tu pesadilla.
+witchery.item.seerstone.nightmare=Maldición de Vivir en Pesadilla
+
+witchery.rite.cursenightmare=Maleficio de Vivir en Pesadilla{r||Debe efectuarse durante una tormenta.
+witchery.rite.curenightmare=Rito para Quitar la Maldición{r||Libera al ser vinculado de las pesadillas. Las cosas pueden empeorar.
+
+witchery.book.biomes1={o{lLibro de Biomas{r{r||Entender los biomas del mundo es el primer paso para transformarlos. En estas páginas se pueden encontrar los objetosfocales y la cantidad de polvo de piedra lumuninosa necesarios para el {oRito de las Estaciones Cambiantes{r.
+witchery.book.biomes.foci=Objeto Focal
+witchery.book.biomes.forest.name=Bosque
+witchery.book.biomes.forest.item=Brote de Roble
+witchery.book.biomes.plains.name=Planicie
+witchery.book.biomes.plains.item=Pasto Alto
+witchery.book.biomes.mountain.name=Montaña
+witchery.book.biomes.mountain.item=Obsidiana
+witchery.book.biomes.hills.name=Colinas
+witchery.book.biomes.hills.item=Piedra
+witchery.book.biomes.swamp.name=Pantano
+witchery.book.biomes.swamp.item=Bola de Slime
+witchery.book.biomes.water.name=Agua
+witchery.book.biomes.water.item=Balde de Agua
+witchery.book.biomes.desert.name=Desierto
+witchery.book.biomes.desert.item=Cactus
+witchery.book.biomes.frozen.name=Congelado
+witchery.book.biomes.frozen.item=Aguja de Hielo
+witchery.book.biomes.jungle.name=Jungla
+witchery.book.biomes.jungle.item=Brote de árbol de la jungla.
+witchery.book.biomes.wasteland.name=Páramo
+witchery.book.biomes.wasteland.item=Netherrack
+witchery.book.biomes.beach.name=Playa
+witchery.book.biomes.beach.item=Arena
+witchery.book.biomes.mushroom.name=Bioma de Setas
+witchery.book.biomes.mushroom.item=Hongo Rojo
+witchery.book.biomes.magical.name=Mágico
+witchery.book.biomes.magical.item=Cabeza de Esqueleto
+
+witchery.book.wands1={o{lWitchcraft{r{r{o: Simbología{r||Dibujando símbolos con una {oRama Mística{r el practicante puede esculpir las energías naturales.||Solo lospracticantes{oinfundidos{r pueden usar este tipo de magia.||Los maleficios prohibidos reqieren la {oInfusión Infernal{r.
+
+witchery.book.wands.strokes=Trazos
+witchery.book.wands.stroke.0=Arriba
+witchery.book.wands.stroke.1=Abajo
+witchery.book.wands.stroke.2=Derecha
+witchery.book.wands.stroke.3=Izquierda
+witchery.book.wands.stroke.4=Arriba-Derecha
+witchery.book.wands.stroke.5=Abajo-Izquierda
+witchery.book.wands.stroke.6=Arriba-Izquierda
+witchery.book.wands.stroke.7=Abajo-Derecha
+
+witchery.pott.accio.info=Atrae un ítem.
+witchery.pott.aguamenti.info=Crea agua.
+witchery.pott.alohomora.info=Abre una puerta cerrada.
+witchery.pott.avadakedavra.info={4Prohibido{0: Maleficio de muerte.
+witchery.pott.caveinimicum.info=Fortalece un bloque.
+witchery.pott.colloportus.info=Cierra una puerta.
+witchery.pott.confundus.info=Causa confusión.
+witchery.pott.crucio.info={4Prohibido{0: Tortura.
+witchery.pott.defodio.info=Cava.
+witchery.pott.ennervate.info=contrarresta Stupify.
+witchery.pott.episkey.info=Curación menor.
+witchery.pott.expelliarmus.info=Desarma al objetivo.
+witchery.pott.flagrate.info=Dibuja una runa infernal.
+witchery.pott.flipendo.info=Empuja al objetivo lejos.
+witchery.pott.impedimenta.info=Enlentece al objetivo.
+witchery.pott.imperio.info={4Prohibido{0: Control mental.
+witchery.pott.incendio.info=Comienza un incendio.
+witchery.pott.lumos.info=Crea luz.
+witchery.pott.nox.info=Extingue la luz.
+witchery.pott.protego.info=Escudo (apuntar al suelo).
+witchery.pott.stupefy.info=Aturde al objetivo.
+
+item.witchery:poppet.protectArmor.name=Muñeco de Protección de Armadura
+
+
+item.witchery:babashat.name=Sombrero de Baba Yaga
+item.witchery:babashat.tip={5Los jugadores infundidos tienen una posibilidad de ser{0|{5teletransportados en vez de recibir un golpe.{0||{9+25% de posibilidad de unsegundo brebaje{0|{9+25% de posibilidad de un tercer brebaje{0
+item.witchery:boline.name=Vara Ósea
+item.witchery:boline.tip=Similar a las tijeras pero también puede recolectar|plantas con trampa y telarañas.
+
+witchery.infuse.infusionrequired=Debes estar infundido para usar esta habilidad.
+witchery.infuse.nocharges=Tienes demasiado poco poder para usar esta habilidad.
+
+
+item.witchery:ingredient.brewSolidStone.name=Brebaje Solidificante (Piedra)
+item.witchery:ingredient.brewSolidDirt.name=Brebaje Solidificante (Tierra)
+item.witchery:ingredient.brewSolidSand.name=Brebaje Solidificante (Arena)
+item.witchery:ingredient.brewSolidSandstone.name=Brebaje Solidificante (Arenisca)
+item.witchery:ingredient.brewSolidErosion.name=Brebaje Solidificante (Erosión)
+item.witchery:ingredient.brewHollowTears.name=Brebaje de las Lágrimas Vacías
+item.witchery:ingredient.brewSubstitution.name=Brebaje de Sustitución
+item.witchery:ingredient.condensedFear.name=Temor Condensado
+item.witchery:ingredient.focusedWill.name=Voluntad Concentrada
+item.witchery:ingredient.brewGrave.name=Brebaje de la Tumba Infundido
+item.witchery:ingredient.brewSoaring.name=Brebaje de la Elevación Infundido
+item.witchery:ingredient.infusionBase.name=Brebaje Base Infundido
+item.witchery:ingredient.brewRevealing.name=Brebaje de la Revelación
+item.witchery:ingredient.wormwood.name=Ajenjo
+item.witchery:ingredient.subduedSpirit.name=Espíritu Sumiso
+item.witchery:ingredient.brewCongealedSpirit.name=Espíritu Coagulado
+item.witchery:seedswormwood.name=Semillas de Ajenjo
+item.witchery:spectralstone.name=Piedra Espectral
+
+item.witchery:buckethollowtears.name=Balde de Lágrimas Vacías
+
+witchery.brew.solidification=Sustituye la tierra con piedra, arena, arenisca o un Brebaje de Erosión.
+
+tile.witchery:wormwood.name=Ajenjo
+
+entity.witchery.spectre.name=Espectro
+entity.witchery.poltergeist.name=Poltergeist
+entity.witchery.banshee.name=Banshee
+entity.witchery.spirit.name=Espíritu
+entity.witchery.death.name=Muerte
+
+tile.witchery:brazier.name=Brasero
+tile.witchery:scarecrow.name=Espantapájaros
+tile.witchery.scarecrow.operation.playerwhitelist=Activar para JUGADORES que no están en la lista negra: %s.
+tile.witchery.scarecrow.operation.playerblacklist=Activar para JUGADORES en la lista negra: %s.
+tile.witchery.scarecrow.operation.creaturewhitelist=Activar para CUALQUIERA que no esté en la lista negra: %s.
+tile.witchery.scarecrow.operation.allnotfound=Activar si todo lo que está en la lista blanca no se encuentra: %s.
+tile.witchery.scarecrow.operation.onenotfound=Activar si uno de lo que está en la lista blanca no se encuentra: %s.
+tile.witchery.scarecrow.operation.off=Desactivado. [%s]
+
+tile.witchery:trent.name=Efigie de Madera
+tile.witchery:witchsladder.name=Escalera de la Bruja
+
+witchery.fetish.enhancedpoppets.name=Protección contra el Vudú
+witchery.fetish.enhancedpoppets.desc=Las propiedades de un muñeco de Protección contra el Vudú que se lleva en el inventario se fortalecen.
+witchery.fetish.screamer.name=Chillón
+witchery.fetish.screamer.desc=Grita cuando seres específicos están cerca.
+witchery.fetish.sentinal.name=Centinela
+witchery.fetish.sentinal.desc=Lanza un asalto espectral sobre seres indeseados.
+witchery.fetish.twister.name=Desorientación
+witchery.fetish.twister.desc=Confunde a los seres que se acercan.
+witchery.fetish.ghostwalker.name=Caminata Fantasma
+witchery.fetish.ghostwalker.desc=Sostiene a las criaturas que se manifiestan del Mundo del Espíritu.
+
+
+item.witchery:ingredient.seerstone.manifestationtime=Puede manifestarse por %s segundo(s).
+item.witchery:ingredient.seerstone.nomanifestationtime=No puede manifestarse.
+item.witchery:ingredient.seerstone.covensize=%s bruja(s) en el aquelarre.
+item.witchery:ingredient.seerstone.nocoven=Sin aquelarre.
+item.witchery:ingredient.seerstone.nofamiliar=Sin familiar.
+item.witchery:ingredient.seerstone.familiar=Familiar invocado %s.
+item.witchery:ingredient.bookBurning.name=Witchcraft: Conjuración y Fetiches
+item.witchery:ingredient.graveyardDust.name=Polvo del Cementerio
+
+item.witchery.swordofdeath.customname=Espada de Respaldo de la Muerte
+item.witchery.horseofdeath.customname=Binky
+
+witchery.rite.infusebrewsoaring=Rito de Infusión{r||Infunde el Brebaje de la Elevación.
+witchery.rite.infusebrewgrave=Rito de Infusión{r||Infunde el Brebaje de la Tumba.
+witchery.rite.spectralstone=Rito de Necromancia{r||Infunde una Piedra Espectral. Debe efectuarse durante la noche.
+witchery.rite.bindspectral=Rito de Enlace{r||Enlaza hasta tres criaturas espectrales del mismo tipo a una Piedra Espectral.
+witchery.rite.bindfetish=Rito de Enlace{r||Liga criaturas espectrales a un Espantapájaros, una Efigie de Madera o una Escalera de Bruja para crear un efecto.
+
+witchery.rite.voodooprotectionactivated=El rito falló. El jugador tenía protección contra el vudú.
+
+witchery.brazier.smoke.name=Neblina del Cementerio
+witchery.brazier.smoke.desc=Invoca una neblina densa que permanece durante algunos minutos.
+
+witchery.brazier.spectre.name=Invocar Espectro
+witchery.brazier.spectre.desc=Trae un ser muerto de vuelta a este mundo desde el más allá.
+
+witchery.brazier.banshee.name=Invoca una Banshee
+witchery.brazier.banshee.desc=Trae un ser gritón de vuelta este mundo desde el más allá.
+
+witchery.brazier.strong.name=Angustia del Muerto
+witchery.brazier.strong.desc=Inflinje la pena del muerto cuando golpea criaturas cerca del brasero.
+
+witchery.brazier.tough.name=Fortificación de Cadaver
+witchery.brazier.tough.desc=Deja que los muertos sientan tu pena cuando están cerca del brasero.
+
+witchery.brazier.invisible.name=Velo Letal
+witchery.brazier.invisible.desc=Desaparece a la vista cuando estás cerca del brasero.
+
+witchery.brazier.wilting.name=Drenaje del Crecimiento
+witchery.brazier.wilting.desc=Succiona la vida de los cultivos para curar a los muertos vivientes cercanos.
+
+witchery.book.burning1={o{lWitchcraft: Conjuración y Fetiches{r{r||Una bruja puede usar un brasero para quemar materiales con un propósito mágico y conjurar aquelloque ya no es de este mundo.||Coloca los ingredientes en el brasero y enciéndelo con pedernal y yesca.
+witchery.book.burning2={o{lEnlace de Fetiches{r{r||Una bruja puede usar el Rito de Enlace para ligar criaturas espectrales a un fetiche y crear efectos permanentes.||Las páginas siguientes muestran cuáles seres deben ser enlazados para cada efecto.
+witchery.book.burning3=Seres requeridos:
+
+
+entity.witchery.witchhunter.name=Cazador de Brujas
+
+item.witchery:handbow.name=Ballesta del Cazador de Brujas
+item.witchery:hunterhat.name=Sombrero del Cazador de Brujas
+item.witchery:hunterhat.tip={9Bonus: Protección contra maleficios.{0|{9Permite el uso de proyectiles invalidantes.{0|{9No puede usar muñecos.{0
+item.witchery:huntercoat.name=Abrigo del Cazador de Brujas
+item.witchery:huntercoat.tip={9Bonus: Protección contra maleficios.{0|{9Permite el uso de proyectiles invalidantes.{0|{9No puede usar muñecos.{0
+item.witchery:hunterlegs.name=Pantalón del Cazador de Brujas
+item.witchery:hunterlegs.tip={9Set bonuses: Protección contra maleficios.{0|{9Permite el uso de proyectiles invalidantes.{0|{9No puede usar muñecos.{0
+item.witchery:hunterboots.name=Botas del Cazador de Brujas
+item.witchery:hunterboots.tip={9Set bonuses: Protección contra maleficios.{0|{9Permite el uso de proyectiles invalidantes.{0|{9No puede usar muñecos.{0
+item.witchery:shelfcompass.name=Brújula de Estante de Muñecos
+item.witchery:ingredient.boltStake.name=Proyectil de Madera
+item.witchery:ingredient.boltAntiMagic.name=Proyectil Invalidante
+item.witchery:ingredient.boltHoly.name=Proyectil de Hueso
+item.witchery:ingredient.boltSplitting.name=Proyectil Escindido
+item.witchery:ingredient.nullifiedleather.name=Cuero Invalidante
+item.witchery:ingredient.nullcatalyst.name=Catalizador Invalidante
+item.witchery:ingredient.binkyhead.name=Calavera de Binky
+item.witchery:potion.antidote.name=Antídoto Universal
+
+item.witchery:deathscowl.name=Capucha de la Muerte
+item.witchery:deathscowl.tip={9Su mirada causa un terror que paraliza a las víctimas.{0
+item.witchery:deathsrobe.name=Vestido de la Muerte
+item.witchery:deathsrobe.tip={9Resistente al fuego.{0
+item.witchery:deathsfeet.name=Calzado de la Muerte
+item.witchery:deathsfeet.tip={9Camina sobre las aguas.{0
+item.witchery:deathshand.name=Mano de la Muerte
+item.witchery:deathshand.tip={9El toque espectral ignora la armadura.{0|{9Bonus de la armadura completa de la Muerte: Invoca la Guadaña de la Muerte {9|{9que causadaño por hambre con un efecto de área.{9
+
+witchery.rite.blackmagicdampening=Algo esta disipando la magia.
+
+fluid.witchery:hollowtears=Lágrimas Vacías
+fluid.witchery:flowingspirit=Espíritu Fluido
+
+tile.witchery:hollowtears.name=Espíritu Fluido
+
+
+
+entity.witchery.lordoftorment.name=Señor del Tormento
+
+entity.witchery.imp.name=Diablillo de Fuego
+entity.witchery.imp.goodbye=<%s> Contrato consumado!
+entity.witchery.imp.contract.notowners=<%s> Este contrato no está firmado con tu sangre!
+entity.witchery.imp.contract.unsigned=<%s> Firma el contrato con tu sangre!
+entity.witchery.imp.contract.noxp=<%s> Tienes muy poca experiencia como para que yo pueda alimentarme!
+entity.witchery.imp.contract.deal=<%s> Tenemos un trato!
+entity.witchery.imp.gift.like=<%s> Cosas brillantes!
+entity.witchery.imp.gift.hate=<%s> Mi no gustar! Solo cosas nuevas brillantes!
+entity.witchery.imp.gift.reciprocate=<%s> Yo tener un secreto para compartir!
+entity.witchery.imp.gift.toomany=<%s> Brillantes... yawn...
+entity.witchery.imp.gift.power=<%s> PODER IRRESISTIBLE!
+entity.witchery.imp.gift.powerloss=<%s> Por qué haces eso?
+entity.witchery.imp.spell.feelthefire=<%s> %s sentirá mis llamas!
+entity.witchery.imp.spell.cannotfind=<%s> No puedo encontrar %s!
+entity.witchery.imp.spell.failed=<%s> Algo no correcto.
+entity.witchery.imp.spell.notliked=<%s> Por qué debería hacer esto?
+entity.witchery.imp.spell.toooften=<%s> Espera un poco.
+entity.witchery.imp.spell.toomuchpower=<%s> Demasiado PODER para pensar!
+
+tile.witchery:force.name=Sólido
+tile.witchery:tormentportal.name=Portal al Tormento
+tile.witchery:refillingchest.name=Cofre
+
+witchery.infuse.branch.unknowneffect=No has aprendido este efecto!
+witchery.infuse.branch.effectoncooldown=El efecto no está listo, quedan %s segundo(s).
+
+item.witchery:ingredient.seerstone.knownspells=Sabe: %s.
+item.witchery:ingredient.seerstone.nospells=No tienes conocimientos de la rama mística.
+
+item.witchery:ingredient.brewSoulHunger.name=Alma del Demonio Hambriento
+item.witchery:ingredient.brewSoulAnguish.name=Alma del Demonio Angustiado
+item.witchery:ingredient.brewSoulFear.name=Alma del Demonio Atemorizado
+item.witchery:ingredient.brewSoulTorment.name=Alma del Demonio Atormentado
+item.witchery:ingredient.contract.name=Contrato Demoniaco
+item.witchery:ingredient.contractTorment.name=Tormento
+item.witchery:ingredient.contractTorment.tip=Lee este texto en un círculo|de piedras erguidas. Cuidado con la|entrada explosiva.
+item.witchery:ingredient.contractTorment.nostones=Debes pararte en el centro exacto de un círculo de piedras.
+item.witchery:ingredient.contractBlaze.name=Llama Viviente
+item.witchery:ingredient.contractResistFire.name=Tolerancia al Fuego
+item.witchery:ingredient.contractEvaporate.name=Evaporación
+item.witchery:ingredient.contractFieryTouch.name=Toque Ígneo
+item.witchery:ingredient.contractSmelting.name=Toque de Crisol
+
+witchery.pott.tormentum=Tormentum
+witchery.pott.tormentum.info=Hechiza la víctima con tormento eterno.
+witchery.pott.carnosadiem=Carnosa Diem
+witchery.pott.carnosadiem.info=Banquete de Carne
+witchery.pott.ignianima=Ignianima
+witchery.pott.ignianima.info=Fuego del alma: causa dolor equivalente al que tú sufres.
+witchery.pott.morsmordre=Morsmordre
+witchery.pott.morsmordre.info=Conjura la Marca Oscura.
+
+witchery.rite.summonimp=Rito de Invocación{r||Invoca un Diablillo. El área interior debe tener un espacio sin bloques de 7x7x4!
+
+tile.witchery:decurseteleport.name=Estatua de las Invocaciones Bloqueadas
+tile.witchery:decursedirected.name=Estatua de los Maleficios Rotos
+entity.witchery.mindrake.name=Minedrágora
+entity.witchery.darkmark.name=Morsmordre
+item.witchery:seedsmindrake.name=Bulbo de Minedrágora
+tile.witchery:mindrake.name=Minedrágora
+
+witchery.rite.bindstatuetoplayer=Rito de Enlace{r||Liga una persona que esté dentro del círculo a la estatua.
+witchery.rite.bindwaystonetoplayer=Rito de Enlace{r||Crea una Piedra de Camino Ensangrentada ligada a la localización de una criatura.
+entity.witchery.goblin.name=Duende
+entity.witchery.goblinmog.name=Mog
+entity.witchery.goblingulg.name=Gulg
+item.witchery:ingredient.waystoneCreatureBound.name=Piedra del Camino Ensangrentada
+item.witchery:quiverofmog.name=Carcaj de Mog
+item.witchery:quiverofmog.tip={9Infinitas flechas rápidas que destruyen objetivos aéreos.{0|{5Vuélvete más fuerte cuando estás cerca de un jugador que viste elCinturón de Gulg.{0
+item.witchery:gurdleofgulg.name=Cinturón de Gulg
+item.witchery:gurdleofgulg.tip={9Envía a los enemigos volando por los aires golpeándolos con tus puños.{0|{5Vuélvete más fuerte cuando estás cerca de un jugador quelleva el Carcaj de Mog.{0
+tile.witchery:stockade.oak.name=Empalizada de Roble
+tile.witchery:stockade.spruce.name=Empalizada de Abeto
+tile.witchery:stockade.birch.name=Empalizada de Abedul
+tile.witchery:stockade.jungle.name=Empalizada de Selva
+tile.witchery:stockade.rowan.name=Empalizada de Serbal
+tile.witchery:stockade.alder.name=Empalizada de Aliso
+tile.witchery:stockade.hawthorn.name=Empalizada de Espino Blanco
+tile.witchery:stockade.acacia.name=Empalizada de Acacia
+tile.witchery:stockade.big_oak.name=Empalizada de Roble Oscuro
+item.witchery:dupstaff.name=Bastón de Duplicación
+tile.witchery:statueofworship.name=Estatua del Santo Patrón de los Duendes
+item.witchery:ingredient.kobolditedust.name=Polvo de Koboldite
+item.witchery:ingredient.kobolditenugget.name=Pepita de Koboldite
+item.witchery:ingredient.kobolditeingot.name=Lingote de Koboldite
+item.witchery:kobolditepickaxe.name=Pico de Koboldite
+item.witchery:ingredient.pentacle.name=Pentagrama
+tile.witchery:perpetualice.name=Hielo Perpetuo
+tile.witchery:tormentstone.name=Piedra del Tormento
+
+tile.witchery:infinityegg.name=Huevo de la Infinidad
+item.witchery:kobolditehelm.name=Banda de la Distorsión
+item.witchery:kobolditehelm.tip={9Desorienta a los observadores.{0

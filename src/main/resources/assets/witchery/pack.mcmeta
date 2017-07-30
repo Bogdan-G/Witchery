@@ -1,0 +1,33 @@
+{
+  "pack": {
+    "pack_format": 1,
+    "description": "Resources used for witchery"
+  },
+  "language": {
+    "de_DE": {
+      "name": "Deutsch",
+      "region": "Deutschland",
+      "bidirectional": false
+    },
+    "en_US": {
+      "name": "English",
+      "region": "US",
+      "bidirectional": false
+    },
+	"it_IT": {
+      "name": "Italian",
+      "region": "Italy",
+      "bidirectional": false
+    },
+    "ru_RU": {
+      "name": "Russian",
+      "region": "Russia",
+      "bidirectional": false
+    },
+    "zh_CN": {
+      "name": "Chinese",
+      "region": "China",
+      "bidirectional": false
+    }
+  }
+}

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "witchery",
+  "name": "Witchery",
+  "description": "Bringing witchcraft and nature magic to Minecraft: cauldrons, broomsticks, ritual circles, magical brews, a bit of necromancy and voodoo for good measure; all topped off with a fetching pointy hat. Oh, and watch out for the demons...",
+  "version": "1.7.10-0.24.1",
+  "mcversion": "1.7.10",
+  "url": "http://sites.google.com/site/witcherymod/",
+  "updateUrl": "",
+  "authorList": ["Emoniph"],
+  "credits": "For credits and licenses, see: https://sites.google.com/site/witcherymod/credits",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
