@@ -1683,3 +1683,9 @@ witchery.rite.mirrormirror.bearing6=West is where the fairest will be.
 witchery.rite.mirrormirror.bearing7=North West is where the fairest will be.
 
 witchery.rite.mirrormirror.opchatreveal=In next message, player "%s" is really: "%s"
+
+fluid.witchery:fluidspirit=Fluid Spirit
+fluid.witchery:brew=Brew
+fluid.witchery:brewliquid=Brew Liquid
+fluid.witchery:brewgas=Brew Gas
+fluid.witchery:fluiddisease=Fluid Disease
