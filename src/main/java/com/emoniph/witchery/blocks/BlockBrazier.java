@@ -424,39 +424,49 @@ public class BlockBrazier extends BlockBaseContainer {
             BrazierRecipes.BrazierRecipe recipe = BrazierRecipes.instance().getRecipe(new ItemStack[]{this.slots[0], this.slots[1], this.slots[2]});
             IPowerSource powerSource;
             if(recipe != null && this.getStackInSlot(3) != null) {
-               powerSource = this.getPowerSource();
-               if(powerSource != null && !powerSource.isLocationEqual(this.powerSourceCoord)) {
-                  this.powerSourceCoord = powerSource.getLocation();
+               if (super.worldObj.isBlockIndirectlyGettingPowered(super.xCoord, super.yCoord, super.zCoord)) {
+                   if (this.powerLevel > 0) {
+                       this.powerLevel = 0;
+                       super.worldObj.markBlockForUpdate(super.xCoord, super.yCoord, super.zCoord);
+                   }
                } else {
-                  this.powerSourceCoord = null;
-               }
-
-               boolean needsPower = recipe.getNeedsPower();
-               this.powerLevel = needsPower && powerSource == null?0:1;
-               if(recipe.getNeedsPower() && (powerSource == null || !powerSource.consumePower(1.0F))) {
-                  this.powerLevel = 0;
-                  if(powered != this.powerLevel > 0) {
-                     update = true;
+                  powerSource = this.getPowerSource();
+                  if(powerSource != null && !powerSource.isLocationEqual(this.powerSourceCoord)) {
+                     this.powerSourceCoord = powerSource.getLocation();
+                  } else {
+                     this.powerSourceCoord = null;
                   }
-               } else {
-                  update = this.furnaceCookTime == 0;
-                  ++this.furnaceCookTime;
-                  if((long)this.furnaceCookTime == (long)recipe.burnTicks + this.storage * 400L) {
+
+                  boolean needsPower = recipe.getNeedsPower();
+                  this.powerLevel = needsPower && powerSource == null?0:1;
+                  if(recipe.getNeedsPower() && (powerSource == null || !powerSource.consumePower(1.0F))) {
+                     this.powerLevel = 0;
+                     if(powered != this.powerLevel > 0) {
+                        update = true;
+                     }
+                  } else {
+                     update = this.furnaceCookTime == 0;
+                     ++this.furnaceCookTime;
+                     if (recipe.burnTicks == -1 && this.furnaceCookTime > 1000) {
+                        this.furnaceCookTime = 1;
+                     }
+                     if(recipe.burnTicks >= 0 && (long)this.furnaceCookTime == (long)recipe.burnTicks + this.storage * 400L) {
                      this.furnaceCookTime = 0;
                      recipe.onBurnt(super.worldObj, super.xCoord, super.yCoord, super.zCoord, super.ticks, this);
                      this.setInventorySlotContents(0, (ItemStack)null);
                      this.setInventorySlotContents(1, (ItemStack)null);
                      this.setInventorySlotContents(2, (ItemStack)null);
                      update = true;
-                  } else {
-                     this.storage += (long)recipe.onBurning(super.worldObj, super.xCoord, super.yCoord, super.zCoord, super.ticks, this);
-                     if(this.storage == Long.MAX_VALUE) {
-                        this.storage = 0L;
+                     } else {
+                        this.storage += (long)recipe.onBurning(super.worldObj, super.xCoord, super.yCoord, super.zCoord, super.ticks, this);
+                        if(this.storage == Long.MAX_VALUE) {
+                           this.storage = 0L;
+                        }
                      }
-                  }
 
-                  if(powered != this.powerLevel > 0) {
-                     update = true;
+                     if(powered != this.powerLevel > 0) {
+                        update = true;
+                     }
                   }
                }
             } else {

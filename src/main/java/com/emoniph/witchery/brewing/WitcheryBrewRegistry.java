@@ -40,6 +40,7 @@ import com.emoniph.witchery.brewing.action.effect.BrewActionBiomeChange;
 import com.emoniph.witchery.brewing.action.effect.BrewActionBlight;
 import com.emoniph.witchery.brewing.action.effect.BrewActionFelling;
 import com.emoniph.witchery.brewing.action.effect.BrewActionLilify;
+import com.emoniph.witchery.brewing.action.effect.BrewActionRegrowth;
 import com.emoniph.witchery.brewing.action.effect.BrewActionPlanting;
 import com.emoniph.witchery.brewing.action.effect.BrewActionRaiseLand;
 import com.emoniph.witchery.brewing.action.effect.BrewActionRaising;
@@ -370,6 +371,7 @@ public class WitcheryBrewRegistry {
 
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemEnderDew.getBrewItemKey(), new BrewNamePart("witchery:potion.enderinhibition"), new AltarPower(200), new Probability(1.0D), Witchery.Potions.ENDER_INHIBITION, (long)TimeUtil.secsToTicks(90), new EffectLevel(1)));
       this.register(new BrewPotionEffect(new BrewItemKey(Items.wheat), new BrewNamePart("witchery:brew.moonshine"), new AltarPower(0), new Probability(1.0D), Witchery.Potions.FEEL_NO_PAIN, (long)TimeUtil.secsToTicks(90), new EffectLevel(1)));
+
       this.register(new BrewActionEffect(new BrewItemKey(Items.coal), new BrewNamePart("witchery:brew.extinguish"), new AltarPower(0), new Probability(1.0D), new EffectLevel(1)) {
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
             if(modifiers.getStrength() > 1 || !world.provider.isHellWorld) {
@@ -588,6 +590,7 @@ public class WitcheryBrewRegistry {
          }
       });
       this.register(new BrewActionLilify(new BrewItemKey(Blocks.waterlily), new BrewNamePart("witchery:brew.lilify"), new AltarPower(200), new EffectLevel(1)));
+      this.register(new BrewActionRegrowth(new BrewItemKey(Items.melon_seeds), new BrewNamePart("witchery:brew.regrowth"), new AltarPower(200), new Probability(1.0D), new EffectLevel(1)));
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemWolfsbane.getBrewItemKey(), new BrewNamePart("witchery:potion.wolfsbane"), new AltarPower(0), new Probability(1.0D), Witchery.Potions.WOLFSBANE, (long)TimeUtil.secsToTicks(60), new EffectLevel(1)));
       this.register(new BrewActionEffect(Witchery.Items.GENERIC.itemPurifiedMilk.getBrewItemKey(), new BrewNamePart("witchery:brew.removedebuffs"), new AltarPower(200), new Probability(1.0D), new EffectLevel(2)) {
          protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
@@ -1374,6 +1377,7 @@ public class WitcheryBrewRegistry {
       this.register(new BrewCurseEffect(new BrewItemKey(Items.rotten_flesh), new BrewNamePart("witchery:potion.diseased"), new AltarPower(2000), new Probability(1.0D), Witchery.Potions.DISEASED, (long)TimeUtil.minsToTicks(3), new EffectLevel(4), false));
       this.register(new BrewCurseEffect(Witchery.Items.GENERIC.itemDisturbedCotton.getBrewItemKey(), new BrewNamePart("witchery:brew.sinking"), new AltarPower(3000), new Probability(1.0D), Witchery.Potions.SINKING, (long)TimeUtil.minsToTicks(3), new EffectLevel(4), false));
       this.register(new BrewCurseEffect(new BrewItemKey(Witchery.Blocks.EMBER_MOSS), new BrewNamePart("witchery:brew.overheating"), new AltarPower(3000), new Probability(1.0D), Witchery.Potions.OVERHEATING, (long)TimeUtil.minsToTicks(3), new EffectLevel(4), false));
+      this.register(new BrewCurseEffect(new BrewItemKey(Blocks.glass), new BrewNamePart("witchery:brew.brittle"), new AltarPower(2500), new Probability(1.0D), Witchery.Potions.BRITTLE, (long)TimeUtil.minsToTicks(2), new EffectLevel(4), false));
       this.register(new BrewCurseEffect(Witchery.Items.GENERIC.itemMellifluousHunger.getBrewItemKey(), new BrewNamePart("witchery:brew.wakingnightmare"), new AltarPower(10000), new Probability(1.0D), Witchery.Potions.WAKING_NIGHTMARE, (long)TimeUtil.minsToTicks(3), new EffectLevel(4), false));
       this.register(new BrewPotionEffect(Witchery.Items.GENERIC.itemToeOfFrog.getBrewItemKey(), new BrewNamePart("witchery:brew.frogsleg"), new AltarPower(500), new Probability(1.0D), Witchery.Potions.DOUBLE_JUMP, (long)TimeUtil.minsToTicks(6), new EffectLevel(4)));
       this.register(new BrewPotionEffect(new BrewItemKey(Items.golden_apple), new BrewNamePart("witchery:brew.absorbsion"), new AltarPower(1000), new Probability(1.0D), Potion.field_76444_x, (long)TimeUtil.secsToTicks(30), new EffectLevel(4)));
@@ -1834,6 +1838,101 @@ public class WitcheryBrewRegistry {
       this.register(new BrewActionRitualRecipe(new BrewItemKey(Witchery.Items.WITCH_HAND), new AltarPower(0), new BrewActionRitualRecipe.Recipe[]{new BrewActionRitualRecipe.Recipe(new ItemStack(Items.rotten_flesh, 6), new ItemStack[0])}));
       this.register(new BrewActionRitualRecipe(Witchery.Items.GENERIC.itemTormentedTwine.getBrewItemKey(), new AltarPower(4000), new BrewActionRitualRecipe.Recipe[]{new BrewActionRitualRecipe.Recipe(new ItemStack(Witchery.Blocks.PIT_GRASS, 4), new ItemStack[]{new ItemStack(Items.nether_wart), new ItemStack(Blocks.dirt), new ItemStack(Blocks.yellow_flower)}), new BrewActionRitualRecipe.Recipe(new ItemStack(Witchery.Blocks.PIT_DIRT, 4), new ItemStack[]{Witchery.Items.GENERIC.itemMandrakeRoot.createStack(), new ItemStack(Blocks.dirt)})}));
       this.register(new BrewActionRitualRecipe(new BrewItemKey(Items.compass), new AltarPower(5000), new BrewActionRitualRecipe.Recipe[]{new BrewActionRitualRecipe.Recipe(new ItemStack(Witchery.Items.PLAYER_COMPASS), new ItemStack[]{new ItemStack(Items.nether_wart), Witchery.Items.GENERIC.itemTearOfTheGoddess.createStack(), new ItemStack(Blocks.vine), new ItemStack(Items.spider_eye)})}));
+      this.register(new BrewPotionEffect(new BrewItemKey(Blocks.glass_pane), new BrewNamePart("witchery:brew.phasewalk", "witchery:brew.rooted"), new AltarPower(1500), new Probability(1.0D), Witchery.Potions.PHASE_WALK, (long)TimeUtil.secsToTicks(45), Witchery.Potions.ROOTED, (long)TimeUtil.secsToTicks(20), new EffectLevel(6)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.melon), new BrewNamePart("witchery:brew.lifesteal", "witchery:brew.frailty"), new AltarPower(1500), new Probability(1.0D), Witchery.Potions.LIFESTEAL, (long)TimeUtil.secsToTicks(60), Witchery.Potions.FRAILTY, (long)TimeUtil.secsToTicks(60), new EffectLevel(5)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.fire_charge), new BrewNamePart("witchery:brew.berserk", "witchery:brew.pacified"), new AltarPower(1500), new Probability(1.0D), Witchery.Potions.BERSERK, (long)TimeUtil.secsToTicks(60), Witchery.Potions.PACIFIED, (long)TimeUtil.secsToTicks(20), new EffectLevel(5)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.experience_bottle), new BrewNamePart("witchery:brew.manasiphon"), new AltarPower(2000), new Probability(1.0D), Witchery.Potions.MANA_SIPHON, (long)TimeUtil.secsToTicks(45), new EffectLevel(6)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.name_tag), new BrewNamePart("witchery:brew.comprehension", "witchery:brew.provoke"), new AltarPower(1000), new Probability(1.0D), Witchery.Potions.COMPREHENSION, (long)TimeUtil.minsToTicks(3), Witchery.Potions.PROVOKE, (long)TimeUtil.secsToTicks(60), new EffectLevel(4)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.glass_bottle), new BrewNamePart("witchery:brew.spectralsight"), new AltarPower(500), new Probability(1.0D), Witchery.Potions.SPECTRAL_SIGHT, (long)TimeUtil.minsToTicks(2), new EffectLevel(2)));
+      this.register(new BrewActionEffect(new BrewItemKey(Blocks.stonebrick), new BrewNamePart("witchery:brew.petrify"), new AltarPower(2000), new Probability(1.0D), new EffectLevel(6)) {
+         protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
+            if(!world.isRemote && !(targetEntity instanceof IBossDisplayData)) {
+               int ticks = modifiers.getModifiedDuration(TimeUtil.secsToTicks(6));
+               targetEntity.addPotionEffect(new PotionEffect(Witchery.Potions.ROOTED.id, ticks, modifiers.getStrength(), modifiers.noParticles));
+               targetEntity.addPotionEffect(new PotionEffect(Potion.weakness.id, ticks, modifiers.getStrength()));
+               if(modifiers.getStrength() >= 2) {
+                  targetEntity.addPotionEffect(new PotionEffect(Potion.resistance.id, ticks, 4));
+                  targetEntity.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, ticks, 4));
+               }
+
+               SoundEffect.RANDOM_FIZZ.playAt(world, targetEntity.posX, targetEntity.posY, targetEntity.posZ, 1.0F, 0.6F);
+            }
+
+         }
+      });
+      this.register(new BrewActionEffect(new BrewItemKey(Blocks.packed_ice), new BrewNamePart("witchery:brew.glaciate"), new AltarPower(750), new Probability(1.0D), new EffectLevel(4)) {
+         protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
+            if(!world.isRemote) {
+               BrewPotionEffect.applyPotionEffect(targetEntity, modifiers, Witchery.Potions.CHILLED, TimeUtil.secsToTicks(30), modifiers.noParticles, modifiers.caster);
+            }
+
+         }
+         protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, final int radius, final ModifiersEffect modifiers, ItemStack stack) {
+            (new BlockActionCircle() {
+               public void onBlock(World world, int x, int y, int z) {
+                  for(int dy = y - radius; dy <= y + radius; ++dy) {
+                     Block block = world.getBlock(x, dy, z);
+                     if(block.getMaterial() == Material.water && BlockProtect.checkModsForBreakOK(world, x, dy, z, block, world.getBlockMetadata(x, dy, z), modifiers.caster)) {
+                        world.setBlock(x, dy, z, modifiers.getStrength() >= 1?Blocks.packed_ice:Blocks.ice);
+                     } else if(block.getMaterial() == Material.lava && modifiers.getStrength() >= 2 && BlockProtect.checkModsForBreakOK(world, x, dy, z, block, world.getBlockMetadata(x, dy, z), modifiers.caster)) {
+                        world.setBlock(x, dy, z, world.getBlockMetadata(x, dy, z) == 0?Blocks.obsidian:Blocks.cobblestone);
+                        SoundEffect.RANDOM_FIZZ.playAt(world, (double)x, (double)dy, (double)z, 1.0F, 1.6F);
+                     }
+                  }
+
+               }
+            }).processFilledCircle(world, x, y, z, radius + (modifiers.ritualised?4:0));
+         }
+      });
+      this.register(new BrewActionEffect(new BrewItemKey(Blocks.sandstone), new BrewNamePart("witchery:brew.glasswork"), new AltarPower(500), new Probability(1.0D), new EffectLevel(4)) {
+         protected void doApplyToBlock(World world, int x, int y, int z, ForgeDirection side, final int radius, final ModifiersEffect modifiers, ItemStack stack) {
+            (new BlockActionCircle() {
+               public void onBlock(World world, int x, int y, int z) {
+                  for(int dy = y - radius; dy <= y + radius; ++dy) {
+                     Block block = world.getBlock(x, dy, z);
+                     if((block == Blocks.sand || block == Blocks.gravel || block == Blocks.sandstone) && BlockProtect.checkModsForBreakOK(world, x, dy, z, block, world.getBlockMetadata(x, dy, z), modifiers.caster) && BlockProtect.canBreak(block, world)) {
+                        world.setBlock(x, dy, z, modifiers.getStrength() >= 1?Blocks.stained_glass:Blocks.glass, modifiers.getStrength() >= 1?world.rand.nextInt(16):0, 3);
+                        SoundEffect.RANDOM_FIZZ.playAt(world, (double)x, (double)dy, (double)z, 1.0F, 1.8F);
+                     }
+                  }
+
+               }
+            }).processFilledCircle(world, x, y, z, radius);
+         }
+      });
+      this.register(new BrewActionEffect(new BrewItemKey(Items.clock), new BrewNamePart("witchery:brew.soultether"), new AltarPower(4000), new Probability(1.0D), new EffectLevel(8)) {
+         protected void doApplyToEntity(World world, EntityLivingBase targetEntity, ModifiersEffect modifiers, ItemStack stack) {
+            if(!world.isRemote && !(targetEntity instanceof IBossDisplayData) && modifiers.caster != null && targetEntity != modifiers.caster) {
+               if(targetEntity.dimension == modifiers.caster.dimension) {
+                  SoundEffect.WITCHERY_RANDOM_POOF.playAt(world, targetEntity.posX, targetEntity.posY, targetEntity.posZ, 1.0F, 1.0F);
+                  targetEntity.setPositionAndUpdate(modifiers.caster.posX, modifiers.caster.posY, modifiers.caster.posZ);
+                  SoundEffect.WITCHERY_RANDOM_POOF.playAt(world, modifiers.caster.posX, modifiers.caster.posY, modifiers.caster.posZ, 1.0F, 1.0F);
+                  if(modifiers.getStrength() >= 1) {
+                     targetEntity.addPotionEffect(new PotionEffect(Witchery.Potions.ROOTED.id, modifiers.getModifiedDuration(TimeUtil.secsToTicks(3)), 0));
+                  }
+               }
+            }
+
+         }
+      });
+      
+      // CUSTOM BREWS
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionSoulSwap(new BrewItemKey(Items.lead), new BrewNamePart("witchery:brew.soulswap"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(4)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.bed), new BrewNamePart("witchery:brew.astralprojection"), new AltarPower(2000), new Probability(1.0D), Witchery.Potions.ASTRAL_PROJECTION, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(60), new EffectLevel(6)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.iron_door), new BrewNamePart("witchery:brew.banishment"), new AltarPower(3000), new Probability(1.0D), Witchery.Potions.BANISHMENT, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(30), new EffectLevel(8)));
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionVoodooLink(new BrewItemKey(Items.paper), new BrewNamePart("witchery:brew.voodoolink"), new AltarPower(2000), new Probability(1.0D), new EffectLevel(6)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.saddle), new BrewNamePart("witchery:brew.polymorph"), new AltarPower(1500), new Probability(1.0D), Witchery.Potions.POLYMORPH, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(60), new EffectLevel(6)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.iron_sword), new BrewNamePart("witchery:brew.frenzy"), new AltarPower(1500), new Probability(1.0D), Witchery.Potions.FRENZY, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(30), new EffectLevel(5)));
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionCovenCall(new BrewItemKey(Items.book), new BrewNamePart("witchery:brew.covencall"), new AltarPower(4000), new Probability(1.0D), new EffectLevel(6)));
+      
+      // NEW CUSTOM BREWS (Batch 2)
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionAmnesia(new BrewItemKey(Items.map), new BrewNamePart("witchery:brew.amnesia"), new AltarPower(1000), new Probability(1.0D), new EffectLevel(4)));
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionSpectralThief(new BrewItemKey(Items.shears), new BrewNamePart("witchery:brew.spectralthief"), new AltarPower(1500), new Probability(1.0D), new EffectLevel(5)));
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionDoppelganger(new BrewItemKey(Items.name_tag), new BrewNamePart("witchery:brew.doppelganger"), new AltarPower(2500), new Probability(1.0D), new EffectLevel(8)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.fishing_rod), new BrewNamePart("witchery:brew.etherealchains"), new AltarPower(2000), new Probability(1.0D), Witchery.Potions.ETHEREAL_CHAINS, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(30), new EffectLevel(6)));
+      this.register(new com.emoniph.witchery.brewing.action.effect.BrewActionMarionette(new BrewItemKey(Items.string), new BrewNamePart("witchery:brew.marionette"), new AltarPower(3000), new Probability(1.0D), new EffectLevel(8)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Items.reeds), new BrewNamePart("witchery:brew.sirensong"), new AltarPower(2000), new Probability(1.0D), Witchery.Potions.SIREN_SONG, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(30), new EffectLevel(6)));
+      this.register(new BrewPotionEffect(new BrewItemKey(Blocks.sponge), new BrewNamePart("witchery:brew.silence"), new AltarPower(3000), new Probability(1.0D), Witchery.Potions.SILENCE, (long)com.emoniph.witchery.util.TimeUtil.secsToTicks(15), new EffectLevel(8)));
    }
 
    public List getRecipes() {

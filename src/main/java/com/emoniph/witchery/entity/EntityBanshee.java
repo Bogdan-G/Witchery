@@ -35,8 +35,14 @@ public class EntityBanshee extends EntitySummonedUndead {
       super.tasks.addTask(3, new EntityAIWander(this, 1.0D));
       super.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
       super.tasks.addTask(5, new EntityAILookIdle(this));
-      super.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+   }
+
+   public boolean getCanSpawnHere() {
+      if (this.worldObj.provider.dimensionId != com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+          return false;
+      }
+      return super.getCanSpawnHere();
    }
 
    protected void applyEntityAttributes() {
@@ -68,16 +74,18 @@ public class EntityBanshee extends EntitySummonedUndead {
          while(i$.hasNext()) {
             Object obj = i$.next();
             EntityLivingBase player = (EntityLivingBase)obj;
-            if(this.getDistanceSqToEntity(player) <= 36.0D && (player == this.getAttackTarget() || player == super.entityToAttack || player instanceof EntityPlayer)) {
+            double dsq = this.getDistanceSqToEntity(player);
+            if(dsq <= 36.0D && (player == this.getAttackTarget() || player == super.entityToAttack || player instanceof EntityPlayer)) {
                playersFound = true;
                if(!this.isScreaming()) {
                   this.setScreaming(true);
                   startedScreaming = true;
                }
-
                if(!(player instanceof EntityPlayer) || !ItemEarmuffs.isHelmWorn((EntityPlayer)player)) {
-                  float maxHealth = player.getMaxHealth();
-                  EntityUtil.touchOfDeath(player, this, Math.max(0.1F * maxHealth, 1.0F));
+                  if (this.dimension != com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+                      float maxHealth = player.getMaxHealth();
+                      EntityUtil.touchOfDeath(player, this, Math.max(0.1F * maxHealth, 1.0F));
+                  }
                }
             }
          }

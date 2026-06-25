@@ -1,5 +1,6 @@
 package com.emoniph.witchery.client.renderer;
 
+import com.emoniph.witchery.client.particle.NaturePowerFX;
 import com.emoniph.witchery.entity.EntitySpellEffect;
 import com.emoniph.witchery.infusion.infusions.symbols.EffectRegistry;
 import com.emoniph.witchery.infusion.infusions.symbols.SymbolEffect;
@@ -9,10 +10,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -21,6 +20,7 @@ public class RenderSpellEffect extends Render {
 
    private float field_77002_a;
    private static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation("witchery", "textures/entities/spelleffect.png");
+   private static final ResourceLocation ORB_TEXTURE = NaturePowerFX.particles;
 
 
    public RenderSpellEffect(float par1) {
@@ -29,12 +29,13 @@ public class RenderSpellEffect extends Render {
 
    public void doRenderSpellEffect(EntitySpellEffect effectEntity, double par2, double par4, double par6, float par8, float par9) {
       GL11.glPushMatrix();
-      this.bindEntityTexture(effectEntity);
+      super.bindTexture(ORB_TEXTURE);
       GL11.glTranslatef((float)par2, (float)par4, (float)par6);
       RenderUtil.blend(true);
+      GL11.glDepthMask(false);
+      GL11.glBlendFunc(770, 1);
       float scale = 1.0F;
       int color = 16711680;
-      IIcon icon2 = Items.snowball.getIconFromDamage(0);
       SymbolEffect effect = EffectRegistry.instance().getEffect(effectEntity.getEffectID());
       if(effect != null && effect instanceof SymbolEffectProjectile) {
          SymbolEffectProjectile f2 = (SymbolEffectProjectile)effect;
@@ -42,35 +43,53 @@ public class RenderSpellEffect extends Render {
          scale = f2.getSize();
       }
 
-      float f21 = this.field_77002_a * scale * 0.65F;
-      GL11.glScalef(f21 / 1.0F, f21 / 1.0F, f21 / 1.0F);
-      float red = (float)(color >>> 16 & 255) / 256.0F;
-      float green = (float)(color >>> 8 & 255) / 256.0F;
-      float blue = (float)(color & 255) / 256.0F;
-      GL11.glColor4f(red, green, blue, 0.55F);
-      Tessellator tessellator = Tessellator.instance;
-      float f3 = icon2.getMinU();
-      float f4 = icon2.getMaxU();
-      float f5 = icon2.getMinV();
-      float f6 = icon2.getMaxV();
-      float f7 = 1.0F;
-      float f8 = 0.5F;
-      float f9 = 0.25F;
+      float age = (float)effectEntity.ticksExisted + par9;
+      float pulse = 0.85F + 0.15F * MathHelper.sin(age * 0.3F);
+      float f21 = this.field_77002_a * scale * 0.85F * pulse;
+      float red = (float)(color >>> 16 & 255) / 255.0F;
+      float green = (float)(color >>> 8 & 255) / 255.0F;
+      float blue = (float)(color & 255) / 255.0F;
+
+      // First 16px frame of power.png is a soft round glow (tile 0 of a 16x16 atlas grid).
+      float u0 = 0.0F;
+      float u1 = 0.0624375F;
+      float v0 = 0.0F;
+      float v1 = 0.0624375F;
+
       GL11.glRotatef(180.0F - super.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
       GL11.glRotatef(-super.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(0.0F, 1.0F, 0.0F);
-      tessellator.addVertexWithUV((double)(0.0F - f8), (double)(0.0F - f9), 0.0D, (double)f3, (double)f6);
-      tessellator.addVertexWithUV((double)(f7 - f8), (double)(0.0F - f9), 0.0D, (double)f4, (double)f6);
-      tessellator.addVertexWithUV((double)(f7 - f8), (double)(1.0F - f9), 0.0D, (double)f4, (double)f5);
-      tessellator.addVertexWithUV((double)(0.0F - f8), (double)(1.0F - f9), 0.0D, (double)f3, (double)f5);
-      tessellator.draw();
+      GL11.glRotatef(age * 4.0F, 0.0F, 0.0F, 1.0F);
+
+      Tessellator tessellator = Tessellator.instance;
+
+      // Outer soft halo
+      this.drawOrbQuad(tessellator, f21 * 1.0F, red, green, blue, 0.35F, u0, u1, v0, v1);
+      // Bright inner core (counter-rotated for a shimmer effect)
+      GL11.glRotatef(-age * 7.0F, 0.0F, 0.0F, 1.0F);
+      float coreR = red + (1.0F - red) * 0.5F;
+      float coreG = green + (1.0F - green) * 0.5F;
+      float coreB = blue + (1.0F - blue) * 0.5F;
+      this.drawOrbQuad(tessellator, f21 * 0.55F, coreR, coreG, coreB, 0.7F, u0, u1, v0, v1);
+
+      GL11.glDepthMask(true);
       RenderUtil.blend(false);
+      GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       GL11.glPopMatrix();
    }
 
+   private void drawOrbQuad(Tessellator tessellator, float radius, float red, float green, float blue, float alpha, float u0, float u1, float v0, float v1) {
+      GL11.glColor4f(red, green, blue, alpha);
+      tessellator.startDrawingQuads();
+      tessellator.setNormal(0.0F, 1.0F, 0.0F);
+      tessellator.addVertexWithUV((double)(-radius), (double)(-radius), 0.0D, (double)u0, (double)v1);
+      tessellator.addVertexWithUV((double)radius, (double)(-radius), 0.0D, (double)u1, (double)v1);
+      tessellator.addVertexWithUV((double)radius, (double)radius, 0.0D, (double)u1, (double)v0);
+      tessellator.addVertexWithUV((double)(-radius), (double)radius, 0.0D, (double)u0, (double)v0);
+      tessellator.draw();
+   }
+
    protected ResourceLocation getSpellEffectTextures(EntitySpellEffect effect) {
-      return TextureMap.locationItemsTexture;
+      return ORB_TEXTURE;
    }
 
    protected ResourceLocation getEntityTexture(Entity par1Entity) {

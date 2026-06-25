@@ -1,7 +1,9 @@
 package com.emoniph.witchery.network;
 
 import com.emoniph.witchery.Witchery;
+import com.emoniph.witchery.infusion.infusions.symbols.EffectRegistry;
 import com.emoniph.witchery.infusion.infusions.symbols.SymbolEffect;
+import com.emoniph.witchery.util.ParticleEffect;
 import com.emoniph.witchery.util.SoundEffect;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -36,9 +38,19 @@ public class PacketSpellPrepared implements IMessage {
 
       public IMessage onMessage(PacketSpellPrepared message, MessageContext ctx) {
          EntityPlayer player = Witchery.proxy.getPlayer(ctx);
+         boolean changed = player.getEntityData().getInteger("WITCSpellEffectID") != message.effectID;
          player.getEntityData().setInteger("WITCSpellEffectID", message.effectID);
          player.getEntityData().setInteger("WITCSpellEffectEnhanced", message.level);
          SoundEffect.NOTE_HARP.playAtPlayer(player.worldObj, player, 1.0F);
+         if(changed && !player.worldObj.isRemote) {
+            SymbolEffect effect = EffectRegistry.instance().getEffect(message.effectID);
+            if(effect != null) {
+               int color = effect.getDisplayColor();
+               // Telegraph visible to all nearby players: a colored aura around the caster.
+               ParticleEffect.SPELL_COLORED.send(SoundEffect.NONE, player, 0.6D, 1.8D, 32, color);
+            }
+         }
+
          return null;
       }
    }

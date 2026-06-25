@@ -51,6 +51,13 @@ public class EntityPoltergeist extends EntitySummonedUndead {
       super.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
    }
 
+   public boolean getCanSpawnHere() {
+      if (this.worldObj.provider.dimensionId != com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+          return false;
+      }
+      return super.getCanSpawnHere();
+   }
+
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0D);
@@ -222,6 +229,9 @@ public class EntityPoltergeist extends EntitySummonedUndead {
    }
 
    public boolean attackEntityAsMob(Entity par1Entity) {
+      if (this.dimension == com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+          return false;
+      }
       boolean flag = super.attackEntityAsMob(par1Entity);
       return flag;
    }

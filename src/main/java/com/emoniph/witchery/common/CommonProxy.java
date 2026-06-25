@@ -124,5 +124,4 @@ public class CommonProxy implements IGuiHandler {
    }
 
    public void showParticleEffect(World world, double x, double y, double z, double width, double height, SoundEffect sound, int color, ParticleEffect particle) {}
-
 }

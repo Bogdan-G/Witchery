@@ -866,6 +866,10 @@ public class WorldProviderDreamWorld extends WorldProvider {
                   Infusion.spawnCreature(world, EntityNightmare.class, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ), player, 2, 6);
                }
             } else if(player.dimension != Config.instance().dimensionDreamID && getPlayerIsGhost(nbtPlayer)) {
+               com.emoniph.witchery.common.ExtendedPlayer playerEx = com.emoniph.witchery.common.ExtendedPlayer.get(player);
+               if (playerEx != null && playerEx.isAstralProjecting()) {
+                  return;
+               }
                int timeRemaining = 0;
                boolean skipNext = getPlayerSkipNextManifestTick(nbtPlayer);
                if(nbtPlayer.hasKey("WITCManifestDuration")) {

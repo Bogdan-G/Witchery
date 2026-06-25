@@ -276,7 +276,7 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
          super.updateEntity();
          if(!super.worldObj.isRemote && this.hasOwner()) {
             boolean PULSE_INTERVAL_IN_SECS = true;
-            if(TimeUtil.secondsElapsed(5, super.ticks)) {
+            if(TimeUtil.secondsElapsed(2, super.ticks)) {
                int worshipCount = this.updateWorshippersAndGetLevel();
                EntityPlayerMP player = MinecraftServer.getServer().getConfigurationManager().func_152612_a(this.owner);
                if(player != null) {
@@ -284,17 +284,16 @@ public class BlockStatueOfWorship extends BlockBaseContainer {
                   boolean WORSHIP_LEVEL_1 = true;
                   boolean WORSHIP_LEVEL_2 = true;
                   boolean WORSHIP_LEVEL_3 = true;
-                  if(worshipCount >= 5) {
+                  if(worshipCount >= 1) {
                      boolean GODS_SUMMON_CHANCE = true;
                      boolean RECHARGE_RADIUS_SQ = true;
-                     if(player.getDistanceSq(0.5D + (double)super.xCoord, 0.5D + (double)super.yCoord, 0.5D + (double)super.zCoord) <= 4096.0D) {
-                        int currentEnergy = Infusion.getCurrentEnergy(player);
-                        int maxEnergy = Infusion.getMaxEnergy(player);
-                        if(currentEnergy < maxEnergy) {
-                           boolean ENERGY_PER_PULSE = true;
-                           Infusion.setCurrentEnergy(player, Math.min(currentEnergy + 30, maxEnergy));
-                           ParticleEffect.INSTANT_SPELL.send(SoundEffect.NOTE_PLING, player, 1.0D, 2.0D, 8);
-                        }
+                     int currentEnergy = Infusion.getCurrentEnergy(player);
+                     int maxEnergy = Infusion.getMaxEnergy(player);
+                     if(currentEnergy < maxEnergy) {
+                        boolean ENERGY_PER_PULSE = true;
+                        // Give 40 energy multiplied by the number of worshipping hobgoblins
+                        Infusion.setCurrentEnergy(player, Math.min(currentEnergy + (40 * worshipCount), maxEnergy));
+                        ParticleEffect.INSTANT_SPELL.send(SoundEffect.NOTE_PLING, player, 1.0D, 2.0D, 8);
                      }
                   }
 

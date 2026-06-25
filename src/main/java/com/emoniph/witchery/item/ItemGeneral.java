@@ -276,6 +276,7 @@ public class ItemGeneral extends ItemBase {
    public final ItemGeneral.SubItem itemBloodWarm;
    public final ItemGeneral.SubItem itemBloodLiliths;
    public final ItemGeneral.SubItem itemHeartOfGold;
+   public final ItemGeneral.SubItem itemFlooPowder;
    @SideOnly(Side.CLIENT)
    private IIcon overlayGenericIcon;
    @SideOnly(Side.CLIENT)
@@ -644,6 +645,7 @@ public class ItemGeneral extends ItemBase {
          }
       }, this.subItems);
       this.itemHeartOfGold = ItemGeneral.SubItem.register(new ItemGeneral.SubItem(165, "heartofgold"), this.subItems);
+      this.itemFlooPowder = ItemGeneral.SubItem.register(new ItemGeneral.SubItem(166, "floopowder"), this.subItems);
       this.setMaxDamage(0);
       this.setMaxStackSize(64);
       this.setHasSubtypes(true);
@@ -1122,25 +1124,17 @@ public class ItemGeneral extends ItemBase {
 
    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
       Block block = BlockUtil.getBlock(world, x, y, z);
-      if(this.itemWaystoneBound.isMatch(stack) && block == Witchery.Blocks.CRYSTAL_BALL) {
-         if(!world.isRemote && BlockCrystalBall.tryConsumePower(world, player, x, y, z)) {
-            NBTTagCompound tag = stack.getTagCompound();
-            if(tag != null && tag.hasKey("PosX") && tag.hasKey("PosY") && tag.hasKey("PosZ") && tag.hasKey("PosD")) {
-               int newX = tag.getInteger("PosX");
-               int newY = tag.getInteger("PosY");
-               int newZ = tag.getInteger("PosZ");
-               int newD = tag.getInteger("PosD");
-               double MAX_DISTANCE = 22500.0D;
-               if(newD == player.dimension && player.getDistanceSq((double)newX, (double)newY, (double)newZ) <= 22500.0D) {
-                  player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-               } else {
-                  SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
+      if(this.itemWaystoneBound.isMatch(stack) && block == Witchery.Blocks.CHALICE) {
+         if(!world.isRemote) {
+            if(this.teleportToLocation(world, stack, player, 0, true)) {
+               --stack.stackSize;
+               if(stack.stackSize <= 0) {
+                  player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
                }
+               world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
             } else {
                SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
             }
-         } else if(world.isRemote) {
-            player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
          }
 
          return !world.isRemote;
@@ -1217,6 +1211,21 @@ public class ItemGeneral extends ItemBase {
             this.setThrowableHeading(var7, var7.motionX, var7.motionY, var7.motionZ, 1.0F, 1.0F);
             world.spawnEntityInWorld(var7);
          }
+      } else if((this.itemWaystone.isMatch(itemstack) || this.itemChaliceEmpty.isMatch(itemstack) || this.itemChaliceFull.isMatch(itemstack)) && isWaystoneBound(itemstack)) {
+         if(!world.isRemote) {
+            if(this.teleportToLocation(world, itemstack, player, 0, true)) {
+               --itemstack.stackSize;
+               if(itemstack.stackSize <= 0) {
+                  player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
+               }
+
+               world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
+            } else {
+               SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
+            }
+         }
+      } else if(this.itemFlooPowder.isMatch(itemstack)) {
+         this.useFlooPowder(world, player, itemstack);
       } else if(this.itemSeerStone.isMatch(itemstack)) {
          this.useSeerStone(world, player, itemstack);
       } else if(this.itemIcyNeedle.isMatch(itemstack)) {
@@ -1263,6 +1272,62 @@ public class ItemGeneral extends ItemBase {
          itemstack.stackSize = 0;
       } else {
          player.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
+      }
+
+   }
+
+   private void useFlooPowder(World world, EntityPlayer player, ItemStack itemstack) {
+      // Throw the Floo Powder onto a nearby fire; the flame turns verdant green (Floo Fire).
+      // Then, holding a bound Waystone, step into the green flame to travel to its location.
+      MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, true);
+      if(mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+         int fireX = mop.blockX;
+         int fireY = mop.blockY;
+         int fireZ = mop.blockZ;
+         Block hit = world.getBlock(fireX, fireY, fireZ);
+         if(hit != Blocks.fire) {
+            // Allow aiming at the block under/beside the fire (the flame sits on the hit face).
+            switch(mop.sideHit) {
+            case 0:
+               --fireY;
+               break;
+            case 1:
+               ++fireY;
+               break;
+            case 2:
+               --fireZ;
+               break;
+            case 3:
+               ++fireZ;
+               break;
+            case 4:
+               --fireX;
+               break;
+            case 5:
+               ++fireX;
+            }
+
+            hit = world.getBlock(fireX, fireY, fireZ);
+         }
+
+         if(hit == Blocks.fire) {
+            if(!world.isRemote) {
+               world.setBlock(fireX, fireY, fireZ, Witchery.Blocks.FLOO_FIRE);
+               world.playSoundEffect((double)fireX + 0.5D, (double)fireY + 0.5D, (double)fireZ + 0.5D, "fire.ignite", 1.0F, 0.6F);
+               if(!player.capabilities.isCreativeMode) {
+                  --itemstack.stackSize;
+                  if(itemstack.stackSize <= 0) {
+                     player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
+                  }
+               }
+            }
+
+            return;
+         }
+      }
+
+      if(!world.isRemote) {
+         SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
       }
 
    }

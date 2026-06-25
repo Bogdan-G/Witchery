@@ -497,7 +497,7 @@ public class EntityLilith extends EntityMob implements IBossDisplayData, IRanged
       EffectRegistry.instance();
       spells.add(1.0D, EffectRegistry.Confundus);
       EffectRegistry.instance();
-      spells.add(5.0D, EffectRegistry.Attraho);
+      //spells.add(5.0D, EffectRegistry.Attraho);
       return spells;
    }
 

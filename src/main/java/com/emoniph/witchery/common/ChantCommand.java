@@ -41,6 +41,14 @@ public class ChantCommand implements ICommand {
             String strings = Strings.join(args, " ");
             EntityPlayer player = world.getPlayerEntityByName(sender.getCommandSenderName());
             if(player != null) {
+               if(com.emoniph.witchery.common.ExtendedPlayer.trySayAstralProjection(player, strings)) {
+                  return;
+               }
+
+               if(com.emoniph.witchery.common.ExtendedPlayer.trySaySpiritForm(player, strings)) {
+                  return;
+               }
+
                if(Witchery.Items.RUBY_SLIPPERS.trySayTheresNoPlaceLikeHome(player, strings)) {
                   return;
                }

@@ -272,7 +272,8 @@ public class EntitySpirit extends EntityFlyingTameable {
          int k = MathHelper.floor_double(super.posZ);
          superGetCanSpawnHere = superGetCanSpawnHere && this.getBlockPathWeight(i, j, k) >= 0.0F && j >= 60;
          Block blockID = super.worldObj.getBlock(i, j - 1, k);
-         return superGetCanSpawnHere && super.worldObj.rand.nextInt(10) == 0 && (blockID == Blocks.grass || blockID == Blocks.sand) && super.worldObj.getFullBlockLightValue(i, j, k) > 8;
+         int spawnChance = super.worldObj.provider.dimensionId == Config.instance().dimensionDreamID ? 2 : 10;
+         return superGetCanSpawnHere && super.worldObj.rand.nextInt(spawnChance) == 0 && (blockID == Blocks.grass || blockID == Blocks.sand) && super.worldObj.getFullBlockLightValue(i, j, k) > 8;
       }
    }
 

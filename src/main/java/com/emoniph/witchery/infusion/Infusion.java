@@ -579,6 +579,28 @@ public class Infusion {
                   this.handleBrewGrotesqueEffect(belt, currentChargeLevel);
                   WorldProviderDreamWorld.updatePlayerEffects(belt.worldObj, belt, currentChargeLevel, blockID, counter);
                   WorldProviderTorment.updatePlayerEffects(belt.worldObj, belt, currentChargeLevel, blockID, counter);
+                  // Lumos follower: move glow globe above player every 4 ticks
+                  if (currentChargeLevel.hasKey("WITCLumos")) {
+                     int ox = currentChargeLevel.getInteger("WITCLumosX");
+                     int oy = currentChargeLevel.getInteger("WITCLumosY");
+                     int oz = currentChargeLevel.getInteger("WITCLumosZ");
+                     int nx = MathHelper.floor_double(belt.posX);
+                     int ny = MathHelper.floor_double(belt.posY) + 2;
+                     int nz = MathHelper.floor_double(belt.posZ);
+                     if (ox != nx || oy != ny || oz != nz) {
+                        // Remove old globe only if it's still our globe
+                        if (belt.worldObj.blockExists(ox, oy, oz) && belt.worldObj.getBlock(ox, oy, oz) == Witchery.Blocks.GLOW_GLOBE) {
+                           belt.worldObj.setBlockToAir(ox, oy, oz);
+                        }
+                        // Place new globe above head if the space is free
+                        if (belt.worldObj.isAirBlock(nx, ny, nz)) {
+                           belt.worldObj.setBlock(nx, ny, nz, Witchery.Blocks.GLOW_GLOBE);
+                        }
+                        currentChargeLevel.setInteger("WITCLumosX", nx);
+                        currentChargeLevel.setInteger("WITCLumosY", ny);
+                        currentChargeLevel.setInteger("WITCLumosZ", nz);
+                     }
+                  }
                   if(counter % 20L == 0L) {
                      this.handleSyncEffects(belt, currentChargeLevel);
                      this.handleBrewDepthsEffect(belt, currentChargeLevel);

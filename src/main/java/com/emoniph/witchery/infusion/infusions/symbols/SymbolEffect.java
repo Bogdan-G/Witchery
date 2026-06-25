@@ -47,6 +47,14 @@ public abstract class SymbolEffect {
       return this.effectID;
    }
 
+   public int getDisplayColor() {
+      if(this instanceof SymbolEffectProjectile) {
+         return ((SymbolEffectProjectile)this).getColor();
+      }
+
+      return this.curse?13382297:11645183;
+   }
+
    public boolean isCurse() {
       return this.curse;
    }

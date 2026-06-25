@@ -93,6 +93,10 @@ public class BlockFetish extends BlockBaseContainer {
          list.add(InfusedSpiritEffect.setEffect(new ItemStack(item, 1, 0), InfusedSpiritEffect.GHOST_WALKER));
       }
 
+      if(Item.getItemFromBlock(Witchery.Blocks.FETISH_SCARECROW) == item) {
+         list.add(InfusedSpiritEffect.setEffect(new ItemStack(item, 1, 0), InfusedSpiritEffect.CURSE_BRINGER));
+      }
+
    }
 
    public void onBlockAdded(World world, int posX, int posY, int posZ) {

@@ -39,6 +39,13 @@ public class EntitySpectre extends EntitySummonedUndead {
       super.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
    }
 
+   public boolean getCanSpawnHere() {
+      if (this.worldObj.provider.dimensionId != com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+          return false;
+      }
+      return super.getCanSpawnHere();
+   }
+
    protected void applyEntityAttributes() {
       super.applyEntityAttributes();
       this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
@@ -72,6 +79,9 @@ public class EntitySpectre extends EntitySummonedUndead {
    }
 
    public boolean attackEntityAsMob(Entity par1Entity) {
+      if (this.dimension == com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+          return false;
+      }
       float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
       int i = 0;
       if(par1Entity instanceof EntityLivingBase) {

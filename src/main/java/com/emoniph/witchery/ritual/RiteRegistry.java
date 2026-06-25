@@ -39,8 +39,30 @@ public class RiteRegistry {
       return ritual;
    }
 
+   public static RiteRegistry.Ritual addRecipe(int ritualID, int bookIndex, Rite rite, Sacrifice initialSacrifice, EnumSet traits, IRitualPattern pattern) {
+      RiteRegistry.Ritual ritual = new RiteRegistry.Ritual((byte)ritualID, bookIndex, rite, initialSacrifice, traits, pattern);
+      instance().rituals.add(ritual);
+      return ritual;
+   }
+
    public RiteRegistry.Ritual getRitual(byte ritualID) {
-      return (RiteRegistry.Ritual)this.rituals.get(ritualID - 1);
+      int fastIndex = ritualID - 1;
+      if(fastIndex >= 0 && fastIndex < this.rituals.size()) {
+         RiteRegistry.Ritual candidate = (RiteRegistry.Ritual)this.rituals.get(fastIndex);
+         if(candidate != null && candidate.getRitualID() == ritualID) {
+            return candidate;
+         }
+      }
+
+      Iterator i$ = this.rituals.iterator();
+      while(i$.hasNext()) {
+         RiteRegistry.Ritual ritual = (RiteRegistry.Ritual)i$.next();
+         if(ritual != null && ritual.getRitualID() == ritualID) {
+            return ritual;
+         }
+      }
+
+      return null;
    }
 
    public List getSortedRituals() {
@@ -83,6 +105,7 @@ public class RiteRegistry {
       final Sacrifice initialSacrifice;
       final EnumSet traits;
       final Circle[] circles;
+      final IRitualPattern pattern;
       final byte ritualID;
       final int bookIndex;
       boolean visibleInBook;
@@ -110,6 +133,18 @@ public class RiteRegistry {
          this.initialSacrifice = initialSacrifice;
          this.traits = traits;
          this.circles = circles;
+         this.pattern = null;
+         this.visibleInBook = true;
+      }
+
+      Ritual(byte ritualID, int bookIndex, Rite rite, Sacrifice initialSacrifice, EnumSet traits, IRitualPattern pattern) {
+         this.ritualID = ritualID;
+         this.bookIndex = bookIndex;
+         this.rite = rite;
+         this.initialSacrifice = initialSacrifice;
+         this.traits = traits;
+         this.circles = new Circle[0];
+         this.pattern = pattern;
          this.visibleInBook = true;
       }
 
@@ -126,7 +161,11 @@ public class RiteRegistry {
 
       public boolean isMatch(World world, int posX, int posY, int posZ, Circle[] nearbyCircles, ArrayList entities, ArrayList grassperStacks, boolean isDaytime, boolean isRaining, boolean isThundering) {
          if((!this.traits.contains(RitualTraits.ONLY_AT_NIGHT) || !isDaytime) && (!this.traits.contains(RitualTraits.ONLY_AT_DAY) || isDaytime) && (!this.traits.contains(RitualTraits.ONLY_IN_RAIN) || isRaining) && (!this.traits.contains(RitualTraits.ONLY_IN_STROM) || isThundering) && (!this.traits.contains(RitualTraits.ONLY_OVERWORLD) || world.provider.dimensionId == 0)) {
-            if(this.circles.length > 0) {
+            if(this.pattern != null) {
+               if(!this.pattern.isMatch(world, posX, posY, posZ)) {
+                  return false;
+               }
+            } else if(this.circles.length > 0) {
                ArrayList circlesToFind = new ArrayList(Arrays.asList(this.circles));
                Circle[] arr$ = nearbyCircles;
                int len$ = nearbyCircles.length;
@@ -158,6 +197,9 @@ public class RiteRegistry {
 
       private int getMaxDistance() {
          int maxDistance = this.circles.length > 0?0:4;
+         if (this.pattern != null) {
+            maxDistance = Math.max(maxDistance, this.pattern.getRadius());
+         }
          Circle[] arr$ = this.circles;
          int len$ = arr$.length;
 

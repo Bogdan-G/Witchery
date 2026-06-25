@@ -8,9 +8,10 @@ public enum TransformCreature {
    WOLFMAN("WOLFMAN", 2),
    BAT("BAT", 3),
    PLAYER("PLAYER", 4),
-   TOAD("TOAD", 5);
+   TOAD("TOAD", 5),
+   SPIRIT("SPIRIT", 6);
    // $FF: synthetic field
-   private static final TransformCreature[] $VALUES = new TransformCreature[]{NONE, WOLF, WOLFMAN, BAT, PLAYER, TOAD};
+   private static final TransformCreature[] $VALUES = new TransformCreature[]{NONE, WOLF, WOLFMAN, BAT, PLAYER, TOAD, SPIRIT};
 
 
    private TransformCreature(String var1, int var2) {}

@@ -3,15 +3,15 @@ buildscript {
         mavenCentral()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
         maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name = "anatawa12"
+            url = "https://maven.anatawa12.com/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'com.anatawa12.forge:ForgeGradle:1.2-1.0.+'
     }
 }
 
@@ -36,39 +36,15 @@ minecraft {
 repositories {
 	mavenLocal()
 	maven {
-		name = "ic2"
-		url = "http://maven.ic2.player.to/"
-	}
-	ivy {
-		name "BuildCraft"
-		artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision]-[classifier].[ext]"
-	}
-	maven {
 		name = "chickenbones"
 		url = "http://chickenbones.net/maven/"
 	}
-	maven{
-		name "tterrag Repo"
-		url "http://maven.tterrag.com/"
-	}
     maven {
-        url  "http://jcenter.bintray.com"
+        url  "https://jcenter.bintray.com"
     }
     maven {
         name 'Forge'
-        url 'http://files.minecraftforge.net/maven'
-    }
-        maven {
-        name "Mobius Repo"
-        url "http://mobiusstrip.eu/maven/"
-    }
-    maven {
-        name = "K4 maven"
-        url = "http://maven.k-4u.nl/"
-    }
-    maven {
-        name "FireBall API Depot"
-        url "http://dl.tsr.me/artifactory/libs-release-local"
+        url 'https://maven.minecraftforge.net/'
     }
 }
 

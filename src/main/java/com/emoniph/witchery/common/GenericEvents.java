@@ -298,7 +298,7 @@ public class GenericEvents {
             ChatUtil.sendTranslated(EnumChatFormatting.RED, event.entityPlayer, "witchery.nosleep.resized", new Object[0]);
             event.result = EnumStatus.OTHER_PROBLEM;
          }
-      } else if(ExtendedPlayer.get(event.entityPlayer).isVampire() && world.getBlock(event.x, event.y, event.z) == Witchery.Blocks.COFFIN) {
+      } else if(ExtendedPlayer.get(event.entityPlayer) != null && ExtendedPlayer.get(event.entityPlayer).isVampire() && world.getBlock(event.x, event.y, event.z) == Witchery.Blocks.COFFIN) {
          if(event.entityPlayer.worldObj.isDaytime()) {
             if(!world.isRemote) {
                if(player.isPlayerSleeping() || !player.isEntityAlive()) {
@@ -470,6 +470,17 @@ public class GenericEvents {
       priority = EventPriority.HIGH
    )
    public void onEntityInteract(EntityInteractEvent event) {
+      if (com.emoniph.witchery.dimension.WorldProviderDreamWorld.getPlayerIsGhost(event.entityPlayer)) {
+         ExtendedPlayer playerEx = ExtendedPlayer.get(event.entityPlayer);
+         if (playerEx.getSpiritLevel() >= 6 && event.entityPlayer.getHeldItem() == null && event.entityPlayer.isSneaking() && event.target instanceof EntityLivingBase) {
+            if(!event.entityPlayer.worldObj.isRemote) {
+               event.entityPlayer.mountEntity(event.target);
+            }
+            event.setCanceled(true);
+            return;
+         }
+      }
+
       PotionEffect effect = event.entityPlayer.getActivePotionEffect(Witchery.Potions.PARALYSED);
       if(effect != null && effect.getAmplifier() >= 4) {
          event.setCanceled(true);
@@ -763,6 +774,23 @@ public class GenericEvents {
 
    @SubscribeEvent
    public void onPlayerInteract(PlayerInteractEvent event) {
+      if (!event.entityPlayer.worldObj.isRemote && event.entityPlayer.getEntityData().getInteger("WITCLeviosaTicks") > 0) {
+          float currentDist = event.entityPlayer.getEntityData().hasKey("WITCLeviosaDistance") ? event.entityPlayer.getEntityData().getFloat("WITCLeviosaDistance") : 5.0f;
+          boolean changed = false;
+          if (event.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR || event.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+              currentDist = Math.max(1.0f, currentDist - 0.5f);
+              changed = true;
+          } else if (event.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.LEFT_CLICK_BLOCK) {
+              currentDist = Math.min(20.0f, currentDist + 0.5f);
+              changed = true;
+          }
+          if (changed) {
+              event.entityPlayer.getEntityData().setFloat("WITCLeviosaDistance", currentDist);
+              event.setCanceled(true);
+              return;
+          }
+      }
+
       PotionEffect effect = event.entityPlayer.getActivePotionEffect(Witchery.Potions.PARALYSED);
       if(effect != null && effect.getAmplifier() >= 4) {
          event.setCanceled(true);
@@ -827,12 +855,88 @@ public class GenericEvents {
 
    @SubscribeEvent
    public void onLivingUpdate(LivingUpdateEvent event) {
+      if (event.entity instanceof EntityLivingBase && event.entity.riddenByEntity instanceof EntityPlayer) {
+         EntityPlayer rider = (EntityPlayer)event.entity.riddenByEntity;
+         if (com.emoniph.witchery.dimension.WorldProviderDreamWorld.getPlayerIsGhost(rider) && ExtendedPlayer.get(rider).getSpiritLevel() >= 6) {
+             EntityLivingBase mount = (EntityLivingBase)event.entity;
+             mount.rotationYaw = rider.rotationYaw;
+             mount.rotationYawHead = rider.rotationYawHead;
+             mount.rotationPitch = rider.rotationPitch;
+             
+             // Also disable mount's own pathing and targets to avoid conflict.
+             if (mount instanceof net.minecraft.entity.EntityLiving) {
+                 ((net.minecraft.entity.EntityLiving)mount).getNavigator().clearPathEntity();
+                 ((net.minecraft.entity.EntityLiving)mount).setAttackTarget(null);
+             }
+             
+             if (rider.moveForward != 0 || rider.moveStrafing != 0) {
+                 float speed = 0.15f; 
+                 if (mount.getEntityAttribute(net.minecraft.entity.SharedMonsterAttributes.movementSpeed) != null) {
+                     speed = (float) mount.getEntityAttribute(net.minecraft.entity.SharedMonsterAttributes.movementSpeed).getAttributeValue() * 0.75f;
+                 }
+                 double radYaw = Math.toRadians(rider.rotationYaw);
+                 double motionX = -Math.sin(radYaw) * rider.moveForward * speed;
+                 double motionZ = Math.cos(radYaw) * rider.moveForward * speed;
+                 motionX += Math.cos(radYaw) * rider.moveStrafing * speed;
+                 motionZ += Math.sin(radYaw) * rider.moveStrafing * speed;
+                 
+                 mount.motionX = motionX;
+                 mount.motionZ = motionZ;
+             }
+             
+             mount.moveForward = 0.0f;
+             mount.moveStrafing = 0.0f;
+             
+             boolean isJumping = false;
+             try {
+                 isJumping = ((Boolean) cpw.mods.fml.relauncher.ReflectionHelper.getPrivateValue(net.minecraft.entity.EntityLivingBase.class, rider, "isJumping", "field_70703_bu")).booleanValue();
+             } catch (Exception e) {}
+             if (isJumping && mount.onGround) {
+                 mount.motionY = 0.5D;
+             }
+         }
+      }
+
+      if (!event.entity.worldObj.isRemote && event.entity instanceof EntityLivingBase) {
+          EntityLivingBase living = (EntityLivingBase) event.entity;
+          if (com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_STAYING_TARGETS.contains(living)) {
+              if (living instanceof net.minecraft.entity.EntityLiving) {
+                  ((net.minecraft.entity.EntityLiving)living).getNavigator().clearPathEntity();
+              }
+              living.motionX = 0;
+              living.motionZ = 0;
+          }
+      }
+      
       if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
-         EntityPlayer player = (EntityPlayer)event.entity;
-         ExtendedPlayer playerEx = ExtendedPlayer.get(player);
-         Shapeshift.INSTANCE.updatePlayerState(player, playerEx);
-         playerEx.tick();
-         if(playerEx.isVampire()) {
+          EntityPlayer player = (EntityPlayer)event.entity;
+          ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+          Shapeshift.INSTANCE.updatePlayerState(player, playerEx);
+          playerEx.tick();
+
+          if(!playerEx.getUnbreakableVowID().isEmpty() && event.entity.ticksExisted % 20 == 0) {
+              java.util.List<EntityPlayer> linkedPlayers = new java.util.ArrayList<EntityPlayer>();
+              for (Object obj : net.minecraft.server.MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
+                  EntityPlayer p = (EntityPlayer) obj;
+                  if (p != player && ExtendedPlayer.get(p).getUnbreakableVowID().equals(playerEx.getUnbreakableVowID())) {
+                      linkedPlayers.add(p);
+                  }
+              }
+              if (!linkedPlayers.isEmpty()) {
+                  java.util.Collection<net.minecraft.potion.PotionEffect> effects = player.getActivePotionEffects();
+                  for (net.minecraft.potion.PotionEffect effect : effects) {
+                      if (effect.getDuration() > 20) {
+                          for (EntityPlayer p : linkedPlayers) {
+                              net.minecraft.potion.PotionEffect current = p.getActivePotionEffect(net.minecraft.potion.Potion.potionTypes[effect.getPotionID()]);
+                              if (current == null || current.getAmplifier() < effect.getAmplifier() || (current.getAmplifier() == effect.getAmplifier() && current.getDuration() < effect.getDuration() - 10)) {
+                                  p.addPotionEffect(new net.minecraft.potion.PotionEffect(effect.getPotionID(), effect.getDuration(), effect.getAmplifier(), effect.getIsAmbient()));
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+          if(playerEx.isVampire()) {
             int closestVillage = player.getFoodStats().prevFoodLevel;
             int isWolfman = player.getFoodStats().getFoodLevel();
             if(closestVillage < isWolfman) {
@@ -975,6 +1079,36 @@ public class GenericEvents {
 
    }
 
+   @SubscribeEvent
+   public void onLivingHeal(net.minecraftforge.event.entity.living.LivingHealEvent event) {
+      if(!event.entityLiving.worldObj.isRemote && !event.isCanceled()) {
+         if(event.entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)event.entityLiving;
+            ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+            if (!playerEx.getUnbreakableVowID().isEmpty() && !event.entityLiving.getEntityData().getBoolean("VowHealing")) {
+                java.util.List<EntityPlayer> linkedPlayers = new java.util.ArrayList<EntityPlayer>();
+                for (Object obj : net.minecraft.server.MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
+                    EntityPlayer p = (EntityPlayer) obj;
+                    if (p != player && ExtendedPlayer.get(p).getUnbreakableVowID().equals(playerEx.getUnbreakableVowID())) {
+                        linkedPlayers.add(p);
+                    }
+                }
+                if (!linkedPlayers.isEmpty()) {
+                    float totalHeal = event.amount;
+                    int totalPlayers = linkedPlayers.size() + 1;
+                    float sharedHeal = totalHeal / totalPlayers;
+                    event.amount = sharedHeal;
+                    for (EntityPlayer p : linkedPlayers) {
+                        p.getEntityData().setBoolean("VowHealing", true);
+                        p.heal(sharedHeal);
+                        p.getEntityData().setBoolean("VowHealing", false);
+                    }
+                }
+            }
+         }
+      }
+   }
+
    @SubscribeEvent(
       priority = EventPriority.HIGHEST
    )
@@ -985,6 +1119,67 @@ public class GenericEvents {
             EntityPlayer player = (EntityPlayer)event.entityLiving;
             float playerHealth = player.getHealth();
             ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+
+            if (!playerEx.getUnbreakableVowID().isEmpty() && !event.source.getDamageType().equals("vow_share")) {
+                java.util.List<EntityPlayer> linkedPlayers = new java.util.ArrayList<EntityPlayer>();
+                for (Object obj : net.minecraft.server.MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
+                    EntityPlayer p = (EntityPlayer) obj;
+                    if (p != player && ExtendedPlayer.get(p).getUnbreakableVowID().equals(playerEx.getUnbreakableVowID())) {
+                        linkedPlayers.add(p);
+                    }
+                }
+                if (!linkedPlayers.isEmpty()) {
+                    float totalDamage = event.ammount;
+                    int totalPlayers = linkedPlayers.size() + 1;
+                    float sharedDamage = totalDamage / totalPlayers;
+                    event.ammount = sharedDamage;
+                    for (EntityPlayer p : linkedPlayers) {
+                        p.attackEntityFrom(new net.minecraft.util.DamageSource("vow_share").setDamageBypassesArmor().setMagicDamage(), sharedDamage);
+                    }
+                }
+            }
+            
+            if (player.isUsingItem() && player.getHeldItem() != null && player.getHeldItem().getItem() == Witchery.Items.MYSTIC_BRANCH) {
+                boolean blockable = event.source.isProjectile() || event.source.isMagicDamage() || event.source.damageType.equals("mob") || event.source.damageType.equals("player");
+                if (blockable && !event.source.isUnblockable() && !event.source.isFireDamage() && !event.source.isExplosion() && event.source.getEntity() != player) {
+                    net.minecraft.nbt.NBTTagCompound nbtPerm = com.emoniph.witchery.infusion.Infusion.getNBT(player);
+                    if (nbtPerm != null && nbtPerm.hasKey("witcheryInfusionID") && nbtPerm.hasKey("witcheryInfusionCharges")) {
+                        int charges = nbtPerm.getInteger("witcheryInfusionCharges");
+                        int blockCost = 2;
+                        if (charges >= blockCost) {
+                            com.emoniph.witchery.infusion.Infusion.setCurrentEnergy(player, charges - blockCost);
+                            com.emoniph.witchery.util.ParticleEffect.INSTANT_SPELL.send(com.emoniph.witchery.util.SoundEffect.RANDOM_FIZZ, player, 1.0D, 2.0D, 16);
+                            com.emoniph.witchery.util.ParticleEffect.SPELL_COLORED.send(com.emoniph.witchery.util.SoundEffect.NONE, player, 0.75D, 2.0D, 24, 0x00FFFF);
+                            if (event.source.isProjectile()) {
+                                event.setCanceled(true);
+                                return;
+                            } else {
+                                event.ammount = Math.max(0.0F, event.ammount - 5.0F);
+                                if (event.ammount == 0.0F) {
+                                    event.setCanceled(true);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (playerEx.isAstralProjecting()) {
+               if (!event.source.isMagicDamage() && event.source != net.minecraft.util.DamageSource.outOfWorld && event.source != net.minecraft.util.DamageSource.inWall && event.source != net.minecraft.util.DamageSource.drown) {
+                  event.setCanceled(true);
+                  return;
+               }
+               if (playerHealth - event.ammount <= 0.0F) {
+                  event.setCanceled(true);
+                  player.setHealth(1.0F);
+                  ExtendedPlayer.trySayAstralProjection(player, "ex corpus");
+                  player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.confusion.id, 200, 1));
+                  player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.hunger.id, 200, 1));
+                  player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.moveSlowdown.id, 200, 1));
+                  return;
+               }
+            }
             if(event.source == DamageSource.drown && playerEx.isVampire()) {
                event.setCanceled(true);
                return;
@@ -1399,6 +1594,32 @@ public class GenericEvents {
 
    }
 
+    @SubscribeEvent
+    public void onLivingSetAttackTarget(net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent event) {
+       if(event.target instanceof EntityPlayer && event.entityLiving != null) {
+          EntityPlayer player = (EntityPlayer)event.target;
+          
+          EntityPlayer controller = com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_TARGETS.get(event.entityLiving);
+          if (controller == player && event.entityLiving instanceof net.minecraft.entity.EntityLiving) {
+              ((net.minecraft.entity.EntityLiving)event.entityLiving).setAttackTarget(null);
+              return;
+          }
+          
+          ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+          if(playerEx != null && playerEx.getSpiritLevel() >= 7 && player.isSneaking()) {
+             if(event.entityLiving.getDistanceSqToEntity(player) > 16.0D && event.entityLiving instanceof net.minecraft.entity.EntityLiving) {
+                ((net.minecraft.entity.EntityLiving)event.entityLiving).setAttackTarget(null);
+             }
+          }
+       }
+       
+       if (event.entityLiving != null && com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_STAYING_TARGETS.contains(event.entityLiving)) {
+           if (event.entityLiving instanceof net.minecraft.entity.EntityLiving) {
+               ((net.minecraft.entity.EntityLiving)event.entityLiving).setAttackTarget(null);
+           }
+       }
+    }
+
    @SubscribeEvent(
       priority = EventPriority.HIGH
    )
@@ -1481,6 +1702,18 @@ public class GenericEvents {
                   playerEx1.increaseVampireLevel();
                } else {
                   playerEx1.increaseVampireQuestCounter();
+               }
+            }
+
+            if(player1.dimension == Config.instance().dimensionDreamID && com.emoniph.witchery.dimension.WorldProviderDreamWorld.getPlayerIsGhost(player1)) {
+               if (event.entityLiving != null && event.entityLiving.getClass().getSimpleName().contains("Nightmare")) {
+                  if (player1.worldObj.rand.nextInt(3) == 0 && playerEx1.getSpiritLevel() < 10) {
+                     playerEx1.increaseSpiritLevel();
+                     if (!player1.worldObj.isRemote) {
+                        com.emoniph.witchery.util.ChatUtil.sendTranslated(net.minecraft.util.EnumChatFormatting.DARK_PURPLE, player1, "Tu poder espiritual aumenta.", new Object[0]);
+                        com.emoniph.witchery.util.SoundEffect.RANDOM_LEVELUP.playOnlyTo(player1);
+                     }
+                  }
                }
             }
 

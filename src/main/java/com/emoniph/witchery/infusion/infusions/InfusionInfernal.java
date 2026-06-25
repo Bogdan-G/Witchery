@@ -52,12 +52,13 @@ public class InfusionInfernal extends Infusion {
          if(player.isSneaking()) {
             if(PotionEnslaved.canCreatureBeEnslaved(entityLivingBase)) {
                EntityLiving r = (EntityLiving)entityLivingBase;
-               if(PotionEnslaved.isMobEnslavedBy(r, player)) {
+               if(PotionEnslaved.isMobEnslavedBy(r, player) || (com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_TARGETS.get(r) == player)) {
                   if(this.consumeCharges(world, player, 1, true)) {
                      this.trySacrificeCreature(world, player, r);
                   }
                } else if(this.consumeCharges(world, player, 5, true)) {
                   PotionEnslaved.setEnslaverForMob(r, player);
+                  com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_TARGETS.put(r, player);
                   EntityUtil.dropAttackTarget((EntityLiving)otherEntity);
                   ParticleEffect.SPELL.send(SoundEffect.MOB_ZOMBIE_INFECT, r, 1.0D, 2.0D, 16);
                }
@@ -74,7 +75,7 @@ public class InfusionInfernal extends Infusion {
                while(i$.hasNext()) {
                   Object obj = i$.next();
                   EntityLiving nearbyLivingEntity = (EntityLiving)obj;
-                  if(PotionEnslaved.isMobEnslavedBy(nearbyLivingEntity, player)) {
+                  if(PotionEnslaved.isMobEnslavedBy(nearbyLivingEntity, player) || (com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_TARGETS.get(nearbyLivingEntity) == player)) {
                      ++minionCount;
                      nearbyLivingEntity.setAttackTarget(entityLivingBase);
                      if(nearbyLivingEntity instanceof EntityGhast) {
@@ -176,7 +177,7 @@ public class InfusionInfernal extends Infusion {
                         Object obj = currentCharges.next();
                         EntityLiving creature = (EntityLiving)obj;
                         EntityCreature creature2 = creature instanceof EntityCreature?(EntityCreature)creature:null;
-                        if(PotionEnslaved.isMobEnslavedBy(creature, player)) {
+                        if(PotionEnslaved.isMobEnslavedBy(creature, player) || (com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectImperio.IMPERIO_TARGETS.get(creature) == player)) {
                            ++beastPowerID;
                            creature.setAttackTarget((EntityLivingBase)null);
                            creature.setRevengeTarget((EntityLivingBase)null);

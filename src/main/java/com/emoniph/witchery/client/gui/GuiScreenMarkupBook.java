@@ -143,7 +143,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
 
          while(var22.hasNext()) {
             GuiScreenMarkupBook.Element var23 = (GuiScreenMarkupBook.Element)var22.next();
-            GuiScreenMarkupBook.NextPage var24 = var23.constructButtons(super.buttonList, this.itemstack);
+            GuiScreenMarkupBook.NextPage var24 = var23.constructButtons(super.buttonList, this.itemstack, super.fontRendererObj);
             if(var24 != null) {
                this.nextPage = var24;
             }
@@ -227,7 +227,11 @@ public class GuiScreenMarkupBook extends GuiScreen {
 
       while(i$.hasNext()) {
          GuiScreenMarkupBook.Element element = (GuiScreenMarkupBook.Element)i$.next();
-         element.draw(pos, marginX, 116, state);
+         try {
+            element.draw(pos, marginX, 116, state);
+         } catch (Exception var12) {
+            ;
+         }
       }
 
       super.drawScreen(mouseX, mouseY, par3);
@@ -290,23 +294,34 @@ public class GuiScreenMarkupBook extends GuiScreen {
                this.capture = GuiScreenMarkupBook.Element.Capture.ATTRIB;
                break;
             }
+
+            this.appendChar(c);
+            break;
          case 9:
          case 32:
             if(this.capture == GuiScreenMarkupBook.Element.Capture.TAG || this.capture == GuiScreenMarkupBook.Element.Capture.ATTRIB) {
                this.capture = GuiScreenMarkupBook.Element.Capture.TEXT;
                break;
             }
+
+            this.appendChar(c);
+            break;
          case 91:
             this.capture = GuiScreenMarkupBook.Element.Capture.TAG;
             break;
          default:
-            if(this.capture == GuiScreenMarkupBook.Element.Capture.TAG) {
-               this.tag.append(c);
-            } else if(this.capture == GuiScreenMarkupBook.Element.Capture.ATTRIB) {
-               this.attribute.append(c);
-            } else {
-               this.text.append(c);
-            }
+            this.appendChar(c);
+         }
+
+      }
+
+      private void appendChar(char c) {
+         if(this.capture == GuiScreenMarkupBook.Element.Capture.TAG) {
+            this.tag.append(c);
+         } else if(this.capture == GuiScreenMarkupBook.Element.Capture.ATTRIB) {
+            this.attribute.append(c);
+         } else {
+            this.text.append(c);
          }
 
       }
@@ -337,7 +352,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
          return formats;
       }
 
-      public GuiScreenMarkupBook.NextPage constructButtons(List buttonList, ItemStack stack) {
+      public GuiScreenMarkupBook.NextPage constructButtons(List buttonList, ItemStack stack, FontRenderer font) {
          String tag = this.tag.toString();
          if(tag.equals("url")) {
             String attrib = this.attribute.toString();
@@ -347,6 +362,10 @@ public class GuiScreenMarkupBook extends GuiScreen {
             }
 
             this.button = new GuiButtonUrl(4, 0, 0, attrib, this.text.toString());
+            if(font != null) {
+               this.button.height = font.FONT_HEIGHT;
+               this.button.width = Math.max(1, font.getStringWidth(this.text.toString()));
+            }
             buttonList.add(this.button);
          } else if(tag.equals("next")) {
             return new GuiScreenMarkupBook.NextPage(this.attribute.toString(), stack);
@@ -463,7 +482,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
                      if(!postText.isEmpty()) {
                         boolean var36 = postText.equals("empty");
                         Item item = !var36?(Item)Item.itemRegistry.getObject(postText):null;
-                        ItemStack stack = !var36?new ItemStack(item, var30, var28):null;
+                        ItemStack stack = (!var36 && item != null)?new ItemStack(item, var30, var28):null;
                         byte width1 = 18;
                         byte height = 18;
                         if(var33.equals("right")) {
@@ -485,7 +504,7 @@ public class GuiScreenMarkupBook extends GuiScreen {
                            }
                         }
 
-                        if(!var36) {
+                        if(!var36 && stack != null) {
                            RenderItem words1 = new RenderItem();
                            GL11.glPushMatrix();
                            GL11.glEnable(3042);

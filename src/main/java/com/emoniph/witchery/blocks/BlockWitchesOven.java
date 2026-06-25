@@ -533,7 +533,18 @@ public class BlockWitchesOven extends BlockBaseContainer {
                return false;
             } else {
                Item item = itemstack.getItem();
-               if(item != Items.coal && !(item instanceof ItemFood) && !Witchery.Items.GENERIC.itemAshWood.isMatch(itemstack)) {
+               boolean isValidResult = item == Items.coal || item instanceof ItemFood || Witchery.Items.GENERIC.itemAshWood.isMatch(itemstack) || Witchery.Items.GENERIC.itemEmptyClayJar.isMatch(itemstack);
+               if (!isValidResult && item instanceof com.emoniph.witchery.item.ItemGeneral) isValidResult = true;
+               if (!isValidResult) {
+                  int[] ids = net.minecraftforge.oredict.OreDictionary.getOreIDs(this.furnaceItemStacks[0]);
+                  for (int id : ids) {
+                     if (net.minecraftforge.oredict.OreDictionary.getOreName(id).equals("treeSapling")) {
+                        isValidResult = true;
+                        break;
+                     }
+                  }
+               }
+               if(!isValidResult) {
                   return false;
                } else if(this.furnaceItemStacks[2] == null) {
                   return true;

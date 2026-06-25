@@ -8,6 +8,7 @@ import com.emoniph.witchery.infusion.infusions.symbols.SymbolEffect;
 import com.emoniph.witchery.item.ItemBase;
 import com.emoniph.witchery.network.PacketSpellPrepared;
 import com.emoniph.witchery.util.ChatUtil;
+import com.emoniph.witchery.util.ParticleEffect;
 import com.emoniph.witchery.util.SoundEffect;
 import com.emoniph.witchery.util.TimeUtil;
 import cpw.mods.fml.relauncher.Side;
@@ -20,7 +21,12 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.Potion;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 public class ItemMysticBranch extends ItemBase {
@@ -87,6 +93,19 @@ public class ItemMysticBranch extends ItemBase {
    }
 
    public void onUsingTick(ItemStack stack, EntityPlayer player, int countdown) {
+      if(!player.worldObj.isRemote) {
+         NBTTagCompound nbtServer = player.getEntityData();
+         if(nbtServer != null && nbtServer.hasKey("WITCSpellEffectID") && countdown % 6 == 0) {
+            SymbolEffect prepared = EffectRegistry.instance().getEffect(nbtServer.getInteger("WITCSpellEffectID"));
+            if(prepared != null) {
+               // Continuous casting aura, visible to all nearby players while a spell is charged.
+               ParticleEffect.SPELL_COLORED.send(SoundEffect.NONE, player, 0.45D, 1.6D, 32, prepared.getDisplayColor());
+            }
+         }
+
+         return;
+      }
+
       if(player.worldObj.isRemote) {
          NBTTagCompound nbtTag = player.getEntityData();
          if(nbtTag == null) {
@@ -95,9 +114,9 @@ public class ItemMysticBranch extends ItemBase {
 
          float yawDiff = nbtTag.getFloat("startYaw") - player.rotationYawHead;
          float pitchDiff = nbtTag.getFloat("startPitch") - player.rotationPitch;
-         byte[] strokes = nbtTag.getByteArray("Strokes");
-         int strokesStart = strokes.length;
-         if(!EffectRegistry.instance().contains(strokes) && strokesStart <= 15) {
+          byte[] strokes = nbtTag.getByteArray("Strokes");
+          int strokesStart = strokes.length;
+          if(!EffectRegistry.instance().contains(strokes) && strokesStart <= 15) {
             if(pitchDiff >= 7.0F) {
                strokes = this.addNewStroke(nbtTag, strokes, (byte)0);
             } else if(pitchDiff <= -7.0F) {
@@ -111,12 +130,12 @@ public class ItemMysticBranch extends ItemBase {
             if(strokes.length > strokesStart) {
                nbtTag.setFloat("startPitch", player.rotationPitch);
                nbtTag.setFloat("startYaw", player.rotationYawHead);
-            }
 
-            SymbolEffect effect = EffectRegistry.instance().getEffect(strokes);
-            if(effect != null) {
-               int level = EffectRegistry.instance().getLevel(strokes);
-               Witchery.packetPipeline.sendToServer(new PacketSpellPrepared(effect, level));
+               SymbolEffect effect = EffectRegistry.instance().getEffect(strokes);
+               if(effect != null) {
+                  int level = EffectRegistry.instance().getLevel(strokes);
+                  Witchery.packetPipeline.sendToServer(new PacketSpellPrepared(effect, level));
+               }
             }
          }
       }
@@ -156,25 +175,50 @@ public class ItemMysticBranch extends ItemBase {
                         ChatUtil.sendTranslated(EnumChatFormatting.RED, player, "witchery.infuse.branch.effectoncooldown", new Object[]{Long.valueOf(TimeUtil.ticksToSecs(ticksRemaining)).toString()});
                         SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
                      } else {
-                        if(level > 1) {
-                           int newLevel = 1;
-                           if(player.isPotionActive(Witchery.Potions.WORSHIP)) {
-                              PotionEffect potion = player.getActivePotionEffect(Witchery.Potions.WORSHIP);
-                              if(level <= potion.getAmplifier() + 2) {
-                                 newLevel = level;
-                              }
-                           }
-
-                           level = newLevel;
-                        }
-
                         if(!player.capabilities.isCreativeMode && nbtPerm.getInteger("witcheryInfusionCharges") < effect.getChargeCost(world, player, level)) {
                            ChatUtil.sendTranslated(EnumChatFormatting.RED, player, "witchery.infuse.branch.nocharges", new Object[0]);
                            SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
                         } else {
-                           effect.perform(world, player, level);
-                           if(!player.capabilities.isCreativeMode) {
-                              Infusion.setCurrentEnergy(player, nbtPerm.getInteger("witcheryInfusionCharges") - effect.getChargeCost(world, player, level));
+                           int covenSize = com.emoniph.witchery.entity.EntityCovenWitch.getCovenSize(player);
+                           int worshipLevel = 0;
+                           if (player.isPotionActive(Witchery.Potions.WORSHIP)) {
+                               worshipLevel = player.getActivePotionEffect(Witchery.Potions.WORSHIP).getAmplifier() + 1;
+                           }
+                           
+                           int skill = Math.min(6, covenSize + (worshipLevel * 2));
+                           double failureChance = 0.5 * (1.0 - (skill / 6.0));
+                           
+                           if (!player.capabilities.isCreativeMode && world.rand.nextDouble() < failureChance) {
+                               int mishapType = world.rand.nextInt(3);
+                               if (mishapType == 0) {
+                                   ChatUtil.sendTranslated(EnumChatFormatting.RED, player, "witchery.infuse.branch.fizzle");
+                                   Infusion.setCurrentEnergy(player, Math.max(0, nbtPerm.getInteger("witcheryInfusionCharges") - effect.getChargeCost(world, player, level)));
+                                   SoundEffect.RANDOM_FIZZ.playAtPlayer(world, player);
+                               } else if (mishapType == 1) {
+                                   int cost = effect.getChargeCost(world, player, level) * 3;
+                                   if (nbtPerm.getInteger("witcheryInfusionCharges") < cost) {
+                                       ChatUtil.sendTranslated(EnumChatFormatting.RED, player, "witchery.infuse.branch.clumsy_fail");
+                                       Infusion.setCurrentEnergy(player, 0);
+                                       SoundEffect.RANDOM_FIZZ.playAtPlayer(world, player);
+                                   } else {
+                                       ChatUtil.sendTranslated(EnumChatFormatting.YELLOW, player, "witchery.infuse.branch.clumsy_success");
+                                       effect.perform(world, player, level);
+                                       this.announceCastSpell(player, effect);
+                                       Infusion.setCurrentEnergy(player, nbtPerm.getInteger("witcheryInfusionCharges") - cost);
+                                   }
+                               } else if (mishapType == 2) {
+                                   ChatUtil.sendTranslated(EnumChatFormatting.DARK_RED, player, "witchery.infuse.branch.backfire");
+                                   player.addPotionEffect(new PotionEffect(Potion.confusion.id, 200, 0));
+                                   player.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 0));
+                                   Infusion.setCurrentEnergy(player, Math.max(0, nbtPerm.getInteger("witcheryInfusionCharges") - effect.getChargeCost(world, player, level)));
+                                   SoundEffect.RANDOM_FIZZ.playAtPlayer(world, player);
+                               }
+                           } else {
+                               effect.perform(world, player, level);
+                               this.announceCastSpell(player, effect);
+                               if(!player.capabilities.isCreativeMode) {
+                                  Infusion.setCurrentEnergy(player, nbtPerm.getInteger("witcheryInfusionCharges") - effect.getChargeCost(world, player, level));
+                               }
                            }
                         }
                      }
@@ -190,11 +234,22 @@ public class ItemMysticBranch extends ItemBase {
                ChatUtil.sendTranslated(EnumChatFormatting.RED, player, "witchery.infuse.branch.unknownsymbol", new Object[0]);
                SoundEffect.NOTE_SNARE.playAtPlayer(world, player);
             }
-         } else {
+          } else {
             nbtTag.removeTag("Strokes");
             nbtTag.removeTag("startYaw");
             nbtTag.removeTag("startPitch");
          }
+      }
+
+   }
+
+   private void announceCastSpell(EntityPlayer player, SymbolEffect effect) {
+      MinecraftServer server = MinecraftServer.getServer();
+      if(server != null) {
+         EnumChatFormatting nameColor = effect.isCurse()?EnumChatFormatting.DARK_PURPLE:EnumChatFormatting.LIGHT_PURPLE;
+         IChatComponent spoken = new ChatComponentText(nameColor + effect.getLocalizedName() + "!" + EnumChatFormatting.RESET);
+         IChatComponent chatLine = new ChatComponentTranslation("chat.type.text", new Object[]{player.getDisplayName(), spoken});
+         server.getConfigurationManager().sendChatMsg(chatLine);
       }
 
    }

@@ -3,6 +3,7 @@ package com.emoniph.witchery.common;
 import com.emoniph.witchery.Witchery;
 import com.emoniph.witchery.brewing.potions.PotionResizing;
 import com.emoniph.witchery.common.ExtendedPlayer;
+import com.emoniph.witchery.dimension.WorldProviderDreamWorld;
 import com.emoniph.witchery.entity.EntityWolfman;
 import com.emoniph.witchery.infusion.infusions.InfusionInfernal;
 import com.emoniph.witchery.item.ItemHunterClothes;
@@ -57,6 +58,7 @@ public class Shapeshift {
    public final Shapeshift.StatBoost[] boostWolf = new Shapeshift.StatBoost[]{new Shapeshift.StatBoost(0.0F, 0.0D, 0.0D, 0, 0.0F, 0.0F, 0, 4.0F), new Shapeshift.StatBoost(0.5F, 0.20000000298023224D, 0.20000000298023224D, 0, 1.0F, 0.0F, 2, 4.0F), new Shapeshift.StatBoost(0.5F, 0.20000000298023224D, 0.20000000298023224D, 0, 1.0F, 0.0F, 2, 3.0F), new Shapeshift.StatBoost(0.75F, 0.20000000298023224D, 0.30000001192092896D, 0, 2.0F, 0.0F, 2, 3.0F), new Shapeshift.StatBoost(0.75F, 0.20000000298023224D, 0.4000000059604645D, 0, 2.0F, 0.0F, 3, 3.0F), new Shapeshift.StatBoost(0.75F, 0.20000000298023224D, 0.5D, 0, 2.0F, 0.0F, 3, 2.0F), new Shapeshift.StatBoost(1.0F, 0.20000000298023224D, 0.6000000238418579D, 0, 2.0F, 1.0F, 3, 2.0F), new Shapeshift.StatBoost(1.25F, 0.30000001192092896D, 0.699999988079071D, 4, 2.0F, 1.0F, 4, 2.0F), new Shapeshift.StatBoost(1.5F, 0.30000001192092896D, 0.800000011920929D, 8, 3.0F, 2.0F, 4, 2.0F), new Shapeshift.StatBoost(1.75F, 0.30000001192092896D, 0.8999999761581421D, 12, 3.0F, 3.0F, 5, 2.0F), new Shapeshift.StatBoost(1.75F, 0.30000001192092896D, 1.0D, 12, 3.0F, 3.0F, 5, 2.0F)};
    public final Shapeshift.StatBoost[] boostVampire = new Shapeshift.StatBoost[]{new Shapeshift.StatBoost(0.0F), new Shapeshift.StatBoost(1.0F), new Shapeshift.StatBoost(1.0F), new Shapeshift.StatBoost(1.0F), new Shapeshift.StatBoost(2.0F), new Shapeshift.StatBoost(2.0F), new Shapeshift.StatBoost(2.0F), new Shapeshift.StatBoost(3.0F), new Shapeshift.StatBoost(3.0F), new Shapeshift.StatBoost(3.0F), new Shapeshift.StatBoost(3.0F)};
    public final Shapeshift.StatBoost[] boostBat = new Shapeshift.StatBoost[]{new Shapeshift.StatBoost(0.0F), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true), (new Shapeshift.StatBoost(-6.0F)).setFlying(true)};
+   public final Shapeshift.StatBoost[] boostSpirit = new Shapeshift.StatBoost[]{new Shapeshift.StatBoost(0.0F), new Shapeshift.StatBoost(0.0F, 0.0D, 0.0D, 0, 0.0F, 0.0F, 2, 4.0F), new Shapeshift.StatBoost(0.0F, 0.0D, 0.0D, 0, 0.0F, 0.0F, 6, 4.0F), new Shapeshift.StatBoost(0.0F, 0.0D, 0.0D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.1F, 0.1D, 0.1D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.1F, 0.1D, 0.1D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.2F, 0.2D, 0.2D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.2F, 0.2D, 0.2D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.2F, 0.2D, 0.2D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.2F, 0.2D, 0.2D, 0, 0.0F, 0.0F, -1, 4.0F), new Shapeshift.StatBoost(0.2F, 0.2D, 0.2D, 0, 0.0F, 0.0F, -1, 4.0F)};
    public static final AttributeModifier SPEED_MODIFIER = new AttributeModifier(UUID.fromString("10536417-7AA6-4033-A598-8E934CA77D98"), "witcheryWolfSpeed", 0.5D, 2);
    public static final AttributeModifier DAMAGE_MODIFIER = new AttributeModifier(UUID.fromString("46C5271C-193B-4D41-9CAB-D071AAEE9D4A"), "witcheryWolfDamage", 6.0D, 2);
    public static final AttributeModifier HEALTH_MODIFIER = new AttributeModifier(UUID.fromString("615920F9-6675-4779-8B18-6A62A3671E94"), "witcheryWolfHealth", 40.0D, 0);
@@ -82,8 +84,10 @@ public class Shapeshift {
             this.removeModifier(SharedMonsterAttributes.maxHealth, HEALTH_MODIFIER, playerAttributes);
          }
 
+         boolean isGhostWithFlight = WorldProviderDreamWorld.getPlayerIsGhost(player) && playerEx.getSpiritLevel() >= 1;
+
          if(!player.capabilities.isCreativeMode) {
-            player.capabilities.allowFlying = boost != null && boost.flying;
+            player.capabilities.allowFlying = (boost != null && boost.flying) || isGhostWithFlight;
             if(!player.capabilities.allowFlying && player.capabilities.isFlying) {
                player.capabilities.isFlying = false;
             } else if(player.capabilities.allowFlying) {
@@ -100,7 +104,12 @@ public class Shapeshift {
    }
 
    public void updatePlayerState(EntityPlayer player, ExtendedPlayer playerEx) {
-      if(playerEx.getCreatureType() == TransformCreature.BAT) {
+      boolean isGhost = WorldProviderDreamWorld.getPlayerIsGhost(com.emoniph.witchery.infusion.Infusion.getNBT(player));
+      if(playerEx.getCreatureType() == TransformCreature.BAT || playerEx.getCreatureType() == TransformCreature.SPIRIT || (isGhost && playerEx.getSpiritLevel() >= 1)) {
+         if(!player.capabilities.allowFlying) {
+            player.capabilities.allowFlying = true;
+         }
+
          if(player.capabilities.isFlying) {
             player.fallDistance = 0.0F;
          }
@@ -109,6 +118,12 @@ public class Shapeshift {
             player.capabilities.allowFlying = true;
             player.sendPlayerAbilities();
          }
+      }
+
+      if (isGhost && playerEx.getSpiritLevel() >= 4) {
+         player.noClip = true;
+      } else if (!player.capabilities.isCreativeMode) {
+         player.noClip = false;
       }
 
    }
@@ -362,6 +377,9 @@ public class Shapeshift {
 
    public Shapeshift.StatBoost getStatBoost(EntityPlayer player, ExtendedPlayer playerEx) {
       TransformCreature creature = playerEx.getCreatureType();
+      if (creature == TransformCreature.SPIRIT) {
+         return (new Shapeshift.StatBoost(-12.0F)).setFlying(true);
+      }
       switch(Shapeshift.NamelessClass26779675.$SwitchMap$com$emoniph$witchery$util$TransformCreature[creature.ordinal()]) {
       case 1:
          return this.boostWolf[playerEx.getWerewolfLevel()];
@@ -370,7 +388,15 @@ public class Shapeshift {
       case 3:
          return this.boostBat[playerEx.getVampireLevel()];
       default:
-         return playerEx.isVampire()?this.boostVampire[playerEx.getVampireLevel()]:null;
+         Shapeshift.StatBoost base = playerEx.isVampire() ? this.boostVampire[playerEx.getVampireLevel()] : null;
+         if (playerEx.getSpiritLevel() > 0 && playerEx.getSpiritLevel() <= 10) {
+            Shapeshift.StatBoost spirit = this.boostSpirit[playerEx.getSpiritLevel()];
+            if (base == null) return spirit;
+            Shapeshift.StatBoost combined = new Shapeshift.StatBoost(base.speed + spirit.speed, base.jump + spirit.jump, base.leap + spirit.leap, base.health + spirit.health, base.damage + spirit.damage, base.resistance + spirit.resistance, spirit.fall == -1 || base.fall == -1 ? -1 : Math.max(base.fall, spirit.fall), Math.max(base.damageCap, spirit.damageCap));
+            combined.flying = base.flying || spirit.flying;
+            return combined;
+         }
+         return base;
       }
    }
 

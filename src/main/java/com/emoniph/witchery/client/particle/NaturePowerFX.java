@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -16,6 +17,8 @@ public class NaturePowerFX extends EntityFX {
    public static final ResourceLocation particles = new ResourceLocation("witchery:textures/particle/power.png");
    private boolean canMove = false;
    private boolean circling = false;
+   private boolean fade = true;
+   private boolean pulseScale = true;
 
 
    public NaturePowerFX(World world, double x, double y, double z) {
@@ -40,11 +43,24 @@ public class NaturePowerFX extends EntityFX {
       float f7 = f6 + 0.0624375F;
       float f8 = (float)particleTextureIndexY / 16.0F;
       float f9 = f8 + 0.0624375F;
+      float lifeRatio = super.particleMaxAge > 0?Math.max(0.0F, Math.min(1.0F, ((float)super.particleAge + partialTicks) / (float)super.particleMaxAge)):0.0F;
       float scale = 0.1F * super.particleScale;
+      if(this.pulseScale) {
+         float pulse = MathHelper.sin(lifeRatio * (float)Math.PI);
+         scale *= 0.35F + 0.65F * pulse;
+      }
+
+      float alpha = 1.0F;
+      if(this.fade) {
+         float fadeIn = Math.min(1.0F, lifeRatio / 0.15F);
+         float fadeOut = Math.min(1.0F, (1.0F - lifeRatio) / 0.3F);
+         alpha = Math.max(0.05F, Math.min(1.0F, fadeIn * fadeOut));
+      }
+
       float x = (float)(super.prevPosX + (super.posX - super.prevPosX) * (double)partialTicks - EntityFX.interpPosX);
       float y = (float)(super.prevPosY + (super.posY - super.prevPosY) * (double)partialTicks - EntityFX.interpPosY);
       float z = (float)(super.prevPosZ + (super.posZ - super.prevPosZ) * (double)partialTicks - EntityFX.interpPosZ);
-      tess.setColorRGBA_F(super.particleRed, super.particleGreen, super.particleBlue, 1.0F);
+      tess.setColorRGBA_F(super.particleRed, super.particleGreen, super.particleBlue, alpha);
       tess.addVertexWithUV((double)(x - par3 * scale - par6 * scale), (double)(y - par4 * scale), (double)(z - par5 * scale - par7 * scale), (double)f7, (double)f9);
       tess.addVertexWithUV((double)(x - par3 * scale + par6 * scale), (double)(y + par4 * scale), (double)(z - par5 * scale + par7 * scale), (double)f7, (double)f8);
       tess.addVertexWithUV((double)(x + par3 * scale + par6 * scale), (double)(y + par4 * scale), (double)(z + par5 * scale + par7 * scale), (double)f6, (double)f8);
@@ -74,10 +90,10 @@ public class NaturePowerFX extends EntityFX {
       if(!super.isDead && this.canMove) {
          if(this.circling) {
             Vec3 motion = Vec3.createVectorHelper(super.motionX, super.motionY, super.motionZ);
-            motion.rotateAroundY(0.5F);
-            super.motionX = motion.xCoord *= 1.08D;
-            super.motionY = motion.yCoord *= 0.85D;
-            super.motionZ = motion.zCoord *= 1.08D;
+            motion.rotateAroundY(0.35F);
+            super.motionX = motion.xCoord * 0.98D;
+            super.motionY = motion.yCoord * 0.92D;
+            super.motionZ = motion.zCoord * 0.98D;
          } else {
             super.motionY -= 0.04D * (double)super.particleGravity;
          }
@@ -117,6 +133,16 @@ public class NaturePowerFX extends EntityFX {
 
    public NaturePowerFX setCircling(boolean circling) {
       this.circling = circling;
+      return this;
+   }
+
+   public NaturePowerFX setFade(boolean fade) {
+      this.fade = fade;
+      return this;
+   }
+
+   public NaturePowerFX setPulseScale(boolean pulseScale) {
+      this.pulseScale = pulseScale;
       return this;
    }
 

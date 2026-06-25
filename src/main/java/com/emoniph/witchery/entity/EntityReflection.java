@@ -334,7 +334,7 @@ public class EntityReflection extends EntityMob implements IBossDisplayData, IRa
          if(this.isEntityAlive() && this.getAttackTarget() != null && this.getNavigator().noPath() && this.getEntitySenses().canSee(this.getAttackTarget())) {
             EntityLivingBase var10001 = this.getAttackTarget();
             EffectRegistry.instance();
-            this.castSpell(var10001, 1.0F, EffectRegistry.Attraho);
+            //this.castSpell(var10001, 1.0F, EffectRegistry.Attraho);
          }
       }
 

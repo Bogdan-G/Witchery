@@ -21,7 +21,7 @@ public class RenderChalice extends TileEntitySpecialRenderer {
    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
       GL11.glPushMatrix();
       GL11.glTranslatef((float)d, (float)d1, (float)d2);
-      BlockChalice.TileEntityChalice tileEntityChalice = (BlockChalice.TileEntityChalice)tileEntity;
+      BlockChalice.TileEntityChalice tileEntityChalice = tileEntity instanceof BlockChalice.TileEntityChalice ? (BlockChalice.TileEntityChalice)tileEntity : null;
       this.renderChalice(tileEntityChalice, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
       GL11.glPopMatrix();
    }

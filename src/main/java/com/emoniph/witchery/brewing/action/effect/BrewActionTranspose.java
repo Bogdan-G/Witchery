@@ -44,7 +44,7 @@ public class BrewActionTranspose extends BrewActionEffect {
       for(int dy = 0; dy < 3; ++dy) {
          for(int dx = -3; dx <= 3; ++dx) {
             for(int dz = -3; dz <= 3; ++dz) {
-               if(dx * dx + dy * dz < 9) {
+                if(dx * dx + dy * dy + dz * dz < 9) {
                   int sx = midSource.x + dx;
                   int sy = midSource.y + dy;
                   int sz = midSource.z + dz;

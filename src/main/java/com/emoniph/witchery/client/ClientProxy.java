@@ -309,6 +309,8 @@ public class ClientProxy extends CommonProxy {
       this.bindRenderer(BlockWitchesOven.TileEntityWitchesOven.class, new RenderWitchesOven(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.OVEN_IDLE)});
       this.bindRenderer(BlockDreamCatcher.TileEntityDreamCatcher.class, new RenderDreamCatcher(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.DREAM_CATCHER)});
       this.bindRenderer(BlockChalice.TileEntityChalice.class, new RenderChalice(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.CHALICE)});
+//      this.bindRenderer(com.emoniph.witchery.brewing.TileEntityPortkey.class, new RenderChalice(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.PORTKEY)});
+//      this.bindRenderer(com.emoniph.witchery.brewing.TileEntityPortkey.class, new RenderChalice(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.PORTKEY)});
       this.bindRenderer(BlockCandelabra.TileEntityCandelabra.class, new RenderCandelabra(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.CANDELABRA)});
       this.bindRenderer(BlockCrystalBall.TileEntityCrystalBall.class, new RenderCrystalBall(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.CRYSTAL_BALL)});
       this.bindRenderer(BlockKettle.TileEntityKettle.class, new RenderKettle(), new Item[]{Item.getItemFromBlock(Witchery.Blocks.KETTLE)});
@@ -445,6 +447,7 @@ public class ClientProxy extends CommonProxy {
          sparkle.noClip = true;
          sparkle.setRBGColorF(r, g, b);
          sparkle.setGravity(gravity);
+         sparkle.setScale(1.4F);
          Minecraft.getMinecraft().effectRenderer.addEffect(sparkle);
       }
 
@@ -466,12 +469,22 @@ public class ClientProxy extends CommonProxy {
          double d1 = world.rand.nextGaussian() * 0.02D;
          double d2 = world.rand.nextGaussian() * 0.02D;
          if(particle == ParticleEffect.SPELL_COLORED) {
-            EntitySmokeFX sparkle = new EntitySmokeFX(world, x + world.rand.nextDouble() * width * 2.0D - width, y + world.rand.nextDouble() * height, z + (double)world.rand.nextFloat() * width * 2.0D - width, 0.0D, 0.0D, 0.0D);
+            double px = x + world.rand.nextDouble() * width * 2.0D - width;
+            double py = y + world.rand.nextDouble() * height;
+            double pz = z + (double)world.rand.nextFloat() * width * 2.0D - width;
+            NaturePowerFX sparkle = new NaturePowerFX(world, px, py, pz);
             sparkle.noClip = true;
-            float red = (float)(color >>> 16 & 255) / 256.0F;
-            float green = (float)(color >>> 8 & 255) / 256.0F;
-            float blue = (float)(color & 255) / 256.0F;
+            sparkle.setMaxAge(12 + world.rand.nextInt(8));
+            sparkle.setScale(1.6F);
+            sparkle.setGravity(0.15F);
+            sparkle.setCanMove(true);
+            float red = (float)(color >>> 16 & 255) / 255.0F;
+            float green = (float)(color >>> 8 & 255) / 255.0F;
+            float blue = (float)(color & 255) / 255.0F;
             sparkle.setRBGColorF(red, green, blue);
+            sparkle.motionX = (px - x) * 0.35D + world.rand.nextGaussian() * 0.04D;
+            sparkle.motionY = (py - y) * 0.35D + world.rand.nextGaussian() * 0.04D + 0.02D;
+            sparkle.motionZ = (pz - z) * 0.35D + world.rand.nextGaussian() * 0.04D;
             Minecraft.getMinecraft().effectRenderer.addEffect(sparkle);
          } else {
             world.spawnParticle(particle.toString(), x + world.rand.nextDouble() * width * 2.0D - width, y + world.rand.nextDouble() * height, z + (double)world.rand.nextFloat() * width * 2.0D - width, 0.0D, 0.0D, 0.0D);

@@ -1,5 +1,6 @@
 package com.emoniph.witchery.client.renderer;
 
+import com.emoniph.witchery.Witchery;
 import com.emoniph.witchery.client.model.ModelMysticBranch;
 import com.emoniph.witchery.util.Config;
 import com.emoniph.witchery.util.RenderUtil;
@@ -13,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
@@ -62,6 +64,7 @@ public class RenderMysticBranch implements IItemRenderer {
          if(data.length > 1 && data[1] != null) {
             if(data[1] instanceof EntityPlayer) {
                EntityPlayer player = (EntityPlayer)data[1];
+               this.spawnCastingFX(player);
                if((EntityPlayer)data[1] == Minecraft.getMinecraft().renderViewEntity && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && (!(Minecraft.getMinecraft().currentScreen instanceof GuiInventory) && !(Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative) || RenderManager.instance.playerViewY != 180.0F)) {
                   if(player.isInvisible()) {
                      RenderUtil.blend(true);
@@ -82,6 +85,22 @@ public class RenderMysticBranch implements IItemRenderer {
          GL11.glPopMatrix();
       default:
       }
+   }
+
+   private void spawnCastingFX(EntityPlayer player) {
+      if(player.worldObj != null && player.worldObj.isRemote && player.isUsingItem()) {
+         for(int i = 0; i < 2; ++i) {
+            if(player.worldObj.rand.nextInt(2) == 0) {
+               Vec3 look = player.getLook(1.0F);
+               double tipX = player.posX + look.xCoord * 1.1D + (player.worldObj.rand.nextDouble() - 0.5D) * 0.35D;
+               double tipY = player.posY + (double)player.getEyeHeight() - 0.15D + look.yCoord * 1.1D + (player.worldObj.rand.nextDouble() - 0.5D) * 0.35D;
+               double tipZ = player.posZ + look.zCoord * 1.1D + (player.worldObj.rand.nextDouble() - 0.5D) * 0.35D;
+               float white = 0.6F + player.worldObj.rand.nextFloat() * 0.4F;
+               Witchery.proxy.generateParticle(player.worldObj, tipX, tipY, tipZ, 0.6F * white, 0.3F * white, white, 6 + player.worldObj.rand.nextInt(5), 0.0F);
+            }
+         }
+      }
+
    }
 
    private void renderModel(Entity player) {

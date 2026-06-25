@@ -52,7 +52,7 @@ public class InfusionOverworld extends Infusion {
          int blockY = MathHelper.floor_double(player.posY) - 1;
          int blockZ = MathHelper.floor_double(player.posZ);
          Block blockID = world.getBlock(blockX, blockY, blockZ);
-         if(blockID == Blocks.grass || blockID == Blocks.grass || blockID == Blocks.mycelium || blockID == Blocks.gravel || blockID == Blocks.sand || blockID == Blocks.snow) {
+         if(blockID == Blocks.grass || blockID == Blocks.dirt || blockID == Blocks.mycelium || blockID == Blocks.gravel || blockID == Blocks.sand || blockID == Blocks.snow) {
             if(player.isSneaking()) {
                if(this.consumeCharges(world, player, 10, true)) {
                   event.distance = 0.0F;

@@ -26,6 +26,7 @@ import com.emoniph.witchery.blocks.BlockDistillery;
 import com.emoniph.witchery.blocks.BlockDreamCatcher;
 import com.emoniph.witchery.blocks.BlockEmberMoss;
 import com.emoniph.witchery.blocks.BlockFetish;
+import com.emoniph.witchery.blocks.BlockFlooFire;
 import com.emoniph.witchery.blocks.BlockFlowingSpirit;
 import com.emoniph.witchery.blocks.BlockForce;
 import com.emoniph.witchery.blocks.BlockFumeFunnel;
@@ -211,6 +212,7 @@ public final class WitcheryBlocks {
    public final Block GLYPH_RITUAL;
    public final Block GLYPH_OTHERWHERE;
    public final Block GLYPH_INFERNAL;
+   public final Block FLOO_FIRE;
    public final Block FLOWING_SPIRIT;
    public final Block HOLLOW_TEARS;
    public final Block DISEASE;
@@ -306,6 +308,7 @@ public final class WitcheryBlocks {
       this.GLYPH_RITUAL = (new BlockCircleGlyph(0, false)).setBlockName("witchery:circleglyphritual").setBlockTextureName("witchery:circleglyph");
       this.GLYPH_OTHERWHERE = (new BlockCircleGlyph(1, false)).setBlockName("witchery:circleglyphotherwhere").setBlockTextureName("witchery:circleglyph");
       this.GLYPH_INFERNAL = (new BlockCircleGlyph(2, false)).setBlockName("witchery:circleglyphinfernal").setBlockTextureName("witchery:circleglyph");
+      this.FLOO_FIRE = (new BlockFlooFire()).setBlockName("witchery:floofire");
       this.FLOWING_SPIRIT = (new BlockFlowingSpirit(Witchery.Fluids.FLOWING_SPIRIT, new PotionEffect(Potion.regeneration.id, 100, 1), new PotionEffect(Potion.weakness.id, 300, 1), true, true)).setBlockName("witchery:spiritflowing").setBlockTextureName("witchery:flowspirit");
       this.HOLLOW_TEARS = (new BlockFlowingSpirit(Witchery.Fluids.HOLLOW_TEARS, new PotionEffect(Potion.weakness.id, 100, 1), new PotionEffect(Potion.regeneration.id, 100, 1), false, false)).setBlockName("witchery:hollowtears").setBlockTextureName("witchery:tears");
       this.DISEASE = (new BlockDisease(Witchery.Fluids.DISEASE)).setBlockName("witchery:disease").setBlockTextureName("witchery:disease");

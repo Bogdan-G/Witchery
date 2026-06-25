@@ -7,6 +7,7 @@ import com.emoniph.witchery.infusion.infusions.spirit.InfusedSpiritGhostWalkerEf
 import com.emoniph.witchery.infusion.infusions.spirit.InfusedSpiritScreamerEffect;
 import com.emoniph.witchery.infusion.infusions.spirit.InfusedSpiritSentinalEffect;
 import com.emoniph.witchery.infusion.infusions.spirit.InfusedSpiritTwisterEffect;
+import com.emoniph.witchery.infusion.infusions.spirit.InfusedSpiritCurseBringerEffect;
 import com.emoniph.witchery.util.Const;
 import com.emoniph.witchery.util.ParticleEffect;
 import com.emoniph.witchery.util.SoundEffect;
@@ -27,6 +28,7 @@ public abstract class InfusedSpiritEffect {
    public static final InfusedSpiritEffect SCREAMER = new InfusedSpiritScreamerEffect(3, 3, 0, 2, 0);
    public static final InfusedSpiritEffect TWISTER = new InfusedSpiritTwisterEffect(4, 3, 0, 0, 2);
    public static final InfusedSpiritEffect GHOST_WALKER = new InfusedSpiritGhostWalkerEffect(5, 3, 1, 1, 0);
+   public static final InfusedSpiritEffect CURSE_BRINGER = new InfusedSpiritCurseBringerEffect(7, 2, 0, 1, 2);
    public static final InfusedSpiritEffect DEATH = new InfusedSpiritEffect(6, "death", 0, 5, 5, 5, false) {
       public boolean doUpdateEffect(TileEntity tile, boolean triggered, ArrayList foundEntities) {
          return true;

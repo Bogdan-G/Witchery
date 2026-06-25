@@ -56,6 +56,12 @@ public class DispersalTriggered extends Dispersal {
             return;
          }
 
+         if(block == Witchery.Blocks.GLYPH_RITUAL || block == Witchery.Blocks.GLYPH_OTHERWHERE || block == Witchery.Blocks.GLYPH_INFERNAL) {
+            if(impregnateItemsAbove(world, coord.x, coord.y, coord.z, nbtBrew)) {
+               return;
+            }
+         }
+
          if(block.hasTileEntity(coord.getBlockMetadata(world))) {
             TileEntityCursedBlock y = (TileEntityCursedBlock)BlockUtil.getTileEntity(world, coord.x, coord.y, coord.z, TileEntityCursedBlock.class);
             if(y != null) {
@@ -96,6 +102,10 @@ public class DispersalTriggered extends Dispersal {
    }
 
    public RitualStatus onUpdateRitual(World world, int x, int y, int z, NBTTagCompound nbtBrew, ModifiersRitual modifiers, ModifiersImpact impactModifiers) {
+      return impregnateItemsAbove(world, x, y, z, nbtBrew)?RitualStatus.COMPLETE:RitualStatus.FAILED;
+   }
+
+   public static boolean impregnateItemsAbove(World world, int x, int y, int z, NBTTagCompound nbtBrew) {
       AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox((double)x, (double)(y + 1), (double)z, (double)(x + 1), (double)(y + 2), (double)(z + 1));
       List items = world.getEntitiesWithinAABB(EntityItem.class, bounds);
       Iterator i$ = items.iterator();
@@ -104,7 +114,7 @@ public class DispersalTriggered extends Dispersal {
       ItemStack stack;
       do {
          if(!i$.hasNext()) {
-            return RitualStatus.FAILED;
+            return false;
          }
 
          item = (EntityItem)i$.next();
@@ -147,7 +157,7 @@ public class DispersalTriggered extends Dispersal {
       }
 
       ParticleEffect.EXPLODE.send(SoundEffect.RANDOM_ORB, item, 0.5D, 0.5D, 16);
-      return RitualStatus.COMPLETE;
+      return true;
    }
 
    public static class EventHooks {

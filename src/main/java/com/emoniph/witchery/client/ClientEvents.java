@@ -4,6 +4,7 @@ import com.emoniph.witchery.Witchery;
 import com.emoniph.witchery.brewing.potions.ModelOverlayRenderer;
 import com.emoniph.witchery.brewing.potions.PotionResizing;
 import com.emoniph.witchery.client.TransformBat;
+import com.emoniph.witchery.client.TransformSpirit;
 import com.emoniph.witchery.client.TransformOtherPlayer;
 import com.emoniph.witchery.client.TransformWolf;
 import com.emoniph.witchery.client.TransformWolfman;
@@ -15,6 +16,10 @@ import com.emoniph.witchery.common.ExtendedVillager;
 import com.emoniph.witchery.common.Shapeshift;
 import com.emoniph.witchery.dimension.WorldProviderDreamWorld;
 import com.emoniph.witchery.entity.EntityVillageGuard;
+import com.emoniph.witchery.entity.EntityBanshee;
+import com.emoniph.witchery.entity.EntitySpirit;
+import com.emoniph.witchery.entity.EntityPoltergeist;
+import com.emoniph.witchery.entity.EntityNightmare;
 import com.emoniph.witchery.infusion.Infusion;
 import com.emoniph.witchery.infusion.infusions.InfusionOtherwhere;
 import com.emoniph.witchery.util.Config;
@@ -69,6 +74,7 @@ public class ClientEvents {
    TransformWolf wolf = new TransformWolf();
    TransformWolfman wolfman = new TransformWolfman();
    TransformBat bat = new TransformBat();
+   TransformSpirit spirit = new TransformSpirit();
    TransformOtherPlayer otherPlayer = new TransformOtherPlayer();
    RenderVillagerBed renderBed = new RenderVillagerBed();
    private static final ResourceLocation wolfSkin = new ResourceLocation("witchery", "textures/entities/werewolf_man.png");
@@ -238,6 +244,17 @@ public class ClientEvents {
       priority = EventPriority.HIGH
    )
    public void onPlayerPreRender(net.minecraftforge.client.event.RenderLivingEvent.Pre event) {
+      EntityPlayer localPlayer = Minecraft.getMinecraft().thePlayer;
+      boolean canSeeSpirits = localPlayer != null && (localPlayer.dimension == Config.instance().dimensionDreamID || WorldProviderDreamWorld.getPlayerIsGhost(Infusion.getNBT(localPlayer)) || (ExtendedPlayer.get(localPlayer) != null && (ExtendedPlayer.get(localPlayer).isAstralProjecting() || ExtendedPlayer.get(localPlayer).getSpiritLevel() >= 1)));
+
+      boolean isSpiritEntity = event.entity instanceof EntityBanshee || event.entity instanceof EntitySpirit || event.entity instanceof EntityPoltergeist || event.entity instanceof EntityNightmare;
+      boolean isGhostPlayer = event.entity instanceof EntityPlayer && (ExtendedPlayer.get((EntityPlayer)event.entity) != null && ExtendedPlayer.get((EntityPlayer)event.entity).isAstralProjecting() || WorldProviderDreamWorld.getPlayerIsGhost(Infusion.getNBT((EntityPlayer)event.entity)));
+
+      if ((isSpiritEntity || isGhostPlayer) && !canSeeSpirits && event.entity != localPlayer) {
+          event.setCanceled(true);
+          return;
+      }
+
       if(event.entity instanceof EntityVillager) {
          ExtendedVillager player = ExtendedVillager.get((EntityVillager)event.entity);
          GL11.glPushMatrix();
@@ -252,13 +269,20 @@ public class ClientEvents {
          }
       } else if(event.entity instanceof EntityPlayer) {
          EntityPlayer player1 = (EntityPlayer)event.entity;
-         if(WorldProviderDreamWorld.getPlayerIsGhost(Infusion.getNBT(player1))) {
+         ExtendedPlayer playerEx = ExtendedPlayer.get(player1);
+         if (playerEx != null && playerEx.isAstralProjecting()) {
+            RenderUtil.blend(true);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.4F);
+         } else if(WorldProviderDreamWorld.getPlayerIsGhost(Infusion.getNBT(player1))) {
             RenderUtil.blend(true);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.51F);
+         } else if (playerEx != null && playerEx.getSpiritLevel() >= 7 && player1.isSneaking()) {
+            RenderUtil.blend(true);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.15F);
          }
-
-         ExtendedPlayer playerEx = ExtendedPlayer.get(player1);
-         int creatureType = playerEx.getCreatureTypeOrdinal();
+         
+         int creatureType = playerEx != null ? playerEx.getCreatureTypeOrdinal() : 0;
+         
          if(creatureType > 0 && !(event.renderer instanceof RenderOtherPlayer)) {
             event.setCanceled(true);
             PotionEffect pe = player1.getActivePotionEffect(Witchery.Potions.RESIZING);
@@ -278,6 +302,8 @@ public class ClientEvents {
                this.wolfman.render(event.entity.worldObj, event.entity, event.x, event.y, event.z, event.renderer, partialTicks, gui1);
             } else if(creatureType == 3) {
                this.bat.render(event.entity.worldObj, event.entity, event.x, event.y, event.z, event.renderer, partialTicks, gui1);
+            } else if(creatureType == 6) {
+               this.spirit.render(event.entity.worldObj, event.entity, event.x, event.y, event.z, event.renderer, partialTicks, gui1);
             } else if(creatureType == 4 && playerEx.getOtherPlayerSkin() != null && !playerEx.getOtherPlayerSkin().equals("")) {
                this.otherPlayer.render(event.entity.worldObj, event.entity, event.x, event.y, event.z, event.renderer, partialTicks, gui1);
             }
@@ -414,7 +440,8 @@ public class ClientEvents {
          GL11.glPopMatrix();
       } else if(event.entity instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)event.entity;
-         if(WorldProviderDreamWorld.getPlayerIsGhost(Infusion.getNBT(player))) {
+         ExtendedPlayer playerEx = ExtendedPlayer.get(player);
+         if(WorldProviderDreamWorld.getPlayerIsGhost(Infusion.getNBT(player)) || (playerEx != null && playerEx.getSpiritLevel() >= 7 && player.isSneaking())) {
             RenderUtil.blend(false);
          }
       }

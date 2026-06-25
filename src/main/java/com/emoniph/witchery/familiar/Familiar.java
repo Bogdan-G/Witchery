@@ -75,11 +75,11 @@ public abstract class Familiar {
                nbtFamiliar1.setInteger("FamiliarType", 3);
                nbtFamiliar1.setByte("FamiliarColor", Byte.valueOf((byte)((EntityOwl)familiar1).getFeatherColor()).byteValue());
             } else if(familiarEntity instanceof EntityToad) {
-               name = NAMES_TOAD[player.worldObj.rand.nextInt(NAMES_OWL.length)];
+               name = NAMES_TOAD[player.worldObj.rand.nextInt(NAMES_TOAD.length)];
                nbtFamiliar1.setInteger("FamiliarType", 2);
                nbtFamiliar1.setByte("FamiliarColor", Byte.valueOf((byte)((EntityToad)familiar1).getSkinColor()).byteValue());
             } else if(familiarEntity instanceof EntityOcelot) {
-               name = NAMES_CAT[player.worldObj.rand.nextInt(NAMES_OWL.length)];
+               name = NAMES_CAT[player.worldObj.rand.nextInt(NAMES_CAT.length)];
                nbtFamiliar1.setInteger("FamiliarType", 1);
                nbtFamiliar1.setByte("FamiliarColor", Byte.valueOf((byte)0).byteValue());
             }

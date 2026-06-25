@@ -73,6 +73,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
    private int creatureType;
    private int werewolfLevel;
    private int vampireLevel;
+   private int vampireLevelCap;
+   private int spiritLevel;
+   private boolean getPlayerData;
+   private boolean isAstralProjecting;
    private int bloodPower;
    private int bloodReserve;
    private int vampireUltimate;
@@ -92,13 +96,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
    private ResourceLocation locationSkin;
    private NBTTagList cachedInventory;
    private boolean inventoryCanBeRestored;
-   private int vampireLevelCap;
    private static final int DEFAULT_ULTIMATE_CHARGES = 5;
    public int highlightTicks;
    public int cachedWorship;
    private final List visitedChunks;
    private final List visitedVampireChunks;
-   boolean getPlayerData;
    boolean resetSleep;
    int cachedSky;
    private Coord mirrorWorldEntryPoint;
@@ -106,6 +108,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
    static final long COOLDOWN_ESCAPE_2_TICKS = (long)TimeUtil.minsToTicks(60);
    long mirrorWorldEscapeCooldown1;
    long mirrorWorldEscapeCooldown2;
+   private String unbreakableVowID = "";
 
 
    public static final void register(EntityPlayer player) {
@@ -131,9 +134,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
    public void saveNBTData(NBTTagCompound compound) {
       NBTTagCompound props = new NBTTagCompound();
       props.setInteger("PotionBottling", this.skillLevelPotionBottling);
-      props.setInteger("PotionThrowing", this.skillLevelPotionThrowing);
-      props.setInteger("CreatureType", this.creatureType);
       props.setInteger("WerewolfLevel", this.werewolfLevel);
+      props.setInteger("CreatureType", this.creatureType);
+      props.setInteger("VampireLevel", this.vampireLevel);
+      props.setInteger("SpiritLevel", this.spiritLevel);
+      props.setBoolean("AstralProjecting", this.isAstralProjecting);
+      props.setInteger("BloodPower", this.bloodPower);
+      props.setInteger("PotionThrowing", this.skillLevelPotionThrowing);
       props.setInteger("WolfmanQuestState", this.wolfmanQuestState);
       props.setInteger("WolfmanQuestCounter", this.wolfmanQuestCounter);
       props.setLong("LastBoneFind", this.lastBoneFind);
@@ -149,7 +156,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
       }
 
       props.setTag("WolfmanQuestChunks", nbtChunks);
-      props.setInteger("VampireLevel", this.vampireLevel);
       props.setInteger("BloodPower", this.bloodPower);
       props.setInteger("HumanBlood", this.humanBlood);
       props.setInteger("VampireUltimate", this.vampireUltimate);
@@ -184,57 +190,67 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
       props.setLong("MirrorEscape1", this.mirrorWorldEscapeCooldown1);
       props.setLong("MirrorEscape2", this.mirrorWorldEscapeCooldown2);
+      if (this.unbreakableVowID != null && !this.unbreakableVowID.isEmpty()) {
+         props.setString("UnbreakableVowID", this.unbreakableVowID);
+      }
       compound.setTag("WitcheryExtendedPlayer", props);
    }
 
    public void loadNBTData(NBTTagCompound compound) {
       if(compound.hasKey("WitcheryExtendedPlayer")) {
-         NBTTagCompound props = (NBTTagCompound)compound.getTag("WitcheryExtendedPlayer");
-         this.skillLevelPotionBottling = MathHelper.clamp_int(props.getInteger("PotionBottling"), 0, 100);
-         this.skillLevelPotionThrowing = MathHelper.clamp_int(props.getInteger("PotionThrowing"), 0, 100);
-         this.creatureType = MathHelper.clamp_int(props.getInteger("CreatureType"), 0, 5);
-         this.werewolfLevel = MathHelper.clamp_int(props.getInteger("WerewolfLevel"), 0, 10);
-         this.wolfmanQuestState = MathHelper.clamp_int(props.getInteger("WolfmanQuestState"), 0, ExtendedPlayer.QuestState.values().length - 1);
-         this.wolfmanQuestCounter = MathHelper.clamp_int(props.getInteger("WolfmanQuestCounter"), 0, 100);
+         NBTTagCompound nbtRoot = (NBTTagCompound)compound.getTag("WitcheryExtendedPlayer");
+         this.skillLevelPotionBottling = MathHelper.clamp_int(nbtRoot.getInteger("PotionBottling"), 0, 100);
+         this.skillLevelPotionThrowing = MathHelper.clamp_int(nbtRoot.getInteger("PotionThrowing"), 0, 100);
+         this.setCreatureTypeOrdinal(nbtRoot.getInteger("CreatureType"));
+         this.werewolfLevel = MathHelper.clamp_int(nbtRoot.getInteger("WerewolfLevel"), 0, 10);
+         this.vampireLevel = nbtRoot.getInteger("VampireLevel");
+         this.spiritLevel = nbtRoot.getInteger("SpiritLevel");
+         this.isAstralProjecting = nbtRoot.getBoolean("AstralProjecting");
+         this.bloodPower = nbtRoot.getInteger("BloodPower");
+         this.wolfmanQuestState = MathHelper.clamp_int(nbtRoot.getInteger("WolfmanQuestState"), 0, ExtendedPlayer.QuestState.values().length - 1);
+         this.wolfmanQuestCounter = MathHelper.clamp_int(nbtRoot.getInteger("WolfmanQuestCounter"), 0, 100);
          this.visitedChunks.clear();
-         NBTTagList nbtChunks = props.getTagList("WolfmanQuestChunks", 10);
+         NBTTagList nbtChunks = nbtRoot.getTagList("WolfmanQuestChunks", 10);
 
          for(int nbtVampireChunks = 0; nbtVampireChunks < nbtChunks.tagCount(); ++nbtVampireChunks) {
             this.visitedChunks.add(Long.valueOf(nbtChunks.getCompoundTagAt(nbtVampireChunks).getLong("Location")));
          }
 
-         this.lastBoneFind = props.getLong("LastBoneFind");
-         this.lastHowl = props.getLong("LastHowl");
-         this.vampireLevel = MathHelper.clamp_int(props.getInteger("VampireLevel"), 0, 10);
-         this.bloodPower = MathHelper.clamp_int(props.getInteger("BloodPower"), 0, this.getMaxBloodPower());
-         this.humanBlood = MathHelper.clamp_int(props.getInteger("HumanBlood"), 0, 500);
-         this.vampireUltimate = props.getInteger("VampireUltimate");
-         this.vampireUltimateCharges = props.getInteger("VampireUltimateCharges");
-         this.vampireLevelCap = props.getInteger("VampireLevelCap");
-         this.vampireQuestCounter = props.getInteger("VampireQuestCounter");
-         NBTTagList var6 = props.getTagList("VampireQuestChunks", 10);
+         this.lastBoneFind = nbtRoot.getLong("LastBoneFind");
+         this.lastHowl = nbtRoot.getLong("LastHowl");
+         this.humanBlood = MathHelper.clamp_int(nbtRoot.getInteger("HumanBlood"), 0, 500);
+         this.vampireUltimate = nbtRoot.getInteger("VampireUltimate");
+         this.vampireUltimateCharges = nbtRoot.getInteger("VampireUltimateCharges");
+         this.vampireLevelCap = nbtRoot.getInteger("VampireLevelCap");
+         this.vampireQuestCounter = nbtRoot.getInteger("VampireQuestCounter");
+         NBTTagList var6 = nbtRoot.getTagList("VampireQuestChunks", 10);
 
          for(int i = 0; i < var6.tagCount(); ++i) {
             this.visitedVampireChunks.add(Long.valueOf(var6.getCompoundTagAt(i).getLong("Location")));
          }
 
-         this.bloodReserve = props.getInteger("BloodReserve");
-         this.vampVisionActive = props.getBoolean("VampireVision");
-         if(props.hasKey("CachedInventory2")) {
-            this.cachedInventory = props.getTagList("CachedInventory2", 10);
-            this.inventoryCanBeRestored = props.getBoolean("CanRestoreInventory");
+         this.bloodReserve = nbtRoot.getInteger("BloodReserve");
+         this.vampVisionActive = nbtRoot.getBoolean("VampireVision");
+         if(nbtRoot.hasKey("CachedInventory2")) {
+            this.cachedInventory = nbtRoot.getTagList("CachedInventory2", 10);
+            this.inventoryCanBeRestored = nbtRoot.getBoolean("CanRestoreInventory");
          }
 
-         if(props.hasKey("MirrorWorldEntryPoint")) {
-            this.mirrorWorldEntryPoint = Coord.fromTagNBT(props.getCompoundTag("MirrorWorldEntryPoint"));
+         if(nbtRoot.hasKey("MirrorWorldEntryPoint")) {
+            this.mirrorWorldEntryPoint = Coord.fromTagNBT(nbtRoot.getCompoundTag("MirrorWorldEntryPoint"));
          }
 
-         if(props.hasKey("LastPlayerSkin")) {
-            this.lastPlayerSkin = props.getString("LastPlayerSkin");
+         if(nbtRoot.hasKey("LastPlayerSkin")) {
+            this.lastPlayerSkin = nbtRoot.getString("LastPlayerSkin");
          }
 
-         this.mirrorWorldEscapeCooldown1 = props.getLong("MirrorEscape1");
-         this.mirrorWorldEscapeCooldown2 = props.getLong("MirrorEscape2");
+         this.mirrorWorldEscapeCooldown1 = nbtRoot.getLong("MirrorEscape1");
+         this.mirrorWorldEscapeCooldown2 = nbtRoot.getLong("MirrorEscape2");
+         if(nbtRoot.hasKey("UnbreakableVowID")) {
+            this.unbreakableVowID = nbtRoot.getString("UnbreakableVowID");
+         } else {
+            this.unbreakableVowID = "";
+         }
       }
 
    }
@@ -325,7 +341,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
    public int increaseSkillPotionThrowing() {
       this.skillLevelPotionThrowing = Math.min(this.skillLevelPotionThrowing + 1, 100);
-      return this.getSkillPotionBottling();
+      return this.getSkillPotionThrowing();
    }
 
    public int getWerewolfLevel() {
@@ -353,6 +369,23 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
          Shapeshift.INSTANCE.initCurrentShift(this.player);
       }
 
+   }
+
+   public int getSpiritLevel() {
+      return this.spiritLevel;
+   }
+
+   public void setSpiritLevel(int level) {
+      if(this.spiritLevel != level && level >= 0 && level <= 10) {
+         this.spiritLevel = level;
+         this.sync();
+      }
+   }
+
+   public void increaseSpiritLevel() {
+      if(this.spiritLevel < 10) {
+         this.setSpiritLevel(this.spiritLevel + 1);
+      }
    }
 
    public int getHumanBlood() {
@@ -384,6 +417,76 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
       }
 
       return taken;
+   }
+
+   public boolean isAstralProjecting() {
+      return this.isAstralProjecting;
+   }
+
+   public void setAstralProjecting(boolean projecting) {
+      if (this.isAstralProjecting != projecting) {
+         this.isAstralProjecting = projecting;
+         this.sync();
+      }
+   }
+
+   public static boolean trySayAstralProjection(EntityPlayer player, String message) {
+      if(message != null && (message.equalsIgnoreCase("ex corpus") || message.equalsIgnoreCase("astral"))) {
+         ExtendedPlayer playerEx = get(player);
+         if(playerEx != null && playerEx.getSpiritLevel() >= 10 && player.dimension != Config.instance().dimensionDreamID) {
+            if (!playerEx.isAstralProjecting()) {
+               com.emoniph.witchery.entity.EntityCorpse var21 = new com.emoniph.witchery.entity.EntityCorpse(player.worldObj);
+               var21.setHealth(player.getHealth());
+               var21.setCustomNameTag(player.getCommandSenderName());
+               var21.setOwner(player.getCommandSenderName());
+               var21.setLocationAndAngles(0.5D + (double)net.minecraft.util.MathHelper.floor_double(player.posX), player.posY, 0.5D + (double)net.minecraft.util.MathHelper.floor_double(player.posZ), 0.0F, 0.0F);
+               player.worldObj.spawnEntityInWorld(var21);
+               
+               net.minecraft.nbt.NBTTagCompound nbt = com.emoniph.witchery.infusion.Infusion.getNBT(player);
+               com.emoniph.witchery.dimension.WorldProviderDreamWorld.setPlayerIsGhost(nbt, true);
+               playerEx.setAstralProjecting(true);
+               
+               com.emoniph.witchery.util.SoundEffect.RANDOM_FIZZ.playAtPlayer(player.worldObj, player);
+            } else {
+               java.util.List corpses = player.worldObj.getEntitiesWithinAABB(com.emoniph.witchery.entity.EntityCorpse.class, player.boundingBox.expand(256.0D, 256.0D, 256.0D));
+               for (Object obj : corpses) {
+                  com.emoniph.witchery.entity.EntityCorpse corpse = (com.emoniph.witchery.entity.EntityCorpse)obj;
+                  if (corpse.getOwnerName().equals(player.getCommandSenderName())) {
+                     if (player.ridingEntity != null) {
+                        player.mountEntity((net.minecraft.entity.Entity)null);
+                     }
+                     com.emoniph.witchery.item.ItemGeneral.teleportToLocationSafely(player.worldObj, corpse.posX, corpse.posY + 1, corpse.posZ, player.dimension, player, true);
+                     corpse.setDead();
+                     break;
+                  }
+               }
+               net.minecraft.nbt.NBTTagCompound nbt = com.emoniph.witchery.infusion.Infusion.getNBT(player);
+               com.emoniph.witchery.dimension.WorldProviderDreamWorld.setPlayerIsGhost(nbt, false);
+               playerEx.setAstralProjecting(false);
+               player.removePotionEffect(net.minecraft.potion.Potion.invisibility.id);
+               com.emoniph.witchery.util.SoundEffect.RANDOM_FIZZ.playAtPlayer(player.worldObj, player);
+            }
+            return true;
+         }
+      }
+      return false;
+   }
+
+   public static boolean trySaySpiritForm(EntityPlayer player, String message) {
+      if(message != null && (message.equalsIgnoreCase("ex spiritus") || message.equalsIgnoreCase("spirit"))) {
+         ExtendedPlayer playerEx = get(player);
+         if(playerEx != null && playerEx.getSpiritLevel() >= 4) {
+            if (playerEx.getCreatureType() == com.emoniph.witchery.util.TransformCreature.SPIRIT) {
+               com.emoniph.witchery.common.Shapeshift.INSTANCE.shiftTo(player, com.emoniph.witchery.util.TransformCreature.NONE);
+               com.emoniph.witchery.util.SoundEffect.RANDOM_FIZZ.playAtPlayer(player.worldObj, player);
+            } else if (playerEx.getCreatureType() == com.emoniph.witchery.util.TransformCreature.NONE) {
+               com.emoniph.witchery.common.Shapeshift.INSTANCE.shiftTo(player, com.emoniph.witchery.util.TransformCreature.SPIRIT);
+               com.emoniph.witchery.util.SoundEffect.RANDOM_FIZZ.playAtPlayer(player.worldObj, player);
+            }
+            return true;
+         }
+      }
+      return false;
    }
 
    public void giveHumanBlood(int quantity) {
@@ -502,7 +605,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
    }
 
    public ExtendedPlayer.VampireUltimate getVampireUltimate() {
-      return ExtendedPlayer.VampireUltimate.values()[this.vampireUltimate];
+      ExtendedPlayer.VampireUltimate[] values = ExtendedPlayer.VampireUltimate.values();
+      if(this.vampireUltimate < 0 || this.vampireUltimate >= values.length) {
+         return values[0];
+      }
+      return values[this.vampireUltimate];
    }
 
    public void setVampireUltimate(ExtendedPlayer.VampireUltimate skill) {
@@ -797,6 +904,33 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
       if(this.vampireCooldown > 0) {
          --this.vampireCooldown;
       }
+      
+      if (!this.player.worldObj.isRemote && this.isAstralProjecting()) {
+          this.player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.invisibility.id, 40, 0, true));
+          
+          if (this.player.ticksExisted % 20 == 0) {
+              boolean hasEnergy = com.emoniph.witchery.infusion.Infusion.aquireEnergy(this.player.worldObj, this.player, 3, false);
+              if (!hasEnergy) {
+              // Forced return because out of energy
+              trySayAstralProjection(this.player, "ex corpus");
+              com.emoniph.witchery.util.ChatUtil.sendTranslated(net.minecraft.util.EnumChatFormatting.RED, this.player, "witchery.infuse.nocharges");
+              
+              // Apply exhaustion debuffs
+              this.player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.confusion.id, 200, 1));
+              this.player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.hunger.id, 200, 1));
+              this.player.addPotionEffect(new net.minecraft.potion.PotionEffect(net.minecraft.potion.Potion.moveSlowdown.id, 200, 1));
+              }
+          }
+      }
+      
+      if (!this.player.worldObj.isRemote && this.getCreatureType() == com.emoniph.witchery.util.TransformCreature.SPIRIT && this.player.ticksExisted % 40 == 0) {
+          boolean hasEnergy = com.emoniph.witchery.infusion.Infusion.aquireEnergy(this.player.worldObj, this.player, 1, false);
+          if (!hasEnergy) {
+              com.emoniph.witchery.common.Shapeshift.INSTANCE.shiftTo(this.player, com.emoniph.witchery.util.TransformCreature.NONE);
+              com.emoniph.witchery.util.SoundEffect.RANDOM_FIZZ.playAtPlayer(this.player.worldObj, this.player);
+              com.emoniph.witchery.util.ChatUtil.sendTranslated(net.minecraft.util.EnumChatFormatting.RED, this.player, "witchery.infuse.nocharges");
+          }
+      }
 
    }
 
@@ -855,6 +989,19 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
    }
 
+   public void setCachedWorship(int worship) {
+      this.cachedWorship = worship;
+   }
+
+   public String getUnbreakableVowID() {
+      return this.unbreakableVowID == null ? "" : this.unbreakableVowID;
+   }
+
+   public void setUnbreakableVowID(String vowID) {
+      this.unbreakableVowID = vowID;
+      this.sync();
+   }
+
    public void addWorship(int level) {
       this.cachedWorship = level;
    }
@@ -864,6 +1011,30 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
          Witchery.packetPipeline.sendTo((IMessage)(new PacketExtendedPlayerSync(this)), this.player);
       }
 
+   }
+
+   public void applySyncData(int werewolfLevel, int creatureType, int vampireLevel, int spiritLevel, int bloodPower, int selectedPower, int ultimate, int ultimateCharges, int bloodReserve) {
+      this.werewolfLevel = MathHelper.clamp_int(werewolfLevel, 0, 10);
+      this.vampireLevel = MathHelper.clamp_int(vampireLevel, 0, 10);
+      this.spiritLevel = MathHelper.clamp_int(spiritLevel, 0, 10);
+      this.bloodPower = Math.max(0, bloodPower);
+      this.vampireUltimateCharges = Math.max(0, ultimateCharges);
+      this.bloodReserve = Math.max(0, bloodReserve);
+
+      ExtendedPlayer.VampireUltimate[] ultimates = ExtendedPlayer.VampireUltimate.values();
+      this.vampireUltimate = ultimate >= 0 && ultimate < ultimates.length ? ultimate : 0;
+
+      ExtendedPlayer.VampirePower[] powers = ExtendedPlayer.VampirePower.values();
+      this.selectedVampirePower = selectedPower >= 0 && selectedPower < powers.length ? powers[selectedPower] : ExtendedPlayer.VampirePower.NONE;
+
+      TransformCreature[] creatures = TransformCreature.values();
+      int newCreatureType = creatureType >= 0 && creatureType < creatures.length ? creatureType : 0;
+      if (newCreatureType != this.creatureType) {
+         this.setCreatureTypeOrdinal(newCreatureType);
+      }
+      
+      net.minecraft.nbt.NBTTagCompound nbt = com.emoniph.witchery.infusion.Infusion.getNBT(this.player);
+      this.isAstralProjecting = nbt.getBoolean("AstralProjecting");
    }
 
    public static void loadProxyData(EntityPlayer player) {

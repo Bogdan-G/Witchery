@@ -6,6 +6,7 @@ import com.emoniph.witchery.infusion.infusions.symbols.SymbolEffect;
 import com.emoniph.witchery.infusion.infusions.symbols.SymbolEffectProjectile;
 import com.emoniph.witchery.util.ParticleEffect;
 import com.emoniph.witchery.util.SoundEffect;
+import com.emoniph.witchery.infusion.Infusion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
@@ -253,8 +254,30 @@ public class EntitySpellEffect extends Entity {
                super.worldObj.spawnParticle(var21.isCurse()?ParticleEffect.FLAME.toString():ParticleEffect.SLIME.toString(), super.posX, super.posY + 0.5D, super.posZ, 0.0D, 0.0D, 0.0D);
             }
 
+            if(super.worldObj.isRemote && var21 instanceof SymbolEffectProjectile) {
+               this.spawnTrail((SymbolEffectProjectile)var21);
+            }
+
             this.setPosition(super.posX, super.posY, super.posZ);
          }
+      }
+
+   }
+
+   @SideOnly(Side.CLIENT)
+   private void spawnTrail(SymbolEffectProjectile effect) {
+      int color = effect.getColor();
+      float red = (float)(color >>> 16 & 255) / 255.0F;
+      float green = (float)(color >>> 8 & 255) / 255.0F;
+      float blue = (float)(color & 255) / 255.0F;
+      int count = effect.isCurse()?3:2;
+
+      for(int i = 0; i < count; ++i) {
+         double frac = (double)i / (double)count;
+         double tx = super.posX - super.motionX * frac + super.rand.nextGaussian() * 0.05D;
+         double ty = super.posY + 0.5D - super.motionY * frac + super.rand.nextGaussian() * 0.05D;
+         double tz = super.posZ - super.motionZ * frac + super.rand.nextGaussian() * 0.05D;
+         Witchery.proxy.generateParticle(super.worldObj, tx, ty, tz, red, green, blue, 8 + super.rand.nextInt(5), 0.0F);
       }
 
    }
@@ -263,16 +286,46 @@ public class EntitySpellEffect extends Entity {
       return 0.95F;
    }
 
+   private boolean isSpellBlockable(int effectID) {
+      // 17 = Flipendo, 15 = Expelliarmus, 19 = Impedimenta, 1 = Accio
+      // 3 = Alohomora, 8 = Confundus, 12 = Ennervate, 35 = Petrificus Totalus, 36 = Stupefy, 37 = Glacius
+      // Nota: Avada Kedavra (4) y Crucio (9) son Maldiciones Imperdonables y NO se pueden bloquear.
+      return effectID == 17 || effectID == 15 || effectID == 19 || effectID == 1 || effectID == 3 || effectID == 8 || effectID == 12 || effectID == 35 || effectID == 36 || effectID == 37;
+   }
+
    protected void onImpact(MovingObjectPosition mop) {
       if(!super.worldObj.isRemote) {
          SymbolEffect effect = EffectRegistry.instance().getEffect(this.getEffectID());
          if(effect != null && effect instanceof SymbolEffectProjectile) {
+            
+            if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && mop.entityHit instanceof EntityPlayer) {
+               EntityPlayer hitPlayer = (EntityPlayer) mop.entityHit;
+               if (hitPlayer.isUsingItem() && hitPlayer.getHeldItem() != null && hitPlayer.getHeldItem().getItem() == Witchery.Items.MYSTIC_BRANCH) {
+                  if (this.isSpellBlockable(this.getEffectID())) {
+                     NBTTagCompound nbtPerm = Infusion.getNBT(hitPlayer);
+                     if (nbtPerm != null && nbtPerm.hasKey("witcheryInfusionID") && nbtPerm.hasKey("witcheryInfusionCharges")) {
+                        int charges = nbtPerm.getInteger("witcheryInfusionCharges");
+                        int blockCost = 2;
+                        if (charges >= blockCost) {
+                           Infusion.setCurrentEnergy(hitPlayer, charges - blockCost);
+                           ParticleEffect.INSTANT_SPELL.send(SoundEffect.RANDOM_FIZZ, this, 1.0D, 1.0D, 16);
+                           ParticleEffect.SPELL_COLORED.send(SoundEffect.NONE, this, 0.75D, 1.0D, 24, 0x00FFFF);
+                           this.setDead();
+                           return;
+                        }
+                     }
+                  }
+               }
+            }
+
+            int color = ((SymbolEffectProjectile)effect).getColor();
             if(effect.isCurse()) {
                ParticleEffect.MOB_SPELL.send(SoundEffect.MOB_ENDERDRAGON_HIT, this, 1.0D, 1.0D, 16);
             } else {
                ParticleEffect.SLIME.send(SoundEffect.MOB_SLIME_SMALL, this, 1.0D, 1.0D, 16);
             }
 
+            ParticleEffect.SPELL_COLORED.send(SoundEffect.NONE, this, 0.75D, 1.0D, 24, color);
             ((SymbolEffectProjectile)effect).onCollision(super.worldObj, this.shootingEntity, mop, this);
          }
       }

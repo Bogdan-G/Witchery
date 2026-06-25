@@ -63,6 +63,13 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       super.experienceValue = 25;
    }
 
+   public boolean getCanSpawnHere() {
+      if (this.worldObj.provider.dimensionId != com.emoniph.witchery.util.Config.instance().dimensionDreamID) {
+          return false;
+      }
+      return super.getCanSpawnHere();
+   }
+
    public boolean isEntityApplicable(Entity entity) {
       if(!(entity instanceof EntityPlayer)) {
          return false;
@@ -222,7 +229,9 @@ public class EntityNightmare extends EntityMob implements IEntitySelector {
       }
 
       float f1 = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-      if(super.dimension != Config.instance().dimensionDreamID) {
+      if(super.dimension == Config.instance().dimensionDreamID) {
+         f1 = 0.0F;
+      } else {
          f1 = 0.5F;
       }
 

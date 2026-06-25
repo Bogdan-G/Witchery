@@ -246,6 +246,25 @@ witchery.rite.summonwitch=Rite of Summoning{r||Summon a witch. The inner area mu
 witchery.rite.bindwaystoneportable=Rite of Binding{r||Binds the Waystone to the location of the ritual.
 witchery.rite.bindwaystonecopyportable=Rite of Binding{r||Binds the Waystone location on one waystone to another waystone.
 
+witchery.rite.morsmordre=Rite of the Dark Mark{r||Conjure the Dark Mark high above the circle as an omen of dread.
+witchery.rite.horrocrux=Rite of the Horrocrux{r||Split your soul. The next time you would die, you are restored to life instead and the horrocrux is spent.
+witchery.rite.horrocrux.created=You feel a sliver of your soul tear away and anchor itself. Death will not claim you... once.
+witchery.rite.horrocrux.exists=Your soul is already split; it cannot be divided again until the horrocrux is spent.
+witchery.rite.horrocrux.saved=Your horrocrux shatters as your soul is dragged back into your body!
+witchery.rite.dementorkiss=Rite of the Dementor's Kiss{r||Devour the soul of a creature bound by a taglock, leaving it withered, blind and hollow.
+witchery.rite.dementorkiss.victim=An icy dread engulfs you as something feeds upon your very soul!
+witchery.rite.soulthief=Rite of the Soul Thief{r||Tear a fragment of soul from a bound creature, harvesting it as a subdued spirit.
+witchery.rite.annihilation=Rite of Annihilation{r||Erase all unprotected blocks above the circle in a great dome.
+witchery.rite.fidelio=Rite of Fidelius{r||Conceal the secret-keeper from the world, cleansing and hiding them for a time.
+witchery.rite.fidelio.hidden=The Fidelius charm settles over you; you fade from sight, hidden from the world.
+witchery.rite.unbreakablevow=Rite of the Unbreakable Vow{r||Bind a lasting boon of protection upon all who stand within the circle.
+witchery.rite.unbreakablevow.blessed=An unbreakable vow shields you from harm.
+witchery.rite.secretguardian=Rite of the Secret Guardian{r||Raise a protective dome of barriers around the circle.
+witchery.rite.legilimency=Rite of Legilimency{r||Probe the mind of a bound creature to reveal where it is and what it holds.
+witchery.rite.legilimency.read=Legilimency reveals %s: in %s at (%s, %s, %s), %s health, wielding %s.
+witchery.rite.philosopherstone=Rite of the Philosopher's Stone{r||Perform the Great Work: transmute base metals to gold and yield a priceless reward.
+witchery.rite.promisedland=Rite of the Promised Land{r||Bless the surrounding land into a lush, flowering paradise.
+
 witchery.infuse.cansetrecall=Release mouse button to set Recall Point.
 witchery.infuse.setrecall=- Recall Point set to %s (%s, %s, %s).
 witchery.infuse.canteleport=Teleport charged, release mouse button to teleport.
@@ -348,8 +367,11 @@ witchery.pott.impedimenta=Impedimenta
 witchery.pott.imperio=Imperio
 witchery.pott.incendio=Incendio
 witchery.pott.lumos=Lumos
+witchery.pott.lumos.info=Place a light. Sneak to toggle a glow that follows you. Nox dispels it.
+witchery.pott.lumos.extinguished=Your Lumos was extinguished by Nox.
 witchery.pott.meteolojinxrecanto=Meteolojinx Recanto
 witchery.pott.nox=Nox
+witchery.pott.nox.info=Extinguish all light sources nearby. Also dispels Lumos follower on nearby players.
 witchery.pott.protego=Protego
 witchery.pott.stupefy=Stupefy
 
@@ -605,12 +627,11 @@ witchery.pott.ennervate.info=Counter Stupify.
 witchery.pott.episkey.info=Minor healing.
 witchery.pott.expelliarmus.info=Disarm the target.
 witchery.pott.flagrate.info=Draw an infernal rune.
-witchery.pott.flipendo.info=Push the target away.
 witchery.pott.impedimenta.info=Slows the target.
 witchery.pott.imperio.info={4Forbidden{0: Mind control.
 witchery.pott.incendio.info=Start a fire.
-witchery.pott.lumos.info=Create light.
-witchery.pott.nox.info=Extinguish light.
+witchery.pott.lumos.info=Place a light. Sneak to toggle a glow that follows you. Nox dispels it.
+witchery.pott.nox.info=Extinguish all light sources nearby. Also dispels Lumos follower on nearby players.
 witchery.pott.protego.info=Shield (ground target).
 witchery.pott.stupefy.info=Stun the target.
 
@@ -720,6 +741,21 @@ witchery.brazier.invisible.desc=Vanish from sight while standing near to the bra
 witchery.brazier.wilting.name=Drain Growth
 witchery.brazier.wilting.desc=Suck the life from crops to heal nearby undead.
 
+witchery.brazier.infusion.name=Aura of Infusion
+witchery.brazier.infusion.desc=Slowly restore the infused power of witches standing near the brazier.
+witchery.brazier.growth.name=Verdant Bloom
+witchery.brazier.growth.desc=Hasten the growth of nearby crops and plants while burning.
+witchery.brazier.magnet.name=Gathering Pyre
+witchery.brazier.magnet.desc=Draw nearby dropped items toward the brazier.
+witchery.brazier.storm.name=Tempest Call
+witchery.brazier.storm.desc=Summon a thunderstorm that rages while the brazier burns.
+witchery.brazier.repellent.name=Ward of Repulsion
+witchery.brazier.repellent.desc=Push nearby hostile creatures away from the brazier.
+witchery.brazier.potionaura.name=Aura of the Cauldron
+witchery.brazier.potionaura.desc=Spread the effects of a thrown potion to those near the brazier.
+witchery.brazier.poltergeist.name=Summon Poltergeist
+witchery.brazier.poltergeist.desc=Conjure a mischievous poltergeist from beyond.
+
 witchery.book.burning1={o{lWitchcraft: Conjuration & Fetishes{r{r||A witch may use a Brazier to burn materials with magical purpose, and conjure that which is no longer of this world.||Place the ingredients into the brazier and ignite with a flint and tinder.
 witchery.book.burning2={o{lFetish Binding{r{r||A witch may use the Rite of Binding to bind spectral creatures to a fetish to create permanent effects.||The following pages show which beings must be bound for which effect.
 witchery.book.burning3=Beings required:
@@ -817,7 +853,57 @@ witchery.pott.ignianima=Ignianima
 witchery.pott.ignianima.info=Soulfire: cause pain equivalent to your own.
 witchery.pott.morsmordre=Morsmordre
 witchery.pott.morsmordre.info=Conjure the Dark Mark.
-
+witchery.pott.flipendo=Flipendo
+witchery.pott.flipendo.info=Push the target away with force.
+witchery.pott.obliviate=Obliviate
+witchery.pott.obliviate.info=Erase the target's memory (mobs lose target; players get confused).
+witchery.pott.confringo=Confringo
+witchery.pott.confringo.info=Cause a small explosion on impact.
+witchery.pott.lumosmaxima=Lumos Maxima
+witchery.pott.lumosmaxima.info=Illuminate a large area with glow globes.
+witchery.pott.wingardiumleviosa=Wingardium Leviosa
+witchery.pott.wingardiumleviosa.info=Levitate the target upward. Sneak to launch yourself.
+witchery.pott.bombarda=Bombarda
+witchery.pott.bombarda.info=Cause a moderate explosion.
+witchery.pott.bombardamaxima=Bombarda Maxima
+witchery.pott.bombardamaxima.info=Cause a massive terrain-destroying explosion.
+witchery.pott.avis=Avis
+witchery.pott.avis.info=Summon three owls to attack the target.
+witchery.pott.oppugno=Oppugno
+witchery.pott.oppugno.info=Summon three wolves to attack the target.
+witchery.pott.piertotumlocomotor=Piertotum Locomotor
+witchery.pott.piertotumlocomotor.info=Animate an iron golem to fight for you.
+witchery.pott.reducto=Reducto
+witchery.pott.reducto.info=Obliterate blocks and items in the area.
+witchery.pott.araniaexumai=Arania Exumai
+witchery.pott.araniaexumai.info=Blast spiders away; deals heavy damage to them.
+witchery.pott.silencio=Silencio
+witchery.pott.silencio.info=Silence a witch, preventing spell casting.
+witchery.pott.protegomaxima=Protego Maxima
+witchery.pott.protegomaxima.info=Create a full spherical force shield around you.
+witchery.pott.revelio=Revelio
+witchery.pott.revelio.info=Reveal invisible entities nearby and dispel cursed blocks.
+witchery.pott.reparo=Reparo
+witchery.pott.reparo.info=Repair all damaged items in your inventory.
+witchery.pott.expectopatronum=Expecto Patronum
+witchery.pott.expectopatronum.info=Drive away nearby undead and creepers with a burst of light.
+witchery.pott.telekinesis=Telekinesis
+witchery.pott.telekinesis.info=Pull a target toward you, or sneak to push it away.
+witchery.pott.diffindo=Diffindo
+witchery.pott.diffindo.info=A severing cut that wounds and bleeds the target.
+witchery.pott.descendo=Descendo
+witchery.pott.descendo.info=Slam the target violently into the ground and pin it there.
+witchery.pott.geminio=Geminio
+witchery.pott.geminio.info=Duplicate a minor item lying on the ground (such as a Waystone or Taglock Kit). Will not copy tools, armour or enchanted gear.
+witchery.pott.apparition=Apparition
+witchery.pott.apparition.info=Blink to the spot where the spell lands.
+witchery.pott.fiendfyre=Fiendfyre
+witchery.pott.fiendfyre.info=Unleash cursed flames, conjuring withering blazes and setting the area ablaze. Requires Hellfire infusion.
+witchery.pott.expulso=Expulso
+witchery.pott.expulso.info=Blast nearby entities violently away from the point of impact.
+witchery.pott.engorgio=Engorgio
+witchery.pott.engorgio.info=Empower the target with Health Boost and Strength.
+witchery.pott.meteolojinxrecanto.info=Clear the weather, ending rain and storms.
 witchery.rite.summonimp=Rite of Summoning{r||Call forth an Imp. The inner area must be clear 7x7x4 blocks!
 
 
@@ -915,9 +1001,20 @@ witchery:potion.feelnopain=Feel No Pain
 witchery:potion.floating=Floating
 witchery:potion.gasmask=Gas Mask
 witchery:potion.diseased=Disease
+witchery:potion.brittle=Brittle
 witchery:potion.fortune=Luck
 witchery:potion.worship=Worship
 witchery:potion.keepeffects=Sticky Potion Effects
+witchery:potion.phasewalk=Phase Walk
+witchery:potion.rooted=Rooted
+witchery:potion.lifesteal=Lifesteal
+witchery:potion.frailty=Frailty
+witchery:potion.berserk=Berserk
+witchery:potion.pacified=Pacified
+witchery:potion.manasiphon=Mana Siphon
+witchery:potion.comprehension=Comprehension
+witchery:potion.provoke=Provoke
+witchery:potion.spectralsight=Spectral Sight
 
 witchery:potion.colorful=Tinting
 witchery:potion.colorful.black=Tinting Black
@@ -1031,6 +1128,8 @@ witchery:brew.overheating=Overheating
 witchery:brew.wakingnightmare=Waking Nightmare
 witchery:brew.drainmagic=Drain Magic
 witchery:brew.lilify=Lilify
+witchery:brew.regrowth=Regrowth
+witchery:brew.brittle=Brittleness
 witchery:brew.hellgate=Inferno
 witchery:brew.harmdemons=Demonbane
 witchery:brew.harmundead=Undeadbane
@@ -1045,6 +1144,20 @@ witchery:brew.transpose=Transpose
 witchery:brew.stealbuffs=Steal Buffs
 witchery:brew.spreaddebuffs=Spread Debuffs
 witchery:brew.iceworld=Ice World
+witchery:brew.phasewalk=Phase Walk
+witchery:brew.rooted=Rooting
+witchery:brew.lifesteal=Lifesteal
+witchery:brew.frailty=Frailty
+witchery:brew.berserk=Berserk
+witchery:brew.pacified=Pacify
+witchery:brew.manasiphon=Mana Siphon
+witchery:brew.comprehension=Comprehension
+witchery:brew.provoke=Provoke
+witchery:brew.spectralsight=Spectral Sight
+witchery:brew.petrify=Petrify
+witchery:brew.glaciate=Glaciate
+witchery:brew.glasswork=Vitrify
+witchery:brew.soultether=Soul Tether
 
 witchery:brew.skillincrease=You feel more skilled at brewing, perhaps less brew will be wasted from now on.
 
@@ -1130,9 +1243,13 @@ entity.witchery.leonard.name=Shade of Leonard
 entity.witchery.lostsoul.name=Lost Soul
 
 witchery.pott.leonard1=Caelum
+witchery.pott.leonard1.info=Release the brew focused in Leonard's Urn skyward (upward).
 witchery.pott.leonard2=Baratrum
+witchery.pott.leonard2.info=Release the brew focused in Leonard's Urn into the depths (downward).
 witchery.pott.leonard3=Ortus
+witchery.pott.leonard3.info=Release the brew focused in Leonard's Urn to the east.
 witchery.pott.leonard4=Occasus
+witchery.pott.leonard4.info=Release the brew focused in Leonard's Urn to the west.
 
 witchery:color.black=Black
 witchery:color.red=Red
@@ -1159,8 +1276,12 @@ item.witchery:cauldronbook.tip=The definitive guide to cauldrons and potion brew
 witchery:cauldronbook.tbench=[i Crafting Bench][br][br][stack=%s][stack=%s][stack=%s][br][stack=%s][stack=%s][stack=%s] [img=witchery:textures/gui/arrowrightresult.png|left|middle|22|15] [stack=%s|left|middle][br] [stack=%s][stack=%s][stack=%s]
 witchery:cauldronbook.tcraft=%s[br][img=witchery:textures/gui/cauldron.png|left|top|30|29] [img=witchery:textures/gui/arrowrightresult.png|left|middle|22|15] [stack=%s|left|middle]
 witchery:cauldronbook.tritual=%s[br][img=witchery:textures/gui/cauldron.png|center|top|30|29]
-
-witchery:cauldronbook.toc=[h1 Witches' Brews]> [url Introduction][br]> [url Brewing][br]> [url=rituals Cauldron Rituals][br]> [url Crafting][br]> [url Other rituals][br]> [url Capacity][br]> [url Power][br]> [url Duration][br]> [url Modifiers][br]> [url Dispersal][br]> [url=toc/effects Effects]
+witchery:cauldronbook.toc=[h1 Witches' Brews]> [url Introduction][br]> [url Brewing][br]> [url=rituals Cauldron Rituals][br]> [url Crafting][br]> [url Other rituals][br]> [url Capacity][br]> [url Power][br]> [url Duration][br]> [url Modifiers][br]> [url Dispersal][br]> [url=toc/effects Effects][br]> [url=toc/additions New Additions]
+witchery:cauldronbook.toc/additions=[h1 New Additions]Recent secrets uncovered by the coven:[br][br]> [url=floopowder Floo Powder][br]> [url=floofire Floo Fire][br]> [url=geminio Geminio Charm][br]> [url=glyphbrew Impregnated Glyphs]
+witchery:cauldronbook.floopowder=[next=floofire][h1 Floo Powder]Brewed in the kettle from Ash Wood, redstone and glowstone dust. Cast a pinch onto an open flame and the fire turns an eerie green - this is [url=floofire Floo Fire]. The powder is spent, but the journey it opens is well worth it.[br][br][stack=witchery:ingredient|166 Floo Powder]
+witchery:cauldronbook.floofire=[next=geminio][h1 Floo Fire]An open fire dusted with [url=floopowder Floo Powder] burns green. While [b holding a Waystone bound] to a location, simply step into the green flames to be whisked there at once.[br][br][i The Waystone is the destination key, not fuel - it is never consumed.]
+witchery:cauldronbook.geminio=[next=glyphbrew][h1 Geminio Charm]A Mystic Branch gesture that copies a [b minor] item lying on the ground - such as a Waystone or a Taglock Kit - producing a single duplicate where it lands.[br][br][i It will not copy tools, armour or enchanted gear.]
+witchery:cauldronbook.glyphbrew=[h1 Impregnated Glyphs]Just as a thrown [url dispersal] Triggered brew can curse a lever or button, it can also be cast upon a chalk [b glyph]. Items resting on that glyph drink in the brew, carrying its blessing or curse until used.
 
 witchery:cauldronbook.introduction=[next=cauldron][h1 Introduction]Fill a [url cauldron] to the brim with water and light a fire beneath. When the water boils, throw in your ingredients for either:[br][br]> [url Brewing][br]> [url Rituals][br]> [url Crafting]
 witchery:cauldronbook.cauldron=[next=cauldron2][h1 Cauldron: Recipe]A witch's cauldron is made by placing a normal [i Cauldron] in the world and using [i Anointing Paste] on it:[br][br][template=tbench 6=witchery:ingredient|153 0=witchery:seedsbelladonna 1=witchery:seedsmandrake 2=empty 3=witchery:seedsartichoke 4=witchery:seedssnowbell 5=empty 7=empty 8=empty 9=empty]
@@ -1210,7 +1331,7 @@ witchery:cauldronbook.ritualwaystoneblooded=[h1 Ritual: Bind Blooded Waystone]To
 witchery:cauldronbook.ritualtranspose=[h1 Ritual: Transpose]To transpose to a bound waystone, draw a 5x5 purple-chalk circle:[br][img=witchery:textures/gui/circles_spurple.png|center|top|32|32][br]Stand in the circle, drop the waystone inside the circle, and wait.
 witchery:cauldronbook.ritualfind=[h1 Ritual: Find Structure]Summon a spirit that flys towards the closest village (or nether fortress). Draw a 3x3 white-chalk circle:[br][img=witchery:textures/gui/circles_tinywhite.png|center|top|32|32][br]Drop a Subdued Spirit or Attuned Stone in the center and wait.
 
-witchery:cauldronbook.capacity=[i Capacity] - [url=toc/effects Effects] each have a space requirement, add these ingredients, in order, to increase a brew's capacity.[br][br][stack=witchery:ingredient|22 +1][tab][stack=nether_wart +2][br][stack=witchery:ingredient|37 +2][tab][stack=witchery:ingredient|29 +2][br][stack=diamond +2][tab][stack=nether_star|29 +4]
+witchery:cauldronbook.capacity=[i Capacity] - [url=toc/effects Effects] each have a space requirement, add these ingredients, in order, to increase a brew's capacity.[br][br][stack=witchery:ingredient|22 +1][tab][stack=nether_wart +2][br][stack=witchery:ingredient|37 +2][tab][stack=witchery:ingredient|29 +2][br][stack=diamond +2][tab][stack=nether_star +4]
 witchery:cauldronbook.power=[i Power] - Add, in order, before an [url=toc/effects effect] to increase its power.[br][br][stack=glowstone_dust +1 (to level II)][br][stack=blaze_rod +1 (to level III)][br][stack=witchery:ingredient|11 +1 (to level IV)]
 witchery:cauldronbook.duration=[i Duration] - Add, in order, before an [url=toc/effects effect] to increase its duration.[br][br][stack=redstone +1 (to x2)][br][stack=obsidian +1 (to x4)][br][stack=witchery:seedsmindrake +1 (to x6)]
 
@@ -1233,29 +1354,32 @@ witchery:cauldronbook.level1_3=[next=level1_4][h1 Effect: Level 1][stack=dirt][u
 witchery:cauldronbook.level1_4=[h1 Effect: Level 1][stack=witchery:ingredient|156][url=wolfsbane|middle Wolfsbane][br][stack=dye|1][url=tinting|middle Tint skin *][br][br][i * can use any dye for the desired color.][br][br][stack=coal|1][url=combustion|middle Combustion *][br][br][i * cannot be combined with other effects.]
 
 witchery:cauldronbook.level2=[next=level2_2][h1 Effect: Level 2][stack=cobblestone][url=partlava|middle Part lava][br][stack=witchery:bramble][url=repel|middle Repel attacker][br][stack=gravel][url=brewgasimmunity|middle Brew gas immunity][br][stack=spider_eye][url=poison|middle Poison][br][stack=ghast_tear][url=regeneration|middle Regeneration][br][stack=fermented_spider_eye][stack=ghast_tear][url=poison|middle Poison]
-witchery:cauldronbook.level2_2=[next=level2_3][h1 Effect: Level 2][stack=sugar][url=fastmove|middle Fast movement][br][stack=fermented_spider_eye][stack=sugar][url=slowmove|middle Slow movement[br][stack=fish|3][url=waterbreathing|middle Water breathing][br][stack=magma_cream][url=resistfire|middle Resist fire][br][stack=golden_carrot][url=nightvision|middle Night vision][br][stack=fermented_spider_eye][stack=golden_carrot][url=invisible|middle Invisible]
+witchery:cauldronbook.level2_2=[next=level2_3][h1 Effect: Level 2][stack=sugar][url=fastmove|middle Fast movement][br][stack=fermented_spider_eye][stack=sugar][url=slowmove|middle Slow movement][br][stack=fish|3][url=waterbreathing|middle Water breathing][br][stack=magma_cream][url=resistfire|middle Resist fire][br][stack=golden_carrot][url=nightvision|middle Night vision][br][stack=fermented_spider_eye][stack=golden_carrot][url=invisible|middle Invisible]
 witchery:cauldronbook.level2_3=[next=level2_4][h1 Effect: Level 2][stack=blaze_powder][url=damageboost|middle Damage boost][br][stack=fermented_spider_eye][stack=blaze_powder][url=weakness|middle Weakness][br][stack=speckled_melon][url=heal|middle Heal][br][stack=fermented_spider_eye][stack=speckled_melon][url=harm|middle Harm][br][stack=reeds][url=floating|middle Floating]
 witchery:cauldronbook.level2_4=[next=level2_5][h1 Effect: Level 2][stack=leather][url=jump|middle Jump][br][stack=feather][url=slowfall|middle Slow fall][br][stack=web][url=reflectarrows Reflect arrows][br][stack=fermented_spider_eye][stack=web][url=attractarrows|middle Attract arrows][br][stack=red_mushroom][url=poisonweapon|middle Poison weapon]
 witchery:cauldronbook.level2_5=[next=level2_6][h1 Effect: Level 2][stack=witchery:ingredient|108][url=batburst|middle Bat burst][br][stack=witchery:ingredient|32][url=airhike|middle Air hike][br][stack=slime_ball][url=pull|middle Pull][br][stack=witchery:ingredient|30][url=erosion|middle Erosion][br][stack=netherrack][url=levelland|middle Level Land][br][stack=witchery:ingredient|56][url=webs|middle Webs]
 witchery:cauldronbook.level2_6=[next=level2_7][h1 Effect: Level 2][stack=vine][url=vines|middle Vines & Flammable][br][stack=cactus][url=thorns|middle Cactus & Thorned][br][stack=witchery:ingredient|82][url=sprouting|middle Sprouting][br][stack=witchery:ingredient|78][url=freeze|middle Freeze][br][stack=stick][url=knockback|middle Knockback][br][stack=pumpkin][url=undeadbane|middle Undeadbane]
 witchery:cauldronbook.level2_7=[next=level2_8][h1 Effect: Level 2][stack=red_flower|1][url=insectbane|middle Insectbane][br][stack=witchery:witchsapling|0][url=growtree|middle Grow rowan][br][stack=witchery:witchsapling|1][url=growtree|middle Grow alder][br][stack=witchery:witchsapling|2][url=growtree|middle Grow hawthorn][br][stack=sapling|5][url=growtree|middle Grow dark oak]
 witchery:cauldronbook.level2_8=[next=level2_9][h1 Effect: Level 2][stack=sapling|0][url=growtree|middle Grow oak][br][stack=sapling|1][url=growtree|middle Grow spruce][br][stack=sapling|2][url=growtree|middle Grow birch][br][stack=sapling|3][url=growtree|middle Grow jungle][br][stack=sapling|4][url=growtree|middle Grow acacia][br][stack=witchery:ingredient|35][url=removebuffs|middle Remove Buffs]
-witchery:cauldronbook.level2_9=[h1 Effect: Level 2][stack=witchery:ingredient|105][url=removedebuffs|middle Remove debuffs][br][stack=snow][url=endlesswater|middle Endless Water *][br][br][i * cannot be combined with other effects.]
+witchery:cauldronbook.level2_9=[h1 Effect: Level 2][stack=witchery:ingredient|105][url=removedebuffs|middle Remove debuffs][br][stack=snow][url=endlesswater|middle Endless Water *][br][br][i * cannot be combined with other effects.][br][stack=glass_bottle][url=spectralsight|middle Spectral Sight]
 
 witchery:cauldronbook.level4=[next=level4_2][h1 Effect: Level 4][stack=witchery:glintweed][url=flames|middle Flames][br][stack=witchery:ingredient|80][url=fear|middle Fear][br][stack=dye|0][url=blindness|middle Blindness][br][stack=red_flower|0][url=love|middle Love][br][stack=witchery:ingredient|23][url=paralysis|middle Paralysis][br][stack=rotten_flesh][url=disease|middle Disease]
 witchery:cauldronbook.level4_2=[next=level4_3][h1 Effect: Level 4][stack=witchery:ingredient|39][url=brewbottling|middle Brew bottling][br][stack=fermented_spider_eye][stack=witchery:ingredient|39][url=insanity|middle Insanity][br][stack=witchery:ingredient|99][url=sinking|middle Sinking][br][stack=witchery:embermoss][url=overheating|middle Overheating][br][stack=witchery:ingredient|103][url=nightmare|middle Nightmare][br][stack=witchery:ingredient|90][url=frogsleg|middle Frog's Leg]
 witchery:cauldronbook.level4_3=[next=level4_4][h1 Effect: Level 4][stack=golden_apple][url=absorbtion|middle Absorption][br][stack=golden_apple|1][url=healthboost|middle Health boost][br][stack=witchery:ingredient|112][url=wasting|middle Wasting][br][stack=fermented_spider_eye][stack=witchery:ingredient|112][url=fullness|middle Fullness][br][stack=witchery:ingredient|36][url=revealing|middle Revealing][br][stack=tallgrass|0][url=volatility|middle Volatility]
 witchery:cauldronbook.level4_4=[next=level4_5][h1 Effect: Level 4][stack=witchery:ingredient|28][url=stoutbelly|middle Stout belly][br][stack=poisonous_potato][url=blight|middle Blight][br][stack=ender_pearl][url=transpose|middle Transpose][br][stack=iron_ingot][url=transposeore|middle Transpose ore][br][stack=bone][url=raisedead|middle Raise dead][br][stack=quartz][url=raiseland|middle Raise land]
 witchery:cauldronbook.level4_5=[next=level4_6][h1 Effect: Level 4][stack=soul_sand][url=gruesprey|middle Grue's Prey][br][stack=witchery:ingredient|34][url=absorbmagic|middle Absorb magic][br][stack=skull|1][url=wither|middle Wither][br][stack=witchery:ingredient|157][url=harmwerewolves|middle Harm Werewolves][br][stack=witchery:garlic][url=weakenvampires|middle Weaken Vampires]
-witchery:cauldronbook.level4_6=[h1 Effect: Level 4][stack=witchery:ingredient|165][url=animalattraction|middle Animal attraction][br][stack=fermented_spider_eye][stack=witchery:ingredient|165][url=animalrepulsion|middle Animal replusion]
+witchery:cauldronbook.level4_6=[next=level4_7][h1 Effect: Level 4][stack=witchery:ingredient|165][url=animalattraction|middle Animal attraction][br][stack=fermented_spider_eye][stack=witchery:ingredient|165][url=animalrepulsion|middle Animal replusion][br][stack=name_tag][url=comprehension|middle Comprehension][br][stack=packed_ice][url=glaciate|middle Glaciate][br][stack=sandstone][url=glasswork|middle Glasswork]
+witchery:cauldronbook.level4_7=[h1 Effect: Level 4][stack=lead][url=soulswap|middle Soul Swap][br][stack=map][url=amnesia|middle Amnesia]
 
 witchery:cauldronbook.level5=[next=level5_2][h1 Effect: Level 5][stack=witchery:ingredient|38][url=inferno|middle Inferno][br][stack=gold_ingot][url=blast|middle Blast][br][stack=double_plant][url=poisontoad|middle Poison Toad][br][stack=ender_eye][url=iceworld|middle Ice World][br][stack=witchery:ingredient|79][url=iceshell|middle Ice shell][br][stack=witchery:ingredient|66][url=reflectdamage|middle Reflect damage]
-witchery:cauldronbook.level5_2=[h1 Effect: Level 5][stack=ice][url=demonbane|middle Demonbane]
+witchery:cauldronbook.level5_2=[h1 Effect: Level 5][stack=ice][url=demonbane|middle Demonbane][br][stack=melon][url=lifesteal|middle Lifesteal][br][stack=fire_charge][url=berserk|middle Berserk][br][stack=iron_sword][url=frenzy|middle Frenzy][br][stack=shears][url=spectralthief|middle Spectral Thief]
 
 witchery:cauldronbook.level6=[next=level6_2][h1 Effect: Level 6][stack=fish|1][url=undeadscurse|middle Undead's Curse][br][stack=witchery:bramble|1][url=illfitting|middle Ill Fitting][br][stack=witchery:ingredient|33][url=reincarnate|middle Reincarnate][br][stack=witchery:ingredient|74][url=durationboost|middle Duration Boost][br][stack=emerald][url=resizing|middle Resizing][br][stack=skull|0][url=stealbuffs|middle Steal buffs]
-witchery:cauldronbook.level6_2=[stack=clay_ball][url=fortune|middle Fortune][br][stack=witchery:ingredient|114][url=drainmagic|middle Drain magic]
+witchery:cauldronbook.level6_2=[next=level6_3][h1 Effect: Level 6][stack=clay_ball][url=fortune|middle Fortune][br][stack=witchery:ingredient|114][url=drainmagic|middle Drain magic][br][stack=glass_pane][url=phasewalk|middle Phasewalk][br][stack=experience_bottle][url=manasiphon|middle Mana Siphon][br][stack=stonebrick][url=petrify|middle Petrify]
+witchery:cauldronbook.level6_3=[h1 Effect: Level 6][stack=bed][url=astralprojection|middle Astral Projection][br][stack=paper][url=voodoolink|middle Voodoo Link][br][stack=saddle][url=polymorph|middle Polymorph][br][stack=fishing_rod][url=etherealchains|middle Ethereal Chains][br][stack=reeds][url=sirensong|middle Siren's Song][br][stack=book][url=covencall|middle Coven's Call]
 
-witchery:cauldronbook.level8=[h1 Effect: Level 8][stack=witchery:ingredient|113][url=keepinventory|middle Keep inventory][br][stack=witchery:biomenote][url=shiftingseasons|middle Shifting seasons][br][stack=skull|4][url=spreaddebuffs|middle Spread debuffs][br][stack=witchery:ingredient|40][url=keepeffects|middle Keep effects]
+witchery:cauldronbook.level8=[next=level8_2][h1 Effect: Level 8][stack=witchery:ingredient|113][url=keepinventory|middle Keep inventory][br][stack=witchery:biomenote][url=shiftingseasons|middle Shifting seasons][br][stack=skull|4][url=spreaddebuffs|middle Spread debuffs][br][stack=witchery:ingredient|40][url=keepeffects|middle Keep effects][br][stack=clock][url=soultether|middle Soul Tether]
+witchery:cauldronbook.level8_2=[h1 Effect: Level 8][stack=iron_door][url=banishment|middle Banishment][br][stack=name_tag][url=doppelganger|middle Doppelganger][br][stack=string][url=marionette|middle Marionette][br][stack=sponge][url=silence|middle Silence]
 
 witchery:cauldronbook.level12=[h1 Effect: Level 12][stack=witchery:witchhat][url=leonard|middle Summon Leonard]
 
@@ -1432,44 +1556,44 @@ witchery.rite.wolfcure.book=Rite of Remove Curse{r||Cleanse the taglocked being 
 
 witchery.werewolf.setlevel=Werewolf level set to %s.
 witchery.werewolf.chunkvisited=You feel as if you have already been here.
-witchery.werewolf.mooncharmcrafted=The voice rumbles, "DO NOT LOSE IT AGAIN!"
-witchery.werewolf.notworthy=A voice echoes in your head, "YOU ARE UNWORTHY!"
+witchery.werewolf.mooncharmcrafted=The voice rumbles, DO NOT LOSE IT AGAIN!
+witchery.werewolf.notworthy=A voice echoes in your head, YOU ARE UNWORTHY!
 
-witchery.werewolf.level2begin=A voice echoes, "%s INGOTS OF GOLD, GIVE THEM TO ME!"
-witchery.werewolf.level2progress=A deep voice bellows, "%s INGOTS OF GOLD ARE SOUGHT, YOU LACK %s!"
-witchery.werewolf.level2complete=The voice rumbles, "GOLD IS GIVEN, A CHARM IS MADE, LET THE BEAST WITHIN BE FREED, AND THE MOON HAVE NO SWAY!"
+witchery.werewolf.level2begin=A voice echoes, %s INGOTS OF GOLD, GIVE THEM TO ME!
+witchery.werewolf.level2progress=A deep voice bellows, %s INGOTS OF GOLD ARE SOUGHT, YOU LACK %s!
+witchery.werewolf.level2complete=The voice rumbles, GOLD IS GIVEN, A CHARM IS MADE, LET THE BEAST WITHIN BE FREED, AND THE MOON HAVE NO SWAY!
 
-witchery.werewolf.level3begin=The voice intones, "STRENGTHEN YOUR CLAWS, REND THE FLESH FROM %s OF THE WEAKEST OF PREY, PLACE THEIR MUTTON BEFORE ME!"
-witchery.werewolf.level3progress=The voice echoes, "SLAY %s AND BRING THEIR FLESH, YOU REQUIRE %s MORE!"
-witchery.werewolf.level3complete=The voice bellows, "MEAT TORN FROM THE WEAKEST, CLAWS LIKE STEEL TEMPERED, TO RIP THE EARTH AND FLESH, THE BEASTS HUNGER NEVER SATED!" 
+witchery.werewolf.level3begin=The voice intones, STRENGTHEN YOUR CLAWS, REND THE FLESH FROM %s OF THE WEAKEST OF PREY, PLACE THEIR MUTTON BEFORE ME!
+witchery.werewolf.level3progress=The voice echoes, SLAY %s AND BRING THEIR FLESH, YOU REQUIRE %s MORE!
+witchery.werewolf.level3complete=The voice bellows, MEAT TORN FROM THE WEAKEST, CLAWS LIKE STEEL TEMPERED, TO RIP THE EARTH AND FLESH, THE BEASTS HUNGER NEVER SATED! 
 
-witchery.werewolf.level4begin=The voice rumbles, "THE FANGS OF THE ALPHA MUST BE HONED, RIP THE THROAT FROM %s LESSER WOLVES AND BRING ME THEIR TONGUES!"
-witchery.werewolf.level4progress=The voice echoes, "DOMINATE %s, %s REMAIN!"
-witchery.werewolf.level4complete=The voice bellows, "THE PACK IS HUNGERING, FANGS FEAST ON THE KILL, A NEW ALPHA RISES, FROM THE SLAIN EAT YOUR FILL!" 
+witchery.werewolf.level4begin=The voice rumbles, THE FANGS OF THE ALPHA MUST BE HONED, RIP THE THROAT FROM %s LESSER WOLVES AND BRING ME THEIR TONGUES!
+witchery.werewolf.level4progress=The voice echoes, DOMINATE %s, %s REMAIN!
+witchery.werewolf.level4complete=The voice bellows, THE PACK IS HUNGERING, FANGS FEAST ON THE KILL, A NEW ALPHA RISES, FROM THE SLAIN EAT YOUR FILL! 
 
-witchery.werewolf.level5begin=The voice rumbles, "THE WOLF AND THE MAN MUST BECOME ONE, SLAY THE HORNED LORD OF THE WILD HUNT! CALL HIM FORTH WITH THIS HORN AND LAND THE KILLING BLOW!"
-witchery.werewolf.level5progress=The voice echoes, "THE HUNTSMAN LIES UNDEFEATED! SUMMON HIM WITH THE HORN AND LAND THE KILLING BLOW!"
-witchery.werewolf.level5complete=The voice bellows, "A MIGHTY CHAMPION DEFEATED, STANDING TALL THE VICTOR, THE BEAST IS FULLY AWOKEN, HUNT NOW ON TWO LEGS OR FOUR!" 
+witchery.werewolf.level5begin=The voice rumbles, THE WOLF AND THE MAN MUST BECOME ONE, SLAY THE HORNED LORD OF THE WILD HUNT! CALL HIM FORTH WITH THIS HORN AND LAND THE KILLING BLOW!
+witchery.werewolf.level5progress=The voice echoes, THE HUNTSMAN LIES UNDEFEATED! SUMMON HIM WITH THE HORN AND LAND THE KILLING BLOW!
+witchery.werewolf.level5complete=The voice bellows, A MIGHTY CHAMPION DEFEATED, STANDING TALL THE VICTOR, THE BEAST IS FULLY AWOKEN, HUNT NOW ON TWO LEGS OR FOUR! 
 
-witchery.werewolf.level6begin=The voice growls, "BUILD POWERFUL MUSCLES TO SMASH YOUR PREY, LEAP AT %s MONSTERS, AND FROM THE AIR SLAY!"
-witchery.werewolf.level6progress=The voice rumbles, "SLAY %s FROM THE AIR WAS BIDDEN, %s REMAIN!"
-witchery.werewolf.level6complete=The voice proclaims, "DEATH FROM ABOVE, LIKE LIGHTNING YOU STRIKE, SPRINT NOW WHEN YOU HIT, TO QUICKLY END THE FIGHT!"
+witchery.werewolf.level6begin=The voice growls, BUILD POWERFUL MUSCLES TO SMASH YOUR PREY, LEAP AT %s MONSTERS, AND FROM THE AIR SLAY!
+witchery.werewolf.level6progress=The voice rumbles, SLAY %s FROM THE AIR WAS BIDDEN, %s REMAIN!
+witchery.werewolf.level6complete=The voice proclaims, DEATH FROM ABOVE, LIKE LIGHTNING YOU STRIKE, SPRINT NOW WHEN YOU HIT, TO QUICKLY END THE FIGHT!
 
-witchery.werewolf.level7begin=The voice bellows, "OTHERS MUST LEARN TO FEAR YOU, TRAVEL THE LAND AT NIGHT, IN %s PLACES LOOK TO THE SKY AND LET YOUR WOLFS VOICE BE HEARD!"
-witchery.werewolf.level7progress=The voice intones, "HOWL AT THE NIGHT SKY IN %s PLACES, %s REMAIN!"
-witchery.werewolf.level7complete=The voice growls, "YOUR VOICE IS HEARD, YOUR COMING NOT CHEERED, AS WOLFMAN CRY OUT, LET YOUR FOES FREEZE IN FEAR!"
+witchery.werewolf.level7begin=The voice bellows, OTHERS MUST LEARN TO FEAR YOU, TRAVEL THE LAND AT NIGHT, IN %s PLACES LOOK TO THE SKY AND LET YOUR WOLFS VOICE BE HEARD!
+witchery.werewolf.level7progress=The voice intones, HOWL AT THE NIGHT SKY IN %s PLACES, %s REMAIN!
+witchery.werewolf.level7complete=The voice growls, YOUR VOICE IS HEARD, YOUR COMING NOT CHEERED, AS WOLFMAN CRY OUT, LET YOUR FOES FREEZE IN FEAR!
 
-witchery.werewolf.level8begin=The voice echoes, "MASTER THE PACK! AS A WOLF, FIND AND BEND %s WOLVES TO YOUR WILL!"
-witchery.werewolf.level8progress=The voice intones, "FORM A PACK OF %s WOLVES. YOU HAVE YET TO MASTER %s!"
-witchery.werewolf.level8complete=The voice rumbles, "THE ALPHA OF THE PACK, MASTERY IS ACHIEVED, HOWL AT THE SKY, TO CALL YOUR SERVANTS AT NEED."
+witchery.werewolf.level8begin=The voice echoes, MASTER THE PACK! AS A WOLF, FIND AND BEND %s WOLVES TO YOUR WILL!
+witchery.werewolf.level8progress=The voice intones, FORM A PACK OF %s WOLVES. YOU HAVE YET TO MASTER %s!
+witchery.werewolf.level8complete=The voice rumbles, THE ALPHA OF THE PACK, MASTERY IS ACHIEVED, HOWL AT THE SKY, TO CALL YOUR SERVANTS AT NEED.
 
-witchery.werewolf.level9begin=The voice bellows, "CLAWS AS KNIVES, AS WOLFMAN YOU MUST HUNT, SLAY %s OF THE PIGS THAT IN THE NETHER GRUNT!"
-witchery.werewolf.level9progress=The voice intones, "AS WOLFMAN, HUNT %s NETHER PIGS, %s MUST BE FOUND!"
-witchery.werewolf.level9complete=The voice proclaims, "INFERNAL FOES ARE DEFEATED, CLAWS HONED TO AN EDGE, ARMOR LIKE PAPER, YOU WILL NOW RIP TO SHREADS!"
+witchery.werewolf.level9begin=The voice bellows, CLAWS AS KNIVES, AS WOLFMAN YOU MUST HUNT, SLAY %s OF THE PIGS THAT IN THE NETHER GRUNT!
+witchery.werewolf.level9progress=The voice intones, AS WOLFMAN, HUNT %s NETHER PIGS, %s MUST BE FOUND!
+witchery.werewolf.level9complete=The voice proclaims, INFERNAL FOES ARE DEFEATED, CLAWS HONED TO AN EDGE, ARMOR LIKE PAPER, YOU WILL NOW RIP TO SHREADS!
 
-witchery.werewolf.level10begin=The voice bellows, "TAKE THE LIFE OF ANOTHER, FROM VILLAGE OR FRIEND, THEN YOU'LL BE GRANTED THE FAVOUR, MY BLESSING TO SPREAD!"
-witchery.werewolf.level10progress=The voice echoes, "SLAY ONE FROM A VILLAGE, OR ONE SUCH AS YOU!"
-witchery.werewolf.level10complete=The voice exclaims, "YOU HAVE MASTERED MY PATH, NOW SPREAD MY BLESSING!"
+witchery.werewolf.level10begin=The voice bellows, TAKE THE LIFE OF ANOTHER, FROM VILLAGE OR FRIEND, THEN YOU'LL BE GRANTED THE FAVOUR, MY BLESSING TO SPREAD!
+witchery.werewolf.level10progress=The voice echoes, SLAY ONE FROM A VILLAGE, OR ONE SUCH AS YOU!
+witchery.werewolf.level10complete=The voice exclaims, YOU HAVE MASTERED MY PATH, NOW SPREAD MY BLESSING!
 
 item.witchery:hunterhatsilvered.name=Witch Hunter Hat (Silvered)
 item.witchery:hunterhatsilvered.tip={9Werewolf protection.{0|{9Set bonuses: Protection from curses.{0|{9Enables draining bolts.{0|{9Cannot use poppets.{0
@@ -1538,7 +1662,7 @@ item.witchery:glassgoblet.notenoughblood=Half a droplet of blood is needed to fi
 item.witchery:glassgoblet.nothighenoughlevel=Your blood is not yet strong enough for this task
 item.witchery:glassgoblet.nothinghappens=Nothing happens
 item.witchery:glassgoblet.seemswrong=This does not seem correct
-item.witchery:glassgoblet.lilithquest=A voice sings, "Bring my daughter to the lakes of fire in the netherworld"
+item.witchery:glassgoblet.lilithquest=A voice sings, Bring my daughter to the lakes of fire in the netherworld
 item.witchery:glassgoblet.lilithquestsummon=Are you worthy of my mistress?
 item.witchery:glassgoblet.lilithquestsummon2=My mistress is here...
 item.witchery:glassgoblet.lilithquestcomplete=You are worthy... this time... do you desire magic, or death?
@@ -1596,7 +1720,7 @@ witchery.vampirepower.ustorm=Call Storm (%d)
 
 witchery:vampirebook.toc=[next=ritual1][h1 Observations of an Immortal][br][br][br][darkred A doomed scholar's account of discourse with the undead]
 witchery:vampirebook.ritual1=[next=ritual2]It is with some reluctance I commit these observations to paper, for what I have witnessed is not for the weak of mind. Instead, take my words as a warning...
-witchery:vampirebook.ritual2=[next=ritual3][br]...he was reminiscing over dinner this evening about his "birth", a demonic pact of sorts...[br][br]...butchering a chicken over a skull with a boline and holding a glass goblet to collect the blood is barbaric," I told him...
+witchery:vampirebook.ritual2=[next=ritual3][br]...he was reminiscing over dinner this evening about his birth, a demonic pact of sorts...[br][br]...butchering a chicken over a skull with a boline and holding a glass goblet to collect the blood is barbaric, I told him...
 witchery:vampirebook.ritual3=[next=ritual4][br]...apparently start of a long forgotten rite (I made a sketch...[br][img=witchery:textures/gui/vritual.png|center|middle|64|64][br]...night, open to the moon, string, red dust, torches and skull...
 witchery:vampirebook.ritual4=[next=ritual5][br][br]...pouring the blood onto the skull...[br][br]...mumbling about taking her to the lakes of lava...   ...underworld...
 witchery:vampirebook.ritual5=[next=transfix|1][br]...proving his worth to Her...[br][br][br]...that glass goblet again, could someone really drink such a thing? ...
@@ -1609,7 +1733,7 @@ witchery:vampirebook.bats=[next=mesmerize|7]...he could smash solid stone, but b
 witchery:vampirebook.mesmerize=[next=maker|8]...he smiled, a rare event, when he told me of his first flight...[br][br]...he flew from village to village, untill he knew the full extent of his domain, there was now nowhere he could not go... 
 witchery:vampirebook.maker=[next=maker2|8]...the weak minded would now not only let him drink his fill, but would also follow like faithful hounds...[br][br]...horror of all horrors, he lured five of them to specially prepared iron cages, topped with wood and with a gap at the front. He sealed them inside...
 witchery:vampirebook.maker2=[next=finalpowers|9][img=witchery:textures/gui/vcage.png|center|middle|64|64][br][br]...he began feeding from each of them; mezmerising them first, then carefully he drank all he could, without damaging any...
-witchery:vampirebook.finalpowers=At last he knew his blood was strong enough to replicate what She had done for him... ...left me weak, close to oblivion, but I watched him fill a glass goblet and hand it to me... ...we both sat next to a coffin, far from the sun's gaze, "drink!" is all he said...
+witchery:vampirebook.finalpowers=At last he knew his blood was strong enough to replicate what She had done for him... ...left me weak, close to oblivion, but I watched him fill a glass goblet and hand it to me... ...we both sat next to a coffin, far from the sun's gaze, drink! is all he said...
 
 witchery.vampire.setlevel=Vampire level set to %s.
 witchery:death.attack.sun=%1$s burnt to a crisp in the sun
@@ -1656,6 +1780,9 @@ item.witchery:mirror.tip.bridgeplus={5Hollow (%s: %d, %d, %d){0
 item.witchery:mirror.tip.inhabited={3Inhabited{0
 entity.witchery.reflection.name=Reflection
 item.witchery:ingredient.heartofgold.name=Heart of Gold
+item.witchery:ingredient.floopowder.name=Floo Powder
+tile.witchery:floofire.name=Floo Fire
+witchery.book.floopowder=[h1 Floo Powder]Brewed in the kettle from Ash Wood, redstone and glowstone dust. Cast a pinch onto a burning fire and the flames turn an eerie green. While holding a Waystone bound to a location, step into the green Floo Fire to be whisked there at once. The Waystone is the key, not fuel - it is never consumed.
 
 witchery.rite.infusionmirror=Rite of Infusion{r||Trap a Demon into a mirror.
 witchery:brew.animalattraction=Animal Attraction
@@ -1682,4 +1809,114 @@ witchery.rite.mirrormirror.bearing5=South West is where the fairest will be.
 witchery.rite.mirrormirror.bearing6=West is where the fairest will be.
 witchery.rite.mirrormirror.bearing7=North West is where the fairest will be.
 
-witchery.rite.mirrormirror.opchatreveal=In next message, player "%s" is really: "%s"
+witchery.rite.mirrormirror.opchatreveal=In next message, player %s is really: %s
+witchery.pott.petrificustotalus=Petrificus Totalus
+witchery.pott.petrificustotalus.info=Petrify the target, holding it immobile and blind indefinitely.
+witchery.pott.glacius=Glacius
+witchery.pott.glacius.info=Freeze the target and chill the area, turning water to ice and quenching fire.
+witchery.pott.flagrateritualis=Flagrate Ritualis
+witchery.pott.flagrateritualis.info=Draw a Ritual glyph on the block you are looking at.
+witchery.pott.flagrateaureus=Flagrate Aureus
+witchery.pott.flagrateaureus.info=Draw a Golden Chalk circle on the block you are looking at.
+witchery.pott.flagratealibi=Flagrate Alibi
+witchery.pott.flagratealibi.info=Draw an Otherwhere glyph on the block you are looking at.
+witchery.pott.revelopotionis=Revelio
+witchery.pott.revelopotionis.info=Reveal invisible entities nearby and dispel cursed blocks.
+witchery.pott.ictus=Ictus
+witchery.pott.ictus.info=Strike the target for damage and drain a portion of its infused power.
+witchery.pott.sectumsempra=Sectumsempra
+witchery.pott.sectumsempra.info=A deep cutting curse that deals heavy damage and inflicts Wither.
+witchery.pott.finiteincantatem=Finite Incantatem
+witchery.pott.finiteincantatem.info=Sneak to cleanse negative effects from yourself, or cast normally to end magical effects.
+witchery.pott.herbivicus=Herbivicus
+witchery.pott.herbivicus.info=Instantly grow nearby crops and plants, as if bonemealed.
+witchery.pott.impervius=Impervius
+witchery.pott.impervius.info=Grant fire resistance, water breathing and damage resistance to the target or yourself.
+witchery.pott.erecto=Erecto
+witchery.pott.erecto.info=Conjure a temporary protective shelter of force blocks. Sneak to dismiss it.
+witchery.pott.portuspersonal=Portus Personal
+witchery.pott.portuspersonal.info=Set a personal recall point, then cast again to teleport back to it.
+witchery.pott.portustraslador=Portus Traslador
+witchery.pott.portustraslador.info=Create a Waystone Portkey bound to your current position. Right-click it to return.
+witchery.pott.taglockhex=Taglock Hex
+witchery.pott.taglockhex.info=Steal a taglock from the target, capturing their blood and identity.
+witchery.pott.smeltray=Smelt Ray
+witchery.pott.smeltray.info=Smelt the block or dropped item it hits, as if cooked in a furnace.
+witchery.pott.earthpillar=Earth Pillar
+witchery.pott.earthpillar.info=Raise a pillar of earth beneath the target block, lifting you if you stand on it.
+witchery.pott.transmutation=Transmutation
+witchery.pott.transmutation.info=Transmute a block into a related material (dirt and sand, stone and cobble, logs to planks).
+witchery.pott.excavation=Excavation
+witchery.pott.excavation.info=Excavate a 3x3x3 cube of blocks, dropping them as items.
+witchery.pott.broomsummon=Broom Summon
+witchery.pott.broomsummon.info=Summon a flying broom at the targeted block.
+witchery.pott.toadleap=Toad Leap
+witchery.pott.toadleap.info=Launch yourself high into the air and negate fall damage.
+witchery.pott.etherealvault=Ethereal Vault
+witchery.pott.etherealvault.info=Open your Ender Chest from anywhere.
+witchery.pott.asis=Asis
+witchery.pott.asis.info=A basic bolt of force. Hit the same target rapidly to build a damage combo.
+witchery.pott.orchideous=Orchideous
+witchery.pott.orchideous.info=Scatter grass and flowers across the targeted ground.
+witchery.pott.fumos=Fumos
+witchery.pott.fumos.info=Create a dense cloud of smoke. Sneak to release it at your own feet.
+witchery.pott.incarcerous=Incarcerous
+witchery.pott.incarcerous.info=Bind the target in cobwebs, trapping it in place.
+witchery.pott.vermillious=Vermillious
+witchery.pott.vermillious.info=Launch a bright red firework as a signal flare.
+
+witchery.rite.reparo=Rite of Reparo
+witchery.rite.identify=Rite of Identification
+witchery.rite.aparecium=Rite of Aparecium
+witchery.rite.vociferador=Rite of the Howler
+witchery.rite.lumosmaxima=Rite of Lumos Maxima
+witchery.rite.dimensionalanchor=Rite of Dimensional Anchor
+witchery.rite.empaticlink=Rite of Empathic Link
+witchery.rite.herbivicus=Rite of Herbivicus
+witchery.rite.identify.result=Identification reveals: %s
+witchery.rite.identify.enchanted=This item is enchanted!
+witchery.rite.magicalprison=Magical Prison
+
+witchery:cauldronbook.spectralsight=[h1 Effect: Spectral Sight]Grants the ability to see spectral and invisible entities.
+witchery:cauldronbook.comprehension=[h1 Effect: Comprehension]Allows you to understand languages you normally wouldn't.
+witchery:cauldronbook.glaciate=[h1 Effect: Glaciate]Freezes water into ice and lava into obsidian within a large radius.
+witchery:cauldronbook.glasswork=[h1 Effect: Glasswork]Turns sand into glass within a radius.
+witchery:cauldronbook.lifesteal=[h1 Effect: Lifesteal]Drains health from enemies and heals the caster.
+witchery:cauldronbook.berserk=[h1 Effect: Berserk]Greatly increases damage dealt but lowers defense.
+witchery:cauldronbook.phasewalk=[h1 Effect: Phasewalk]Allows the imbiber to pass through solid obstacles temporarily.
+witchery:cauldronbook.manasiphon=[h1 Effect: Mana Siphon]Drains magical energy from targets to restore the caster's.
+witchery:cauldronbook.petrify=[h1 Effect: Petrify]Roots the target to the spot and turns their skin to stone.
+witchery:cauldronbook.soultether=[h1 Effect: Soul Tether]Tethers the target's soul to yours, pulling them to you across dimensions.
+
+witchery:brew.soulswap=Soul Swap
+witchery:brew.astralprojection=Astral Projection
+witchery:brew.banishment=Banishment
+witchery:brew.voodoolink=Voodoo Link
+witchery:brew.polymorph=Polymorph
+witchery:brew.frenzy=Frenzy
+witchery:brew.covencall=Coven's Call
+witchery:potion.banishment=Banished
+witchery:potion.astralprojection=Astral Form
+witchery:potion.voodoolink=Voodoo Bound
+witchery:potion.polymorph=Polymorphed
+witchery:potion.frenzy=Frenzied
+
+witchery:cauldronbook.soulswap=[h1 Effect: Soul Swap]Swaps the physical location of the caster and the target.
+witchery:cauldronbook.astralprojection=[h1 Effect: Astral Projection]Grants the ability to leave your physical body behind and fly freely as a spirit.
+witchery:cauldronbook.banishment=[h1 Effect: Banishment]Forcefully teleports the target to the Nether for the duration of the effect.
+witchery:cauldronbook.voodoolink=[h1 Effect: Voodoo Link]Links the target to the caster. Any damage the target receives is redirected to the caster instead.
+witchery:cauldronbook.polymorph=[h1 Effect: Polymorph]Visually transforms the target into a harmless pig.
+witchery:cauldronbook.frenzy=[h1 Effect: Frenzy]Causes the targeted monster to lose its mind and attack anything nearby.
+witchery:cauldronbook.covencall=[h1 Effect: Coven's Call]Summons members of your coven to your side to assist you.
+witchery:cauldronbook.amnesia=[h1 Effect: Amnesia]Causes the victim to forget how to organize their inventory, completely scrambling the items they hold.
+witchery:cauldronbook.spectralthief=[h1 Effect: Spectral Thief]Steals the item currently held by the target and places it in your own inventory.
+witchery:cauldronbook.doppelganger=[h1 Effect: Doppelganger]Spawns an exact replica of yourself holding your current equipment while turning you invisible.
+witchery:cauldronbook.etherealchains=[h1 Effect: Ethereal Chains]Anchors the victim to their current location. If they move too far, they are forcefully pulled back.
+witchery:cauldronbook.marionette=[h1 Effect: Marionette]Links the victim's mind to yours, forcing them to walk and look exactly where you do.
+witchery:cauldronbook.sirensong=[h1 Effect: Siren's Song]Emits an aura that mesmerizes nearby hostile creatures, causing them to walk peacefully towards you.
+witchery:cauldronbook.silence=[h1 Effect: Silence]A powerful anti-magic ward that forces the victim to drop any Witchery wands or brews they try to hold.
+
+witchery:potion.etherealchains=Ethereally Chained
+witchery:potion.marionette=Marionetted
+witchery:potion.sirensong=Siren's Aura
+witchery:potion.silence=Silenced
